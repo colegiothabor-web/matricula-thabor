@@ -35,6 +35,10 @@ input.calc{background:#eef1f6;color:#3b475c;border-style:dashed;cursor:not-allow
 .doc-msg{font-size:12.5px;color:#b3261e;font-weight:400}.prop-aviso{grid-column:1/-1;background:#fff4d6;color:#5c4300;border:1px solid #e6c766;border-radius:8px;padding:8px 12px;font-size:14px}
 [hidden]{display:none!important}
 </style>
+<style>
+.aviso-envio{margin-top:14px;padding:12px 16px;border-left:5px solid #b45309;border-radius:8px;background:#fff4e5;color:#7a3a05;font-weight:700;font-size:14px;line-height:1.5}
+.aviso-envio[hidden]{display:none}
+</style>
 </head>
 <body>
 <header><h1>Ficha e Requerimento de Matrícula | 2026</h1></header>
@@ -42,7 +46,7 @@ input.calc{background:#eef1f6;color:#3b475c;border-style:dashed;cursor:not-allow
 <div class="notice"><strong>Preenchimento inteligente:</strong> para endereços no Brasil, informe o CEP e use a busca automática. Para alunos ou responsáveis no exterior, selecione preenchimento manual. Os PDFs (Ficha de Matrícula, Contrato Financeiro e, conforme a forma de pagamento escolhida na etapa Financeiro, o Termo Aditivo) são gerados como texto corrido sobre o papel timbrado oficial.</div>
 <div class="wizard-shell">
 <aside class="wizard-sidebar"><div class="progress-ring" id="progressRing"><div class="progress-value"><span id="progressPercent">0%</span><small>concluído</small></div></div><div class="step-counter" id="stepCounter">Etapa 1</div><div class="step-list" id="stepList"></div></aside>
-<div class="wizard-content"><form id="form"></form><div class="wizard-actions"><button class="secondary" id="anterior" type="button">← Anterior</button><div class="spacer"></div><button id="proximo" type="button">Próximo →</button><button class="success" id="gerar" type="button" style="display:none">Gerar PDFs</button></div><div class="download-links" id="downloadLinks" hidden></div><div class="footer-actions"><button class="secondary" id="limpar" type="button">Limpar formulário</button><span id="status"></span></div><div class="completion-note" id="completionNote">Cadastro concluído. Revise os dados e gere os PDFs timbrados: Ficha de Matrícula, Contrato Financeiro e, conforme a forma de pagamento escolhida, o Termo Aditivo.</div></div>
+<div class="wizard-content"><form id="form"></form><div class="wizard-actions"><button class="secondary" id="anterior" type="button">← Anterior</button><div class="spacer"></div><button id="proximo" type="button">Próximo →</button><button class="success" id="gerar" type="button" style="display:none">Gerar PDFs</button></div><div class="aviso-envio" id="avisoEnvio" role="alert" hidden>⚠ Enviando os arquivos à secretaria. NÃO feche nem saia desta página até aparecer a confirmação de envio.</div><div class="download-links" id="downloadLinks" hidden></div><div class="footer-actions"><button class="secondary" id="limpar" type="button">Limpar formulário</button><span id="status"></span></div><div class="completion-note" id="completionNote">Cadastro concluído. Revise os dados e gere os PDFs timbrados: Ficha de Matrícula, Contrato Financeiro e, conforme a forma de pagamento escolhida, o Termo Aditivo.<br><strong>Importante:</strong> depois de clicar em "Gerar PDFs", aguarde a mensagem de confirmação de envio e não feche nem saia da página enquanto os documentos estão sendo enviados.</div></div>
 </div>
 </main>
 <script>
@@ -647,7 +651,7 @@ async function gerarPdf(){
  const faltam=[['nome completo do responsável financeiro','fin_nome'],['estado civil','fin_estado_civil'],['profissão','fin_prof'],['RG/RNM','fin_rg'],['CPF','fin_cpf'],['endereço','fin_end'],['nome do estudante','aluno_nome']].filter(([,id])=>!v(id)).map(a=>a[0]);
  if(!numeroSerie())faltam.push('série (com número)');
  if(faltam.length&&!confirm('Faltam dados que entram nos documentos:\n\n• '+faltam.join('\n• ')+'\n\nDeseja gerar os PDFs mesmo assim?')){st.textContent='Geração cancelada. Complete os dados na etapa Financeiro.';return}
- btn.disabled=true;st.textContent='Gerando os PDFs no modelo timbrado...';
+ btn.disabled=true;envioAtivo(true);st.textContent='Gerando os PDFs no modelo timbrado...';
  try{
   if(!window.PDFLib) throw new Error('Biblioteca PDF indisponível');
   if(!await etapaRegistro('matricula',{},st))return;
@@ -679,7 +683,7 @@ async function gerarPdf(){
   if(dr.falhas)alert('Os PDFs foram gerados, mas '+dr.falhas+' documento(s) anexado(s) NÃO foram enviados à secretaria.\n\nMotivo: '+dr.erro+'\n\nClique em "Gerar" novamente para tentar reenviar.');
   st.textContent=arquivos.length+' PDFs gerados: '+arquivos.map(a=>a.rotulo).join(', ')+'. Toque nos botões "Baixar" para salvar uma cópia (se o navegador pedir, permita o download de múltiplos arquivos).'+(enviado?'':AVISO_ENVIO)+(dr.aviso||'')+(dr.total?(dr.falhas?' Atenção: '+dr.falhas+' documento(s) anexado(s) não foram enviados ('+dr.erro+'). Clique em "Gerar" novamente para tentar de novo.':' '+dr.ok+' documento(s) anexado(s) enviado(s) à secretaria.'):'');
  }catch(e){console.error(e);st.textContent='Não foi possível gerar os PDFs ('+(e&&e.message?e.message:'erro')+'). Verifique sua conexão e tente novamente.'}
- finally{btn.disabled=false}
+ finally{btn.disabled=false;envioAtivo(false)}
 }
 document.getElementById('gerar').onclick=gerarPdf;
 document.getElementById('limpar').onclick=()=>{if(confirm('Deseja apagar todos os campos?')){form.reset();localStorage.removeItem('matricula2026');limparRegistro();showStep(0);updateProgress()}};
@@ -804,6 +808,51 @@ window.addEventListener('load',()=>{try{const d=JSON.parse(localStorage.getItem(
  }
  form.addEventListener('input',e=>{const n=e.target&&e.target.id;pares.forEach(([a,b])=>{if(a===n)sync(a,b)})});
  window.addEventListener('load',()=>pares.forEach(([a,b])=>{const k=a+'>'+b,d=el(b),s=el(a);if(!d||!s)return;ult[k]=(d.value===s.value)?s.value:'';if(!d.value)sync(a,b)}));
+})();
+
+// ===== Replicação dos dados do requerente: Consentimento LGPD, assinaturas e data (tudo continua editável) =====
+(function(){
+ const el=id=>document.getElementById(id);
+ const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w&&!['de','da','do','das','dos','e'].includes(w)).join(' ');
+ const ult={};                       // último valor preenchido automaticamente em cada campo
+ const PESSOAS=['pai','mae','guarda'];
+ const CAMPOS=['prof','rg','cpf','nasc','email','tel','cep','end','bairro','cidade_estado','pais'];
+ // preenche só se o campo estiver vazio ou ainda com o valor automático anterior: o que a pessoa digitou/corrigiu é respeitado
+ function aplicar(id,valor){
+  const d=el(id);if(!d)return;valor=valor||'';
+  if(d.value&&d.value!==(ult[id]||''))return;
+  if(d.value!==valor){d.value=valor;d.dispatchEvent(new Event('input',{bubbles:true}))}
+  ult[id]=valor;
+ }
+ function pessoaDoRequerente(){
+  const r=norm(el('requerente')&&el('requerente').value);if(!r)return null;
+  const nome=p=>norm(el(p+'_nome')&&el(p+'_nome').value);
+  for(const p of PESSOAS){if(nome(p)&&nome(p)===r)return p}
+  for(const p of PESSOAS){const n=nome(p);if(n&&Math.min(n.length,r.length)>=8&&(n.includes(r)||r.includes(n)))return p}
+  return null;
+ }
+ function destinos(){
+  const req=el('requerente')?el('requerente').value:'',p=pessoaDoRequerente(),m={};
+  m.cons_nome=req;
+  CAMPOS.forEach(k=>{const s=p&&el(p+'_'+k);m['cons_'+k]=s?s.value:''});
+  m.assinatura1=req;m.assinatura2=req;
+  m.data_lgpd=el('data_doc')?el('data_doc').value:'';
+  return m;
+ }
+ function replicar(){const m=destinos();Object.keys(m).forEach(id=>aplicar(id,m[id]))}
+ form.addEventListener('input',e=>{
+  const n=e.target&&(e.target.id||'');
+  if(n==='requerente'||n==='data_doc'||/^(pai|mae|guarda)_/.test(n))replicar();
+ });
+ // depois de restaurar o rascunho salvo: o que já coincide com o dado do requerente volta a acompanhá-lo
+ window.addEventListener('load',()=>{
+  const m=destinos();
+  Object.keys(m).forEach(id=>{const d=el(id);if(d&&d.value&&d.value===m[id])ult[id]=m[id]});
+  replicar();
+ });
+ const sec=(typeof getSectionByTitle==='function')?getSectionByTitle('Consentimento LGPD'):null;
+ const ajuda=sec&&sec.querySelector('.step-help');
+ if(ajuda)ajuda.appendChild(document.createTextNode(' Os dados abaixo são preenchidos automaticamente com os do requerente (etapa Requerimento); confira e corrija se necessário.'));
 })();
 
 // ===== Matrícula durante o ano: contrato proporcional + etapa de documentos (novatos) =====
@@ -932,6 +981,13 @@ const REG_KEY='registro_'+TIPO_FORM+'_'+CONFIG.ano;
 function lerRegistro(){try{return JSON.parse(localStorage.getItem(REG_KEY)||'null')}catch(e){return null}}
 function gravarRegistro(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r))}catch(e){}}
 function limparRegistro(){try{localStorage.removeItem(REG_KEY)}catch(e){}}
+/* enquanto os arquivos estão sendo enviados: mostra o aviso e pede confirmação se tentarem fechar a página */
+function envioAtivo(on){
+ window._enviando=!!on;
+ const b=document.getElementById('avisoEnvio');
+ if(b){b.hidden=!on;if(on&&b.scrollIntoView)try{b.scrollIntoView({block:'center',behavior:'smooth'})}catch(e){}}
+}
+window.addEventListener('beforeunload',e=>{if(window._enviando){e.preventDefault();e.returnValue='';return ''}});
 async function postarApi(obj){
  const pesado=obj&&(obj.acao==='anexar'||obj.acao==='documentos');
  const limite=pesado?120000:30000,tentativas=pesado?2:1;
