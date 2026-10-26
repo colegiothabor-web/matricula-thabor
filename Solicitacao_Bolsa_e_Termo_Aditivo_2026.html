@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solicitação de Bolsa e Termo Aditivo 2026</title>
+<meta name="description" content="Formulário de solicitação de bolsa de estudos e termo aditivo ao contrato - Colégio Thabor 2026.">
+<meta name="robots" content="noindex">
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<style>
+:root{--azul:#0d2b5b;--azul2:#1d5da8;--verde:#16825d;--vermelho:#b7191f;--fundo:#f4f6fa;--cinza:#687386}
+*{box-sizing:border-box} body{margin:0;font:15px Arial,sans-serif;background:var(--fundo);color:#172033}
+header{background:white;border-bottom:4px solid var(--azul);padding:22px 5vw} h1{margin:0;color:var(--azul);font-size:27px} header p{margin:8px 0 0;color:#586274}
+main{max-width:1150px;margin:24px auto;padding:0 18px 60px} .notice{background:#eef5ff;border-left:5px solid var(--azul2);padding:12px 16px;margin-bottom:18px;border-radius:8px;color:#344054}
+.wizard-shell{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start} .wizard-sidebar{position:sticky;top:18px;background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 18px #1f315514}
+.progress-ring{--progress:0deg;width:145px;height:145px;border-radius:50%;margin:0 auto 18px;background:conic-gradient(var(--verde) var(--progress),#e7ebf1 0);display:grid;place-items:center;position:relative}
+.progress-ring:before{content:"";position:absolute;width:108px;height:108px;border-radius:50%;background:#fff} .progress-value{position:relative;text-align:center;color:var(--azul);font-weight:800;font-size:26px} .progress-value small{display:block;font-size:11px;color:#6b7482;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.step-counter{text-align:center;font-weight:700;color:#536078;margin-bottom:18px} .step-list{display:flex;flex-direction:column;gap:8px} .step-dot{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:9px;color:#667085;font-size:12px} .step-dot .num{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#e7ebf1;font-weight:800;flex:0 0 25px} .step-dot.active{background:#eef5ff;color:var(--azul);font-weight:800} .step-dot.active .num{background:var(--azul);color:#fff} .step-dot.done .num{background:var(--verde);color:#fff}.step-dot{cursor:pointer;transition:.18s ease}.step-dot:hover{background:#f1f5fb;transform:translateX(2px)}.step-dot:focus{outline:3px solid rgba(29,93,168,.18);outline-offset:2px}
+.wizard-content{min-width:0} section.form-step{display:none;background:#fff;margin:0;border-radius:14px;padding:22px;box-shadow:0 4px 18px #1f315514;animation:fade .22s ease} section.form-step.active{display:block} section h2{margin:0 0 6px;color:var(--azul);font-size:21px} .step-help{margin:0 0 19px;color:#6b7482;font-size:13px} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+label{display:block;font-weight:700;font-size:13px} input[type=text],input[type=email],input[type=date]{width:100%;margin-top:6px;padding:11px 12px;border:2px solid #8e9bb0;border-radius:7px;background:#fff;color:#172033;font:14px Arial;min-height:42px;outline:none} input[type=text]:focus,input[type=email]:focus,input[type=date]:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(13,43,91,.12)} .choices{margin-top:7px;display:flex;flex-wrap:wrap;gap:10px;font-weight:400}
+.wizard-actions{margin-top:18px;background:#fff;padding:14px;border-radius:12px;box-shadow:0 4px 18px #17203318;display:flex;gap:10px;align-items:center} .wizard-actions .spacer{flex:1} button{border:0;border-radius:8px;padding:12px 20px;background:var(--azul);color:white;font-weight:700;cursor:pointer} button:hover{filter:brightness(1.05)} button.secondary{background:var(--cinza)} button.success{background:var(--verde)} button:disabled{opacity:.45;cursor:not-allowed}
+.address-helper{grid-column:1/-1;background:#f8fafc;border:1px solid #dbe3ef;border-radius:10px;padding:12px 14px;margin-bottom:2px}.address-helper strong{display:block;color:var(--azul);margin-bottom:7px}.address-mode{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;font-weight:400}.address-mode label{font-weight:400}.cep-row{display:flex;gap:7px;align-items:end}.cep-row input{flex:1}.cep-btn{padding:10px 12px;min-height:42px;white-space:nowrap;background:var(--azul2)}.cep-status{grid-column:1/-1;font-size:12px;color:#536078;margin-top:-6px}.cep-status.ok{color:#14724f}.cep-status.err{color:#a3212a}.footer-actions{margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap} #status{font-size:13px;color:#536078} .completion-note{margin-top:14px;padding:12px;border-radius:10px;background:#edf8f3;color:#165e47;font-size:13px;display:none} @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:850px){.wizard-shell{grid-template-columns:1fr}.wizard-sidebar{position:static}.step-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.progress-ring{width:120px;height:120px}.progress-ring:before{width:88px;height:88px}} @media(max-width:650px){h1{font-size:21px}.step-list{grid-template-columns:1fr}.wizard-actions{flex-wrap:wrap}.wizard-actions .spacer{display:none}.wizard-actions button{flex:1;min-width:120px}.footer-actions{flex-direction:column;align-items:stretch}}
+select{width:100%;margin-top:6px;padding:11px 12px;border:2px solid #8e9bb0;border-radius:7px;background:#fff;color:#172033;font:14px Arial;min-height:42px;outline:none}select:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(13,43,91,.12)}
+[hidden]{display:none!important}
+.download-links{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.download-links .download-info{flex:1 0 100%;margin:0;font-size:13px;color:#536078}.download-links a{background:var(--verde);color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:8px}.download-links a:hover{filter:brightness(1.05)}.download-links a:focus-visible{outline:3px solid #1d5da8;outline-offset:2px}
+input.calc{background:#eef1f6;color:#3b475c;border-style:dashed;cursor:not-allowed}
+.fin-aviso{grid-column:1/-1;background:#fff4e5;border-left:5px solid #b45309;color:#7a3a05;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700}
+
+.choices.vertical{flex-direction:column;gap:9px;margin-top:9px}
+.info-box{grid-column:1/-1;background:#eef5ff;border-left:5px solid var(--azul2);padding:11px 14px;border-radius:8px;color:#344054;font-size:13px}
+
+.choices.vertical{flex-direction:column;gap:9px;margin-top:9px}
+.info-box{grid-column:1/-1;background:#eef5ff;border-left:5px solid var(--azul2);padding:11px 14px;border-radius:8px;color:#344054;font-size:13px}
+.fam{grid-column:1/-1}.fam-head,.fam-row{display:grid;grid-template-columns:minmax(0,2.2fr) 74px minmax(0,1.2fr) minmax(0,1.4fr) 42px;gap:8px;align-items:center}
+.fam-head{font-weight:700;font-size:12px;color:#536078;margin-bottom:6px}.fam-row{margin-bottom:8px}.fam-row input{margin-top:0}
+.fam-row .rm{padding:0;min-height:42px;background:#fff;color:#b7191f;border:2px solid #d9a3a6;font-size:15px}
+.fam-add{margin-top:4px}
+@media(max-width:650px){.fam-head{display:none}.fam-row{grid-template-columns:1fr 1fr 42px}.fam-row input.nome,.fam-row input[name$=_nome]{grid-column:1/-1}.fam-row .rm{grid-column:3}}
+</style></head>
+<body>
+<header><h1>Solicitação de Bolsa de Estudos e Termo Aditivo | 2026</h1></header>
+<main>
+<div class="notice"><strong>Escolha o tipo de bolsa na etapa 1.</strong> <em>Por necessidade:</em> informe o valor da parcela mensal que o responsável se compromete a pagar; o sistema calcula o desconto sobre a mensalidade integral, escreve os valores por extenso e gera a Solicitação de Bolsa de Estudos e o Termo Aditivo de desconto. <em>Funcionário:</em> gera o Termo Aditivo de bolsa integral. A data dos documentos é a do preenchimento, e os PDFs saem como texto corrido sobre o papel timbrado oficial.</div>
+<div class="wizard-shell">
+<aside class="wizard-sidebar"><div class="progress-ring" id="progressRing"><div class="progress-value"><span id="progressPercent">0%</span><small>concluído</small></div></div><div class="step-counter" id="stepCounter">Etapa 1</div><div class="step-list" id="stepList"></div></aside>
+<div class="wizard-content"><form id="form"></form><div class="wizard-actions"><button class="secondary" id="anterior" type="button">← Anterior</button><div class="spacer"></div><button id="proximo" type="button">Próximo →</button><button class="success" id="gerar" type="button" style="display:none">Gerar PDFs</button></div><div class="download-links" id="downloadLinks" hidden></div><div class="footer-actions"><button class="secondary" id="limpar" type="button">Limpar formulário</button><span id="status"></span></div><div class="completion-note" id="completionNote">Cadastro concluído. Revise os dados e gere os PDFs timbrados: Solicitação de Bolsa de Estudos e Termo Aditivo de desconto (bolsa por necessidade) ou Termo Aditivo de bolsa integral (funcionário).</div></div>
+</div>
+</main>
+<script>
+const LETTERHEAD_PNG_BASE64='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apK29rYsu2pJjvQfTX//sXR0dKS9rT2HD/c3Fjs6MpJZM2ekp+fKrF59S1Ze25O2tracPHkqc+fOSmtr7X6vN1x/bfbuPZCTp06PjxpWc/sdq7Jz194cOXI0s2fNTLVSSW0VaidsXHXlklx99VUZq9TOpG1qasr8eXMya2ZXtm/b1ViHpjSNR2pHWltacuzYica0wcGhxrF/LS0tufmm63PtNcvzxhtbGvMA/DZEHPCuRkZGU6mMjY83XVy1mlSq1dqlQ8ZjrD5/pVK7VMfxk6dy7PiJbN++O29v3ZGm5qZcddXSHO47nN279+fgwcOppprOzo6cHTibkeHhdHR05Jabr8/zL76SY8eOZ/Udt2Tbtl051HckJ06czMjIaG659Ya0tramc/zG8adPD+SXb7yVVM+H4cKF89Pe3p5fvflOTp8ZyP4Dh9LR3p4brr8mZ88NpppqRsfGcvbsuZwbHMzIyEjOnDmbw0eO5s033x4/AWM4I6OjufHGlTlx8lQ2v/FWhoaGMzg4mKHBobS3t+e2227Knr37c+zYiZw+PZC3t+7M0aPHx8/GraapKbnyistz4MChHDzkosjAb0/EAReojFUyNDScm29emWXLlmb6tGmpVisZGx3LWKWaaqW223FsrJLW1pZ0L1qQVTdfn85p0zIyMto4Pq6aSlZetyI333RdmtKUadM7s+Ty7rS2tGTp0sW59dYbk1TT3t6eefPmJEnmzJmVu+++Iy3NzVm+/Mrc/rFVaWpqzvLlV+Rjt900HopNWb78isybW3tOXXNzc669pift7W2Nx1pbW3PXXbfnqmVL0trSkrlzZqe1tSW33npDVl7bk/a2tnzqk59IR0db2lpbcu+9H09X17S0tbTkqquWprW1JbfcckOWXn5Zpk3rzD1335F58+akWq3m+uuuyTXX9KRSqeaaFcty040rayd7jI1myeJFmTlzZubOnZN58+YmSebOnZ177vl4pnVOm7DWAB9MU/USF1FadtffZteL38iyu/520uO7XvzGpOnA/16ee2Fj3npra65buSKLFi3I7NmzUqmM5eDBw+lob8/06dNy+MjRdC+anxkzunLmzECOHj+RHTv2ZHh4NH/18Jp0dLRPXSwA7+KDNJeROOACd995e9b+54dzx+2rcsUVl2fe3Nm5fHF3bv/YzbnpppXp6bkyd37itixffmXm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IBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQ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yit55plncvfdd+eZZ57Jt771rZw+fTq33HLLRbf1xfzwhz/Mf/kv/yUZX+/7778/S5Ysybp16/Lss89Oeu9Tf1er1Wr+8R//MV1dXfnHf/zHbNmypbFOE3/3H3300ezduzf79+9PT09PduzYkaVLl+b555/P3Xff3XjNib9ze/fuzbFjxya9f/jf3QdpLiNx8Bt6/vnns27dutx+++1ZvXp11q5dm4yPYK1atSpJ8vWvfz09PT0ZGBiY8uya5cuXp7u7Oxs3bswDDzyQ7u7u3H777Vm+fHnuueeefO1rX8uaNWuS8ZGLS42wbNmy5YLddY888khjhOrMmTNZsGDBpOnvx44dO7Ju3bqsW7cuDz/88KRp69evz6233pqvfOUr2bx586TRvq997WsXnV5/P1NHbjZv3nzB7tsk2bZtW3p7e9PV1dXYBZdk0jZdv359Yx3fz2hc3caNG9PV1ZWHH364Mbp1+vTprFq1qrEb+qmnnspXvvKV3H777Tl48GDuueeeZHxUbMaMGZPe8+uvvz5p+V/5yleybt26PPLII43n1N9/kvT09DR2t9aXvWrVqjz88MON9/xuvzv33ntv+vr6cvvtt2fGjBnZuXNn+vr60tvbm4GBgfzbv/3bu27rqWbMmDH1oWR8l213d3fOnDmTBx54IF1dXcmUzyTjuz0XLFiQnp6exi7Qqb/73d3dyfhI9s6dOzN79uwsX7489913X9atW5dHH310wivX9PX1ZfHixVMfBqYQcfAbqn/h7tu3b+qkhkcffTSLFy9ufIFN9Prrr2fdunXp6+trLGPFihWTlrdhw4Zs2rSpEQ7vZsOGDY3YGhgYaOxW/frXv55Vq1Zl+/btk76oBwYGGl/sjz/+eCOALhZCE3enPvHEE5OmnTlzJhmPhK6urmzZsiUzZ8581+mjo6N58skns3379sY8datWrbrobsK+vr6sW7cuO3bsaOyCq6uvS30345o1a7J8+fJs3Ljxgvc0dTflY489lieffDK33nprNm7cmCeeeGJSYE2Mh+XLl79rAJ88eTKbN29ubPuJli9fnt7e3tx33315/PHHL/p53n777Rdd9rqLRPNU3d3dWb16dbq6utLf39/YVvVd9Bfb1o888shFt8fFPPLII41InOhSn8nSpUuTi/zub9++vfEPiu3btzcODVi9enV6e3uzYsWKxjrV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';
+// =====================================================================================
+//  CONFIGURAÇÃO DO ANO LETIVO — para o próximo ano, altere somente este bloco
+// =====================================================================================
+const CONFIG={
+ ano:2026,             // ano letivo (títulos e textos dos documentos)
+ mensalidade:1870,     // mensalidade integral em R$ (base do cálculo do desconto)
+ salarioMinimo:1412,   // salário mínimo em R$ (faixas de renda familiar)
+ api:'https://script.google.com/macros/s/AKfycby1vYSHJKx3xSuf2CK6xNeD5jnd6UHIAsZ6TrlhaxpCI1rY-wrqlLiR1wHc_lmQiP_KLw/exec'                // URL /exec do Google Apps Script (vazio = modo de teste, sem planilha)
+};
+const ANO_LETIVO=CONFIG.ano;
+const MENSALIDADE=Math.round(CONFIG.mensalidade*100);   // em centavos
+const SM=n=>'R$ '+fmtCents(n*Math.round(CONFIG.salarioMinimo*100));
+const RENDA_OPCOES=['Até 1 salário mínimo ('+SM(1)+')','Entre 1 e 2 salários mínimos ('+SM(1)+' - '+SM(2)+')','Entre 2 e 3 salários mínimos ('+SM(2)+' - '+SM(3)+')','Entre 3 e 5 salários mínimos ('+SM(3)+' - '+SM(5)+')','Entre 5 e 7 salários mínimos ('+SM(5)+' - '+SM(7)+')','Entre 7 e 9 salários mínimos ('+SM(7)+' - '+SM(9)+')','Acima de 9 salários mínimos ('+SM(9)+')'];
+const STORAGE_KEY='bolsa2026';
+const FAMF=['nome','idade','parent','prof'];
+const FIELDS=[
+ ["tipo_bolsa","Tipo de bolsa","radiov","Estudante e responsável",["Por necessidade (solicitação de bolsa de estudos e termo aditivo de desconto)","Funcionário (Professor ou Auxiliar de Administração Escolar)"]],
+ ["func_cargo","Cargo do(a) funcionário(a)","select","Estudante e responsável",["Professor","Auxiliar de Administração Escolar"]],
+ ["func_confirma","Confirmação obrigatória","check","Estudante e responsável",["Confirmo que o responsável financeiro do contrato é o(a) próprio(a) funcionário(a) da escola"]],
+ ["func_aviso","Lembrete: no ato da matrícula, apresente os documentos comprobatórios da condição de dependente econômico do(a) estudante e do vínculo empregatício do(a) funcionário(a) junto à unidade escolar (Termo Aditivo, Cláusula 3ª, §1º). O responsável financeiro deve ser, obrigatoriamente, o(a) próprio(a) funcionário(a).","nota","Estudante e responsável"],
+ ["matricula_protocolo","Protocolo da matrícula (número no rodapé da Ficha de Matrícula, ex.: MAT-2026-0001)","text","Estudante e responsável"],
+ ["aluno_nome","Nome do estudante","text","Estudante e responsável"],
+ ["turma","Série/Turma do estudante","select","Estudante e responsável",["1ª Série EM","2ª Série EM","3ª Série EM"]],
+ ["resp_nome","Nome do responsável","text","Estudante e responsável"],
+ ["resp_rg","RG/RNM","text","Estudante e responsável"],
+ ["resp_cpf","CPF","text","Estudante e responsável"],
+ ["resp_email","E-mail","email","Estudante e responsável"],
+ ["resp_tel","Telefone","tel","Estudante e responsável"],
+ ["nf","Núcleo familiar","familia","Núcleo familiar"],
+ ["renda","Faixa de renda mensal de toda a família","radiov","Renda familiar",RENDA_OPCOES],
+ ["sit_prof","Situação profissional do responsável pelo Grupo Familiar","radio","Informações socioeconômicas",["Empregado","Desempregado","Autônomo","Aposentado/Pensionista"]],
+ ["veiculo","O responsável pelo Grupo Familiar possui veículo particular?","radio","Informações socioeconômicas",["Sim","Não"]],
+ ["imovel","O Grupo Familiar do aluno candidato possui imóvel próprio?","radio","Informações socioeconômicas",["Sim","Não"]],
+ ["plano_saude","A família do aluno candidato tem despesas com plano de saúde?","radio","Informações socioeconômicas",["Sim","Não"]],
+ ["doenca","Algum membro do Grupo Familiar gera despesas com doença?","radio","Informações socioeconômicas",["Sim","Não"]],
+ ["escola_publica","O aluno candidato já estudou em escola pública?","radio","Informações socioeconômicas",["Sim","Não"]],
+ ["parcela","Valor da parcela mensal que o responsável se compromete a pagar (R$)","money","Pedido de desconto"],
+ ["mensalidade","Mensalidade integral (R$)","calc","Pedido de desconto"],
+ ["desc_valor","Valor do desconto mensal (R$)","calc","Pedido de desconto"],
+ ["desc_ext","Valor do desconto por extenso","calc","Pedido de desconto"],
+ ["parcela_ext","Valor da parcela por extenso","calc","Pedido de desconto"],
+ ["data_doc","Data do documento (data do preenchimento)","calc","Pedido de desconto"],
+ ["nota_ta","Estes dados foram reaproveitados da solicitação de bolsa: nada precisa ser digitado novamente nesta etapa. Confira e gere os PDFs.","nota","Termo aditivo"],
+ ["ta_aluno","Ref. ao contrato do(a) estudante","calc","Termo aditivo"],
+ ["ta_turma","Turma","calc","Termo aditivo"],
+ ["ta_cargo","Cargo do(a) funcionário(a)","calc","Termo aditivo"],
+ ["ta_desc","Desconto concedido sobre a mensalidade (R$)","calc","Termo aditivo"],
+ ["ta_parcela","Parcela mensal passa a ser de (R$)","calc","Termo aditivo"],
+ ["ta_parcela_ext","Parcela mensal por extenso","calc","Termo aditivo"],
+ ["ta_data","Data do termo aditivo (mesma data do preenchimento)","calc","Termo aditivo"]
+];
+const HELP={
+ 'Estudante e responsável':'Escolha o tipo de bolsa e informe os dados do estudante. Na bolsa por necessidade, informe também os dados do responsável que assina a solicitação.',
+ 'Núcleo familiar':'Liste as pessoas que compõem o núcleo familiar (até 8). Use “+ Adicionar familiar” para incluir mais linhas.',
+ 'Renda familiar':'Marque a faixa que corresponde à renda mensal somada de toda a família.',
+ 'Informações socioeconômicas':'Responda todas as perguntas.',
+ 'Pedido de desconto':'Informe o valor da parcela mensal que o responsável se compromete a pagar. O desconto é calculado sobre a mensalidade integral de R$ '+fmtCents(MENSALIDADE)+' e os valores por extenso são preenchidos automaticamente.',
+ 'Termo aditivo':'O Termo Aditivo ao Contrato usa os dados informados nas etapas anteriores.'
+};
+
+const $=id=>document.getElementById(id);
+const form=$('form');let current='';let sec,grid;const steps=[];
+
+// ---- núcleo familiar: até 8 linhas, com adicionar/remover ----
+function buildFamilia(g){
+ const box=document.createElement('div');box.className='fam';
+ box.innerHTML='<div class="fam-head" aria-hidden="true"><span>Nome</span><span>Idade</span><span>Parentesco</span><span>Profissão</span><span></span></div>';
+ const cols=[['nome','Nome'],['idade','Idade'],['parent','Parentesco'],['prof','Profissão']];
+ for(let i=1;i<=8;i++){
+  const row=document.createElement('div');row.className='fam-row';row.dataset.row=i;
+  for(const [k,ph] of cols){const inp=document.createElement('input');inp.type='text';inp.name='nf'+i+'_'+k;inp.id='nf'+i+'_'+k;inp.placeholder=ph;inp.setAttribute('aria-label',ph+' do familiar '+i);if(k==='idade'){inp.inputMode='numeric';inp.maxLength=3}if(i>1)inp.dataset.opt='1';row.appendChild(inp)}
+  const rm=document.createElement('button');rm.type='button';rm.className='rm';rm.textContent='✕';rm.title='Remover familiar '+i;rm.setAttribute('aria-label','Remover familiar '+i);rm.dataset.row=i;row.appendChild(rm);
+  box.appendChild(row);
+ }
+ const add=document.createElement('button');add.type='button';add.className='secondary fam-add';add.id='famAdd';add.textContent='+ Adicionar familiar';box.appendChild(add);
+ const q=document.createElement('input');q.type='hidden';q.name='nf_qtd';q.id='nf_qtd';q.setAttribute('value','2');q.value='2';box.appendChild(q);
+ g.appendChild(box);
+}
+for(const f of FIELDS){
+ const [id,label,type,section,opts]=f;
+ if(section!==current){current=section;sec=document.createElement('section');sec.className='form-step';sec.dataset.title=section;sec.innerHTML='<h2>'+section+'</h2><p class="step-help">'+(HELP[section]||'Preencha os campos desta etapa para avançar.')+'</p>';grid=document.createElement('div');grid.className='grid';sec.appendChild(grid);form.appendChild(sec);steps.push(sec)}
+ if(type==='familia'){buildFamilia(grid);continue}
+ if(type==='nota'){const d=document.createElement('div');d.className='info-box';d.id=id;d.textContent=label;grid.appendChild(d);continue}
+ const wrap=document.createElement('label');wrap.textContent=label;
+ if(type==='radio'||type==='radiov'||type==='check'){const box=document.createElement('div');box.className='choices'+(type==='radiov'?' vertical':'');for(const o of opts){const l=document.createElement('label');l.style.fontWeight='400';const i=document.createElement('input');i.type=type==='check'?'checkbox':'radio';i.name=id;i.value=o;l.append(i,document.createTextNode(' '+o));box.appendChild(l)}wrap.appendChild(box);if(type==='radiov')wrap.style.gridColumn='1/-1'}
+ else if(type==='select'){const sel=document.createElement('select');sel.id=id;sel.name=id;const o0=document.createElement('option');o0.value='';o0.textContent='Selecione';sel.appendChild(o0);for(const o of opts){const op=document.createElement('option');op.value=o;op.textContent=o;sel.appendChild(op)}wrap.appendChild(sel)}
+ else if(type==='calc'){const i=document.createElement('input');i.type='text';i.id=id;i.className='calc';i.readOnly=true;wrap.appendChild(i)}
+ else if(type==='money'){const i=document.createElement('input');i.type='text';i.id=id;i.name=id;i.inputMode='decimal';i.autocomplete='off';i.placeholder='Ex.: 650,00';wrap.appendChild(i)}
+ else{const i=document.createElement('input');i.type=type;i.id=id;i.name=id;wrap.appendChild(i)}
+ grid.appendChild(wrap);
+}
+const stepList=$('stepList');steps.forEach((step,i)=>{const item=document.createElement('div');item.className='step-dot';item.innerHTML='<span class="num">'+(i+1)+'</span><span>'+step.dataset.title+'</span>';stepList.appendChild(item)});let currentStep=0;
+
+// ---- leitura de valores ----
+function val(id){const els=document.querySelectorAll('[name="'+id+'"]');if(!els.length)return'';if(els[0].type==='radio')return [...els].find(e=>e.checked)?.value||'';if(els[0].type==='checkbox')return [...els].filter(e=>e.checked).map(e=>e.value);return els[0].value||''}
+function valueFor(id){let v=val(id);if(Array.isArray(v))return v.length?v.join(', '):'—';return v?v:'—'}
+function dataPorExtenso(d){d=d||new Date();const m=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];return d.getDate()+' de '+m[d.getMonth()]+' de '+d.getFullYear()}
+const tipoBolsa=()=>{const v=String(val('tipo_bolsa')||'');return v.startsWith('Funcionário')?'funcionario':v?'necessidade':''};
+function sufixoAluno(n){const l=String(n||'').replace(/[\\/:*?"<>|\u0000-\u001f]/g,' ').replace(/\s+/g,' ').trim().replace(/[. ]+$/,'').slice(0,80);return l?' '+l:''}
+
+// ---- dinheiro: leitura, formatação e valor por extenso ----
+function parseCents(str){
+ const s=String(str||'').trim().replace(/[^\d.,]/g,'');if(!s)return NaN;
+ let reais,cent='00';
+ if(s.includes(',')){const p=s.split(',');reais=p[0].replace(/\./g,'');cent=(p[1]||'').replace(/\./g,'').slice(0,2).padEnd(2,'0')}
+ else if(/^\d+\.\d{1,2}$/.test(s)){const p=s.split('.');reais=p[0];cent=p[1].padEnd(2,'0')}
+ else reais=s.replace(/\./g,'');
+ const n=parseInt(reais||'0',10)*100+parseInt(cent,10);return isFinite(n)?n:NaN;
+}
+function fmtCents(c){return String(Math.floor(c/100)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+','+String(c%100).padStart(2,'0')}
+function extensoInt(n){
+ const un=['zero','um','dois','três','quatro','cinco','seis','sete','oito','nove','dez','onze','doze','treze','quatorze','quinze','dezesseis','dezessete','dezoito','dezenove'];
+ const dz=['','','vinte','trinta','quarenta','cinquenta','sessenta','setenta','oitenta','noventa'];
+ const ce=['','cento','duzentos','trezentos','quatrocentos','quinhentos','seiscentos','setecentos','oitocentos','novecentos'];
+ const ate999=x=>{if(x===100)return 'cem';const c=Math.floor(x/100),r=x%100,p=[];if(c)p.push(ce[c]);if(r){if(r<20)p.push(un[r]);else{const d=Math.floor(r/10),u=r%10;p.push(dz[d]+(u?' e '+un[u]:''))}}return p.join(' e ')};
+ if(n===0)return 'zero';
+ const g=[],mi=Math.floor(n/1e6),mil=Math.floor(n%1e6/1000),r=n%1000;
+ if(mi)g.push({v:mi,t:ate999(mi)+(mi===1?' milhão':' milhões')});
+ if(mil)g.push({v:mil,t:mil===1?'mil':ate999(mil)+' mil'});
+ if(r)g.push({v:r,t:ate999(r)});
+ let out=g[0].t;
+ for(let i=1;i<g.length;i++){const ultimo=i===g.length-1;out+=(ultimo&&(g[i].v<100||g[i].v%100===0)?' e ':', ')+g[i].t}
+ return out;
+}
+function extensoBRL(c){
+ const r=Math.floor(c/100),cc=c%100,p=[];
+ if(r>0)p.push(extensoInt(r)+(r===1?' real':' reais'));
+ if(cc>0)p.push(extensoInt(cc)+(cc===1?' centavo':' centavos'));
+ return p.length?p.join(' e '):'zero real';
+}
+// valores do pedido: parcela informada, desconto = mensalidade integral − parcela
+function valores(){
+ const raw=String(val('parcela')||'').trim(),c=parseCents(raw),ok=isFinite(c)&&c>0&&c<MENSALIDADE,d=ok?MENSALIDADE-c:NaN;
+ return {raw,ok,c,d,cTxt:ok?fmtCents(c):'',dTxt:ok?fmtCents(d):'',cExt:ok?extensoBRL(c):'',dExt:ok?extensoBRL(d):''};
+}
+function atualizarValores(){
+ const v=valores(),hoje=dataPorExtenso(),set=(id,t)=>{const e=$(id);if(e)e.value=t};
+ set('mensalidade',fmtCents(MENSALIDADE));set('desc_valor',v.dTxt);set('desc_ext',v.dExt);set('parcela_ext',v.cExt);set('data_doc',hoje);
+ set('ta_aluno',String(val('aluno_nome')||'').trim());set('ta_turma',val('turma'));set('ta_cargo',val('func_cargo'));set('ta_desc',v.dTxt);set('ta_parcela',v.cTxt);set('ta_parcela_ext',v.cExt);set('ta_data',hoje);
+ const av=$('parcelaAviso');
+ if(av){const msg=(!v.raw||v.ok)?'':'Informe um valor maior que zero e menor que a mensalidade integral (R$ '+fmtCents(MENSALIDADE)+').';av.textContent=msg;av.style.display=msg?'block':'none'}
+}
+
+// ---- progresso e navegação ----
+const stepsVisiveis=()=>steps.map((s,i)=>i).filter(i=>!steps[i].hidden);
+function updateProgress(){const controls=[...form.querySelectorAll('input:not([type=hidden]):not(.calc),select')].filter(e=>!e.closest('[hidden]')&&!e.dataset.opt);const groups=new Map();for(const el of controls){if(el.type==='radio'||el.type==='checkbox'){if(!groups.has(el.name))groups.set(el.name,[]);groups.get(el.name).push(el)}else groups.set(el.name,[el])}let completed=0,total=0;for(const els of groups.values()){total++;const first=els[0];if(first.type==='radio'||first.type==='checkbox'){if(els.some(e=>e.checked))completed++}else if(first.value.trim())completed++}const pct=total?Math.round(completed/total*100):0;$('progressPercent').textContent=pct+'%';$('progressRing').style.setProperty('--progress',(pct*3.6)+'deg');const vis=stepsVisiveis(),pos=vis.indexOf(currentStep);document.querySelectorAll('.step-dot').forEach((dot,i)=>{const p=vis.indexOf(i);dot.hidden=p<0;if(p>=0)dot.querySelector('.num').textContent=p+1;dot.classList.toggle('done',p>=0&&p<pos);dot.classList.toggle('active',i===currentStep)});atualizarContador();return pct}
+function atualizarContador(){const vis=stepsVisiveis(),pos=vis.indexOf(currentStep);$('stepCounter').textContent='Etapa '+(pos+1)+' de '+vis.length;$('anterior').disabled=pos===0;const last=pos===vis.length-1;$('proximo').style.display=last?'none':'inline-block';$('gerar').style.display=last?'inline-block':'none';$('completionNote').style.display=last?'block':'none'}
+function showStep(index){const vis=stepsVisiveis();if(!vis.includes(index))index=vis.find(i=>i>index)??vis[vis.length-1];currentStep=index;steps.forEach((step,i)=>step.classList.toggle('active',i===currentStep));atualizarValores();updateProgress();window.scrollTo({top:0,behavior:'smooth'})}
+const irPara=d=>{const vis=stepsVisiveis(),k=vis.indexOf(currentStep);showStep(vis[Math.max(0,Math.min(vis.length-1,k+d))])};
+$('anterior').onclick=()=>irPara(-1);$('proximo').onclick=()=>irPara(1);
+// Permite navegar diretamente pelas etapas usando a lista lateral.
+document.querySelectorAll('.step-dot').forEach((dot,i)=>{dot.tabIndex=0;dot.setAttribute('role','button');dot.setAttribute('aria-label','Ir para '+dot.textContent.trim());dot.addEventListener('click',()=>showStep(i));dot.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showStep(i)}})});
+
+// ---- núcleo familiar: lógica das linhas ----
+const famQtd=()=>Math.min(8,Math.max(1,parseInt($('nf_qtd').value||'2',10)||2));
+function famRender(){const q=famQtd();document.querySelectorAll('.fam-row').forEach(r=>{const i=+r.dataset.row;r.hidden=i>q;r.querySelector('.rm').hidden=(q===1)});$('famAdd').disabled=q>=8;updateProgress()}
+function famSave(q){$('nf_qtd').value=q;$('nf_qtd').dispatchEvent(new Event('input',{bubbles:true}))}
+$('famAdd').onclick=()=>{const q=famQtd();if(q<8){famSave(q+1);famRender();$('nf'+(q+1)+'_nome').focus()}};
+document.querySelectorAll('.fam-row .rm').forEach(b=>b.onclick=()=>{
+ const k=+b.dataset.row,q=famQtd();
+ if(FAMF.some(f=>$('nf'+k+'_'+f).value.trim())&&!confirm('Remover este familiar da lista?'))return;
+ for(let i=k;i<q;i++)for(const f of FAMF)$('nf'+i+'_'+f).value=$('nf'+(i+1)+'_'+f).value;
+ for(const f of FAMF)$('nf'+q+'_'+f).value='';
+ famSave(q-1);famRender();
+});
+
+// ---- campo da parcela: aviso e formatação ao sair do campo ----
+{const lab=$('parcela').closest('label'),av=document.createElement('div');av.id='parcelaAviso';av.className='fin-aviso';av.setAttribute('role','status');av.setAttribute('aria-live','polite');av.style.display='none';lab.after(av);
+ $('parcela').addEventListener('blur',e=>{const c=parseCents(e.target.value);if(isFinite(c)&&c>0){e.target.value=fmtCents(c);e.target.dispatchEvent(new Event('input',{bubbles:true}))}})}
+
+// ---- tipo de bolsa: por necessidade (solicitação + aditivo de desconto) ou funcionário (aditivo de bolsa integral) ----
+steps.forEach(s=>{if(['Núcleo familiar','Renda familiar','Informações socioeconômicas','Pedido de desconto'].includes(s.dataset.title))s.dataset.only='necessidade'});
+const NOTA_TA={necessidade:$('nota_ta').textContent,funcionario:'O Termo Aditivo de bolsa integral para dependente de funcionário usa os dados informados na etapa 1. Confira e gere o PDF.'};
+function aplicarTipo(){
+ const f=tipoBolsa()==='funcionario',lab=id=>$(id).closest('label');
+ const conf=document.querySelector('input[name="func_confirma"]'),confLab=conf.closest('.choices').parentElement;
+ lab('func_cargo').hidden=!f;confLab.hidden=!f;$('func_aviso').hidden=!f;
+ ['resp_nome','resp_rg','resp_cpf','resp_email','resp_tel'].forEach(id=>{lab(id).hidden=f});      // dados só da solicitação de bolsa
+ ['ta_desc','ta_parcela','ta_parcela_ext'].forEach(id=>{lab(id).hidden=f});lab('ta_cargo').hidden=!f;
+ let limpou=false;
+ if(!f){if($('func_cargo').value){$('func_cargo').value='';limpou=true}if(conf.checked){conf.checked=false;limpou=true}}   // campo oculto não guarda valor antigo
+ steps.forEach(s=>{if(s.dataset.only==='necessidade')s.hidden=f});                                // etapas exclusivas da bolsa por necessidade
+ $('nota_ta').textContent=f?NOTA_TA.funcionario:NOTA_TA.necessidade;
+ atualizarValores();updateProgress();
+ if(limpou)form.dispatchEvent(new Event('input',{bubbles:true}));
+}
+form.addEventListener('input',e=>{if(e.target&&e.target.name==='tipo_bolsa')aplicarTipo()});
+form.addEventListener('reset',()=>setTimeout(aplicarTipo,0));
+aplicarTipo();
+
+document.title='Solicitação de Bolsa e Termo Aditivo '+ANO_LETIVO;{const h1=document.querySelector('header h1');if(h1)h1.textContent='Solicitação de Bolsa de Estudos e Termo Aditivo | '+ANO_LETIVO}
+
+async function criarPdf(tipo,opt={}){
+  const {PDFDocument,StandardFonts,rgb}=PDFLib;
+  const out=await PDFDocument.create();
+  const font=await out.embedFont(StandardFonts.TimesRoman);
+  const bold=await out.embedFont(StandardFonts.TimesRomanBold);
+  const italic=await out.embedFont(StandardFonts.TimesRomanItalic);
+  const tBold=await out.embedFont(StandardFonts.TimesRomanBold);
+  const tReg=await out.embedFont(StandardFonts.TimesRoman);
+  const bgBytes=Uint8Array.from(atob(LETTERHEAD_PNG_BASE64),c=>c.charCodeAt(0));
+  const bg=await out.embedPng(bgBytes);
+  const W=595.28,H=841.89;
+  const LEFT=42,RIGHT=42,TOP=738,BOTTOM=58,WIDTH=W-LEFT-RIGHT;
+  const black=rgb(0.06,0.06,0.07), gray=rgb(.28,.28,.31), navy=rgb(0.04,.14,.34);
+  let page,y,pageNo=0;
+  let LEAD=17.2,SECG=30;   // entrelinha dos campos e espaço após título de bloco (a página 1 usa valores compactos)
+  const red=rgb(192/255,0,0);   // #C00000
+  const blank='-';
+  const get=id=>{const v=valueFor(id);return v==='—'?'':v};
+  const display=id=>get(id)||blank;
+  function addPage(){
+    page=out.addPage([W,H]);pageNo++;
+    page.drawImage(bg,{x:0,y:0,width:W,height:H});
+    y=TOP;
+  }
+  function ensure(h){if(y-h<BOTTOM){addPage();}}
+  function textWidth(t,f=font,s=12){let w=0;for(const ch of String(t))w+=f.widthOfTextAtSize(ch,s);return w}
+  function wrap(text,maxW,f=font,size=12){
+    const paras=String(text).split(/\n/), out=[];
+    for(const p of paras){
+      const words=p.trim().split(/\s+/).filter(Boolean);
+      if(!words.length){out.push('');continue}
+      let line='';
+      for(const w of words){
+        const test=line?line+' '+w:w;
+        if(textWidth(test,f,size)<=maxW||!line) line=test;
+        else {out.push(line);line=w}
+      }
+      if(line) out.push(line)
+    }
+    return out;
+  }
+  function drawJust(ln,x,yy,size,f,color,maxW){
+    const words=ln.split(' ');const sum=words.reduce((a,w)=>a+textWidth(w,f,size),0);const sp=textWidth(' ',f,size);
+    let gap=(maxW-sum)/(words.length-1);if(gap<sp*0.7||gap>sp*3.5)gap=sp;
+    let cx=x;words.forEach((w,j)=>{if(j)cx+=gap;page.drawText(w,{x:cx,y:yy,size,font:f,color});cx+=textWidth(w,f,f===undefined?size:size)});
+  }
+  function drawText(text,{x=LEFT,size=12,f=font,color=black,leading=LEAD,maxW=WIDTH,after=1.5,justify=true}={}){
+    const lines=wrap(text,maxW,f,size);
+    lines.forEach((ln,i)=>{
+      if(y-leading<BOTTOM) addPage();
+      if(justify&&i<lines.length-1&&ln.includes(' ')) drawJust(ln,x,y,size,f,color,maxW);
+      else page.drawText(ln,{x,y,size,font:f,color});
+      y-=leading;
+    });
+    y-=after;
+  }
+  function scWidth(t,size){let w=0;for(const ch of t){const lo=ch!==ch.toUpperCase();w+=tBold.widthOfTextAtSize(lo?ch.toUpperCase():ch,lo?size*0.8:size)}return w}
+  function scDraw(t,x,yy,size,color){for(const ch of t){const lo=ch!==ch.toUpperCase();const c=lo?ch.toUpperCase():ch,sz=lo?size*0.8:size;page.drawText(c,{x,y:yy,size:sz,font:tBold,color});x+=tBold.widthOfTextAtSize(c,sz)}}
+  function scWrap(t,size,maxW){const words=t.split(' '),out=[];let ln='';for(const w of words){const test=ln?ln+' '+w:w;if(scWidth(test,size)<=maxW||!ln)ln=test;else{out.push(ln);ln=w}}if(ln)out.push(ln);return out}
+  function title(text,sub=''){
+    const size=15,leading=19;
+    for(const t of [text,sub].filter(Boolean)){
+      for(const ln of scWrap(t,size,WIDTH)){
+        if(y-leading<BOTTOM) addPage();
+        scDraw(ln,(W-scWidth(ln,size))/2,y,size,red);
+        y-=leading;
+      }
+    }
+    y-=10;
+  }
+  function section(text,sub){
+    const size=13;
+    y-=8;
+    if(y-(sub?46:24)<BOTTOM) addPage();
+    page.drawText(text,{x:(W-textWidth(text,tBold,size))/2,y,size,font:tBold,color:black});
+    if(sub){
+      y-=17;
+      const total=sub.reduce((a,sg)=>a+textWidth(sg.t,tBold,size),0);let x=(W-total)/2;
+      for(const sg of sub){
+        page.drawText(sg.t,{x,y,size,font:tBold,color:black});
+        const w=textWidth(sg.t,tBold,size);
+        if(sg.u)page.drawLine({start:{x,y:y-1.8},end:{x:x+w,y:y-1.8},thickness:.9,color:black});
+        x+=w;
+      }
+    }
+    y-=SECG;
+  }
+  function line(parts,size=12,leading=LEAD){
+    let x=LEFT;
+    for(const p of parts){
+      const t=String(p.text??'');
+      const f=p.bold?bold:(p.italic?italic:font);
+      const c=p.color||black;
+      const words=t.split(/\s+/);
+      for(let i=0;i<words.length;i++){
+        const piece=(i? ' ':'')+words[i];
+        const w=textWidth(piece,f,size);
+        if(x+w>W-RIGHT){y-=leading;if(y-leading<BOTTOM)addPage();x=LEFT;}
+        page.drawText(piece,{x,y,size,font:f,color:c});
+        x+=w;
+      }
+    }
+    y-=leading;
+    if(y<BOTTOM) addPage();
+  }
+  function fieldLine(items,size=12){
+    let x=LEFT;
+    const leading=LEAD;
+    for(const it of items){
+      const label=it.label||'';
+      const value=(it.value===undefined||it.value===null||String(it.value).trim()==='')?blank:String(it.value);
+      const lt=label+(label?': ':'');
+      const parts=[{text:lt,f:bold},{text:value,f:font}];
+      for(const part of parts){
+        const words=String(part.text).split(/\s+/);
+        for(let i=0;i<words.length;i++){
+          const piece=(i?' ':'')+words[i];
+          const w=textWidth(piece,part.f,size);
+          if(x+w>W-RIGHT){y-=leading;if(y-leading<BOTTOM)addPage();x=LEFT;}
+          page.drawText(piece,{x,y,size,font:part.f,color:black});
+          x+=w;
+        }
+      }
+      x+=10;
+    }
+    y-=leading;
+    if(y<BOTTOM) addPage();
+  }
+  function checks(label,opts,selected,size=12){
+    const sel=(Array.isArray(selected)?selected:[selected]).filter(Boolean);
+    const answer=sel.length?sel.join(', '):blank;
+    drawText(label+': '+answer,{size,f:font,leading:LEAD,after:0});
+  }
+  function paragraph(text,size=12,leading=17.2,after=8){drawText(text,{size,leading,after});}
+  function bullet(text){drawText('• '+text,{size:12,leading:17.2,after:0});}
+  function sign(label,id,{gap=24}={}){
+    const typed=id?get(id):'';
+    if(y-(gap+34)<BOTTOM) addPage();
+    const lw=260,ly=y-gap;
+    if(typed)page.drawText(typed,{x:(W-textWidth(typed,tReg,12))/2,y:ly+4,size:12,font:tReg,color:black});
+    page.drawLine({start:{x:(W-lw)/2,y:ly},end:{x:(W+lw)/2,y:ly},thickness:.8,color:black});
+    page.drawText(label,{x:(W-textWidth(label,tBold,12))/2,y:ly-14,size:12,font:tBold,color:black});
+    y=ly-14-18;
+  }
+  function signPair(l1,l2,{gap=22,note='',id1=''}={}){
+    const colW=240,lw=225,cL=LEFT+colW/2,cR=W-RIGHT-colW/2;
+    const a1=wrap(l1,colW,tBold,12),a2=wrap(l2,colW,tBold,12),nl=Math.max(a1.length,a2.length);
+    if(y-(gap+14+nl*14+(note?16:0))<BOTTOM) addPage();
+    if(note){const nw=textWidth(note,bold,9.5);page.drawText(note,{x:cR-nw/2,y,size:9.5,font:bold,color:black});y-=16}
+    const ly=y-gap,typed=id1?get(id1):'';
+    if(typed)page.drawText(typed,{x:cL-textWidth(typed,tReg,12)/2,y:ly+4,size:12,font:tReg,color:black});
+    page.drawLine({start:{x:cL-lw/2,y:ly},end:{x:cL+lw/2,y:ly},thickness:.8,color:black});
+    page.drawLine({start:{x:cR-lw/2,y:ly},end:{x:cR+lw/2,y:ly},thickness:.8,color:black});
+    a1.forEach((ln,k)=>page.drawText(ln,{x:cL-textWidth(ln,tBold,12)/2,y:ly-14-k*14,size:12,font:tBold,color:black}));
+    a2.forEach((ln,k)=>page.drawText(ln,{x:cR-textWidth(ln,tBold,12)/2,y:ly-14-k*14,size:12,font:tBold,color:black}));
+    y=ly-14-nl*14-6;
+  }
+
+  // Parágrafo com trechos em negrito (**texto**) e itálico (^^texto^^), JUSTIFICADO (última linha à esquerda).
+  function rich(src,{size=12,leading=17.2,after=8,justify=true}={}){
+    const runs=[];let isB=false,isI=false,buf='';
+    const flush=()=>{if(buf){runs.push({t:buf,f:isB?bold:(isI?italic:font)});buf=''}};
+    for(let i=0;i<src.length;i++){
+      if(src.startsWith('**',i)){flush();isB=!isB;i++;continue}
+      if(src.startsWith('^^',i)){flush();isI=!isI;i++;continue}
+      buf+=src[i];
+    }
+    flush();
+    const tokens=[];let cur=[];
+    for(const r of runs){
+      let piece='';
+      for(const ch of r.t){
+        if(/\s/.test(ch)){if(piece){cur.push({text:piece,f:r.f});piece=''}if(cur.length){tokens.push(cur);cur=[]}}
+        else piece+=ch;
+      }
+      if(piece)cur.push({text:piece,f:r.f});
+    }
+    if(cur.length)tokens.push(cur);
+    const space=textWidth(' ',font,size);
+    const lines=[];let row=[],w=0;
+    for(const tk of tokens){
+      const tw=tk.reduce((a,pc)=>a+textWidth(pc.text,pc.f,size),0);
+      if(row.length&&w+space+tw>WIDTH){lines.push(row);row=[];w=0}
+      w+=(row.length?space:0)+tw;row.push({tk,tw});
+    }
+    if(row.length)lines.push(row);
+    lines.forEach((ln,i)=>{
+      if(y-leading<BOTTOM)addPage();
+      const sum=ln.reduce((a,t)=>a+t.tw,0),gaps=ln.length-1,last=i===lines.length-1;
+      let gap=space;
+      if(justify&&!last&&gaps>0){const g=(WIDTH-sum)/gaps;if(g>=space*0.7&&g<=space*3.5)gap=g}
+      let x=LEFT;
+      ln.forEach((t,j)=>{if(j)x+=gap;for(const pc of t.tk){page.drawText(pc.text,{x,y,size,font:pc.f,color:black});x+=textWidth(pc.text,pc.f,size)}});
+      y-=leading;
+    });
+    y-=after;
+  }
+  // Linha de data centralizada, como no modelo ("Caieiras, 5 de outubro de AAAA."); sem data = espaços em branco para preencher à mão
+  function dataLinha(ext){
+    if(y-17.2<BOTTOM)addPage();
+    const partes=ext?[['Caieiras, ',tReg],[ext,tBold],['.',tReg]]:[['Caieiras, ',tReg],['______',tReg],[' de ',tReg],['____________________',tReg],[' de 20',tReg],['_____',tReg],['.',tReg]];
+    const total=partes.reduce((a,[t,f])=>a+textWidth(t,f,12),0);let x=(W-total)/2;
+    for(const [t,f] of partes){page.drawText(t,{x,y,size:12,font:f,color:black});x+=textWidth(t,f,12)}
+    y-=17.2;
+  }
+  // duas assinaturas lado a lado (CONTRATANTE / CONTRATADA), a mesma distância da data usada no contrato
+  function assinDupla(){
+    y-=28;
+    const sw=225,sy=y,l1='CONTRATANTE (RESPONSÁVEL)',l2='CONTRATADA (MANTENEDORA)';
+    page.drawLine({start:{x:LEFT,y:sy},end:{x:LEFT+sw,y:sy},thickness:.8,color:black});
+    page.drawLine({start:{x:W-RIGHT-sw,y:sy},end:{x:W-RIGHT,y:sy},thickness:.8,color:black});
+    page.drawText(l1,{x:LEFT+(sw-textWidth(l1,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    page.drawText(l2,{x:W-RIGHT-sw+(sw-textWidth(l2,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    y=sy-30;
+  }
+  // ================= SOLICITAÇÃO DE BOLSA + TERMO ADITIVO =================
+  const V=valores(),hoje=new Date();
+  // tabela com borda (células de texto; matriz = linhas de texto já quebradas, string = quebra automática)
+  function tabela(cols,rows,{header=null,size=11}={}){
+    const tw=cols.reduce((a,c)=>a+c,0),x0=LEFT+(WIDTH-tw)/2,pad=4,lh=size+2.5;
+    const R=[];
+    if(header)R.push({cells:header,bold:true,center:true});
+    for(const r of rows)R.push({cells:r,bold:false,center:false});
+    for(const r of R){
+      const f=r.bold?bold:font;
+      r.lines=r.cells.map((c,ci)=>Array.isArray(c)?c:wrap(String(c),cols[ci]-pad*2,f,size));
+      r.h=Math.max(...r.lines.map(l=>l.length))*lh+7;
+    }
+    const H=R.reduce((a,r)=>a+r.h,0);
+    if(y-H<BOTTOM)addPage();
+    const top=y+size;
+    page.drawRectangle({x:x0,y:top-H,width:tw,height:H,borderColor:black,borderWidth:.8});
+    let ty=top;
+    R.forEach((r,ri)=>{
+      if(ri>0)page.drawLine({start:{x:x0,y:ty},end:{x:x0+tw,y:ty},thickness:.5,color:black});
+      const f=r.bold?bold:font;let cx=x0;
+      r.cells.forEach((c,ci)=>{
+        if(ci>0)page.drawLine({start:{x:cx,y:ty},end:{x:cx,y:ty-r.h},thickness:.5,color:black});
+        r.lines[ci].forEach((ln,k)=>{const lw=textWidth(ln,f,size);page.drawText(ln,{x:r.center?cx+(cols[ci]-lw)/2:cx+pad,y:ty-size-1.5-k*lh,size,font:f,color:black})});
+        cx+=cols[ci];
+      });
+      ty-=r.h;
+    });
+    y=top-H-16;
+  }
+  if(tipo==='bolsa'){
+    // ---------- página 1 (compacta, como no modelo) ----------
+    const cp=!!opt.compacto,TS=cp?10:11;   // modo compacto: usado automaticamente se o conteúdo não couber
+    LEAD=cp?15.2:17.2;SECG=cp?22:30;
+    addPage();
+    title('Solicitação de Bolsa de Estudos | '+ANO_LETIVO+'');
+    fieldLine([{label:'Nome do Estudante',value:display('aluno_nome')},{label:'Turma',value:display('turma')}]);
+    fieldLine([{label:'Nome do Responsável',value:display('resp_nome')}]);
+    fieldLine([{label:'RG/RNM',value:display('resp_rg')},{label:'CPF',value:display('resp_cpf')}]);
+    fieldLine([{label:'E-mail',value:display('resp_email')},{label:'Telefone',value:display('resp_tel')}]);
+    y-=2; section('NÚCLEO FAMILIAR');
+    const fam=[];for(let i=1;i<=8;i++){const r=FAMF.map(f=>String(val('nf'+i+'_'+f)||'').trim());if(r.some(Boolean))fam.push(r)}
+    if(!fam.length)fam.push(['','','','']);
+    tabela([250,50,100,111],fam,{header:['NOME','IDADE','PARENTESCO','PROFISSÃO'],size:TS});
+    ensure(200);
+    section('FAIXA DE RENDA MENSAL DE TODA A MINHA FAMÍLIA');
+    for(const o of FIELDS.find(f=>f[0]==='renda')[4]){rich(get('renda')===o?'**(X) '+o+'**':'( ) '+o,{after:0,justify:false,leading:LEAD})}
+    y-=8; ensure(225);
+    section('INFORMAÇÕES SOCIOECONÔMICAS');
+    const sp=get('sit_prof'),mk=o=>(sp===o?'(X) ':'( ) ')+o;
+    const yn=id=>{const v=get(id);return [(v==='Sim'?'(X) ':'( ) ')+'Sim        '+(v==='Não'?'(X) ':'( ) ')+'Não']};
+    tabela([300,211],[
+      ['Situação profissional do responsável pelo Grupo Familiar:',[mk('Empregado')+'      '+mk('Desempregado'),mk('Autônomo')+'      '+mk('Aposentado/Pensionista')]],
+      ['O responsável pelo Grupo Familiar possui veículo particular?',yn('veiculo')],
+      ['O Grupo Familiar do aluno candidato possui imóvel próprio?',yn('imovel')],
+      ['A família do aluno candidato tem despesas com plano de saúde?',yn('plano_saude')],
+      ['Algum membro do Grupo Familiar gera despesas com doença?',yn('doenca')],
+      ['O aluno candidato já estudou em escola pública?',yn('escola_publica')]
+    ],{size:TS});
+    // ---------- página 2 (se a página 1 transbordou e sobra espaço, continua nela) ----------
+    if(pageNo>1&&(y-BOTTOM)>=380){y-=10}else{addPage()}
+    LEAD=17.2;SECG=30;
+    section('PEDIDO DO DESCONTO/BOLSA');
+    rich('Solicito a Associação Instituto Cultural e Educacional Euro América, a concessão do desconto mensal de R$ **'+(V.dTxt||'__________')+'** (**'+(V.dExt||'______________________')+'**), comprometendo-me a pagar mensalmente o valor de R$ **'+(V.cTxt||'__________')+'** (**'+(V.cExt||'______________________')+'**).');
+    rich('Declaro que as informações por mim prestadas aqui são verdadeiras. Declaro ainda, estar ciente que a Comissão de Bolsas poderá exigir documentos comprobatórios e, conforme o caso, modificar o percentual de desconto.');
+    y-=6;
+    dataLinha(dataPorExtenso(hoje));
+    sign('Assinatura do responsável solicitante','',{gap:28});
+    y-=14;
+    section('PARECER FINAL DA COMISSÃO DE BOLSA');
+    const pr_=opt.parecer&&opt.parecer.resultado,mk_=x=>pr_===x?'(   X   )':'(        )';const op=mk_('Deferido')+' Deferido          '+mk_('Indeferido')+' Indeferido';
+    page.drawText(op,{x:(W-textWidth(op,tBold,13))/2,y,size:13,font:tBold,color:black});
+    y-=17.2+56;
+    dataLinha(opt.parecer?dataPorExtenso(hoje):'');
+    sign('Assinatura do responsável da Comissão de Bolsa','',{gap:28});
+  }else if(tipo==='aditivo'){
+    // ---------- Termo Aditivo — concessão de desconto (1 página) ----------
+    const cp=!!opt.compacto;LEAD=cp?15.2:16.4;SECG=28;
+    const R=x=>rich(x,{leading:LEAD,after:cp?5:7});
+    addPage();
+    title('Termo Aditivo ao Contrato de Prestação de Serviços Educacionais','Concessão de Desconto | '+ANO_LETIVO+'');
+    fieldLine([{label:'Ref. Ao contrato do(a) Estudante',value:display('aluno_nome')},{label:'Turma',value:display('turma')}]);
+    y-=8;
+    R('**Pelo presente Termo Aditivo**, as partes, de um lado, o **INSTITUTO EDUCACIONAL** (denominado CONTRATADA), e, de outro, o **CONTRATANTE**, qualificado no contrato principal, resolvem, de comum acordo, ajustar as condições de pagamento da anuidade para o ano de '+ANO_LETIVO+', nos termos a seguir:');
+    R('**CLÁUSULA 1ª** – Fica concedido ao(à) **CONTRATANTE** abaixo assinado, desconto de R$ **'+(V.dTxt||'__________')+'** sobre a mensalidade constante na cláusula 8ª do Contrato de Prestação de Serviços Educacionais, passando a parcela mensal a ser no valor de R$ **'+(V.cTxt||'__________')+'** (**'+(V.cExt||'______________________')+'**).');
+    R('**CLÁUSULA 2ª** – O desconto mencionado na Cláusula 1ª somente será aplicado se o pagamento das respectivas parcelas for efetuado até o **dia 7** de cada mês, conforme estabelecido na Cláusula 9ª, §1º, do Contrato de Prestação de Serviços Educacionais.');
+    R('**§ 1º.** Caso o pagamento não seja realizado até a referida data, mas seja efetuado dentro do mês de vencimento da parcela, o **CONTRATANTE** deverá pagar o valor da mensalidade com o acréscimo de multa de 2% (dois por cento) e juros de 1% (um por cento) ao mês, conforme disposto na Cláusula 9ª, §2º, do contrato.');
+    R('**§ 2º.** O valor integral da mensalidade será exigido apenas se o pagamento não for efetuado dentro do mês de vencimento.');
+    R('**CLÁUSULA 3ª** – O desconto concedido será mantido enquanto o(a) aluno(a) seguir rigorosamente o **Regulamento Interno da Comissão de Bolsas, o Regimento Escolar e as Normas Disciplinares do Colégio**, além de manter **resultados positivos nas avaliações**, obtendo a média mínima estipulada no Regimento Escolar por disciplina.');
+    R('**§ 1º** Na hipótese de revogação da bolsa de estudos, o responsável financeiro assumirá integralmente o pagamento das mensalidades a partir do mês subsequente, conforme o valor estipulado no Contrato de Prestação de Serviços Educacionais, com a aplicação das penalidades previstas em caso de inadimplência, conforme Cap. XIX do Regimento Escolar.');
+    R('**CLÁUSULA 4ª** – Ficam mantidas todas as demais cláusulas e condições do contrato original, que não tenham sido expressamente modificadas por este termo aditivo.');
+    ensure(cp?122:132);
+    R('E, por estarem assim justas e acordadas, as partes assinam o presente Termo Aditivo em duas vias de igual teor e forma.');
+    y-=6;
+    dataLinha(dataPorExtenso(hoje));
+    y-=28;
+    const sw=225,sy=y,l1='CONTRATANTE (RESPONSÁVEL)',l2='CONTRATADA (MANTENEDORA)';
+    page.drawLine({start:{x:LEFT,y:sy},end:{x:LEFT+sw,y:sy},thickness:.8,color:black});
+    page.drawLine({start:{x:W-RIGHT-sw,y:sy},end:{x:W-RIGHT,y:sy},thickness:.8,color:black});
+    page.drawText(l1,{x:LEFT+(sw-textWidth(l1,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    page.drawText(l2,{x:W-RIGHT-sw+(sw-textWidth(l2,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    y=sy-30;
+  }
+  else if(tipo==='aditivo_func'){
+    // ===== TERMO ADITIVO — bolsa integral para dependente de funcionário (Professor ou Auxiliar de Administração Escolar) =====
+    const aux=val('func_cargo')==='Auxiliar de Administração Escolar';
+    const RO=aux?{pl:'auxiliares de administração escolar',sg:'auxiliar de administração escolar',vb:'atua',de:'do(a) auxiliar de administração escolar'}:{pl:'professores',sg:'professor',vb:'leciona',de:'do(a) professor(a)'};
+    const cp=!!opt.compacto;   // modo compacto (automático) quando o texto não cabe em 1 página
+    LEAD=cp?14.0:17.2;SECG=28;
+    const R=x=>rich(x,{size:cp?11.5:12,leading:LEAD,after:cp?3.5:8});
+    addPage();
+    title('Termo Aditivo ao Contrato de Prestação de Serviços Educacionais','Bolsa de Estudos para Dependentes de Funcionários | '+ANO_LETIVO);
+    fieldLine([{label:'Ref. Ao contrato do(a) Estudante',value:display('aluno_nome')},{label:'Turma',value:display('turma')}]);
+    y-=8;
+    R('**Pelo presente Termo Aditivo**, as partes, de um lado, o **INSTITUTO EDUCACIONAL** (denominado CONTRATADA), e, de outro, o **CONTRATANTE**, qualificado no contrato principal, resolvem ajustar o seguinte:');
+    R('**CLÁUSULA 1ª** – Fica concedido ao(à) **CONTRATANTE** abaixo assinado, a concessão de bolsa de estudo ao estudante mencionado acima, nos termos da convenção coletiva da categoria profissional que regulamenta os direitos dos '+RO.pl+', considerando que o referido estudante é filho ou dependente econômico de '+RO.sg+' que '+RO.vb+' na unidade escolar mantida pela **CONTRATADA.**');
+    R('**CLÁUSULA 2ª** – A bolsa de estudos concedida é integral e abrange:');
+    R('**Parágrafo 1º.** – A totalidade do valor das mensalidades escolares e da taxa de matrícula, conforme estabelecido na convenção coletiva da categoria profissional vigente.');
+    R('**Parágrafo 2º.** – A concessão da bolsa de estudos é válida exclusivamente para o período letivo de '+ANO_LETIVO+' e está condicionada à manutenção do vínculo empregatício '+RO.de+' responsável pelo benefício junto à unidade escolar mantida pela **CONTRATADA.**');
+    R('**Parágrafo 3º.** – Em caso de dispensa sem justa causa '+RO.de+', fica assegurada a manutenção da bolsa de estudos ao estudante beneficiado até o final do ano letivo de '+ANO_LETIVO+'.');
+    R('**CLÁUSULA 3ª** – O **CONTRATANTE**, para manutenção da bolsa de estudos integral concedida ao estudante, compromete-se a cumprir as seguintes obrigações:');
+    R('**Parágrafo 1º.** – Apresentar, no ato da matrícula os documentos comprobatórios da condição de dependente econômico do(a) estudante e do vínculo empregatício '+RO.de+' junto à unidade escolar.');
+    R('**Parágrafo 2º.** – Informar imediatamente à **CONTRATADA** qualquer alteração na condição de dependência econômica do(a) estudante ou no vínculo empregatício '+RO.de+'.');
+    R('**Parágrafo 3º.** – A omissão de informações ou a prestação de dados falsos por parte do **CONTRATANTE** implicará na revogação imediata da bolsa de estudos, sem prejuízo das demais disposições contratuais aplicáveis.');
+    R('**CLÁUSULA 4ª** – Na hipótese de revogação da bolsa de estudos, o responsável financeiro assumirá integralmente o pagamento das mensalidades a partir do mês subsequente, conforme o valor estipulado no Contrato de Prestação de Serviços Educacionais, com a aplicação das penalidades previstas em caso de inadimplência, conforme Cap. XIX do Regimento Escolar.');
+    R('**CLÁUSULA 5ª** – Ficam mantidas todas as demais cláusulas e condições do contrato original, que não tenham sido expressamente modificadas por este termo aditivo.');
+    ensure(cp?118:135);
+    R('E, por estarem assim justas e acordadas, as partes assinam o presente Termo Aditivo em duas vias de igual teor e forma.');
+    y-=6;
+    dataLinha(dataPorExtenso(hoje));
+    assinDupla();
+  }
+  const pages=out.getPages(); const total=pages.length; window._pdfPaginas=total; pages.forEach((pg,i)=>{const t=(i+1)+' de '+total; pg.drawText(t,{x:W-RIGHT-34,y:48,size:8,font,color:gray});if(window._protocolo)pg.drawText('Protocolo: '+window._protocolo+(window._protocoloMat?'  |  Matricula: '+window._protocoloMat:''),{x:LEFT,y:48,size:8,font,color:gray});});
+  return await out.save();
+}
+let _pdfUrls=[];
+function baixarPdf(url,nome){const a=document.createElement('a');a.href=url;a.download=nome;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1500)}
+function mostrarLinksPdf(itens){
+ const box=$('downloadLinks');box.innerHTML='';
+ const info=document.createElement('p');info.className='download-info';info.textContent=itens.length>1?'Se o navegador não baixar todos os arquivos automaticamente, use os botões abaixo:':'Se o navegador não baixar o arquivo automaticamente, use o botão abaixo:';box.appendChild(info);
+ for(const it of itens){const l=document.createElement('a');l.href=it.url;l.download=it.nome;l.textContent='Baixar '+it.rotulo;box.appendChild(l)}
+ box.hidden=false;
+}
+const LEMBRETE_FUNC='Lembrete: no ato da matrícula, entregar os documentos comprobatórios da condição de dependente econômico do(a) estudante e do vínculo empregatício do(a) funcionário(a) junto à unidade escolar.';
+async function gerarPdf(){
+ const st=$('status'),btn=$('gerar');
+ const v=id=>{const x=valueFor(id);return x==='—'?'':x};
+ const modo=tipoBolsa();
+ if(!modo){alert('Escolha o tipo de bolsa na etapa 1 (por necessidade ou funcionário).');showStep(0);st.textContent='Escolha o tipo de bolsa na etapa 1.';return}
+ const sufixo=sufixoAluno(v('aluno_nome'));let faltam,docs;
+ if(modo==='funcionario'){
+  // o responsável financeiro deve ser, obrigatoriamente, o(a) funcionário(a)
+  const pend=[];
+  if(!v('func_cargo'))pend.push('o cargo do(a) funcionário(a) (Professor ou Auxiliar de Administração Escolar)');
+  if(!val('func_confirma').length)pend.push('a confirmação de que o responsável financeiro é o(a) próprio(a) funcionário(a)');
+  if(pend.length){alert('Para a bolsa de funcionário, informe '+pend.join(' e ')+'.\n\nO responsável financeiro deve ser, obrigatoriamente, o(a) funcionário(a).');showStep(0);st.textContent='Pendência na bolsa de funcionário: '+pend.join(' e ')+'.';return}
+  faltam=[['nome do estudante','aluno_nome'],['série/turma','turma']].filter(([,id])=>!v(id)).map(a=>a[0]);
+  docs=[['aditivo_func','Termo Aditivo Bolsa Funcionario'+sufixo+'.pdf','Termo Aditivo (bolsa integral – funcionário)']];
+ }else{
+  const V=valores();
+  faltam=[['nome do estudante','aluno_nome'],['série/turma','turma'],['nome do responsável','resp_nome'],['RG/RNM do responsável','resp_rg'],['CPF do responsável','resp_cpf']].filter(([,id])=>!v(id)).map(a=>a[0]);
+  if(!V.ok)faltam.push('valor da parcela mensal (maior que zero e menor que R$ '+fmtCents(MENSALIDADE)+')');
+  docs=[['bolsa','Solicitacao de Bolsa'+sufixo+'.pdf','Solicitação de Bolsa'],['aditivo','Termo Aditivo'+sufixo+'.pdf','Termo Aditivo']];
+ }
+ if(faltam.length&&!confirm('Faltam dados que entram nos documentos:\n\n• '+faltam.join('\n• ')+'\n\nDeseja gerar os PDFs mesmo assim?')){st.textContent='Geração cancelada. Complete os dados nas etapas anteriores.';return}
+ btn.disabled=true;st.textContent='Gerando os PDFs no modelo timbrado...';
+ try{
+  if(!window.PDFLib) throw new Error('Biblioteca PDF indisponível');
+  {const Vx=modo==='funcionario'?null:valores();if(!await etapaRegistro('bolsa',Vx?{parcela:Vx.cTxt,desconto:Vx.dTxt}:{},st))return;}
+  st.textContent='Gerando os PDFs no modelo timbrado...';
+  // gera todos os documentos ANTES de baixar qualquer um
+  const arquivos=[];
+  for(const [tipo,nome,rotulo] of docs){
+   try{const bytes0=await criarPdf(tipo);let bytes=bytes0;if(window._pdfPaginas>(tipo==='bolsa'?2:1))bytes=await criarPdf(tipo,{compacto:true});arquivos.push({nome,rotulo,bytes,url:URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}))})}
+   catch(e){console.error(e);throw new Error(rotulo+': '+(e&&e.message?e.message:e))}
+  }
+  _pdfUrls.forEach(u=>URL.revokeObjectURL(u));_pdfUrls=arquivos.map(a=>a.url);
+  // botões de reserva (caso o navegador bloqueie algum download) + downloads em sequência
+  mostrarLinksPdf(arquivos);
+  arquivos.forEach((a,i)=>{if(i===0)baixarPdf(a.url,a.nome);else setTimeout(()=>baixarPdf(a.url,a.nome),i*450)});
+  const enviado=await enviarPdfs('bolsa',arquivos);
+  st.textContent=(arquivos.length>1?arquivos.length+' PDFs gerados: ':'PDF gerado: ')+arquivos.map(a=>a.rotulo).join(', ')+'.'+(arquivos.length>1?' Se o navegador pedir, permita o download de múltiplos arquivos.':'')+(modo==='funcionario'?' '+LEMBRETE_FUNC:'')+(enviado?'':AVISO_ENVIO);
+ }catch(e){console.error(e);st.textContent='Não foi possível gerar os PDFs ('+(e&&e.message?e.message:'erro')+'). Verifique sua conexão e tente novamente.'}
+ finally{btn.disabled=false}
+}
+$('gerar').onclick=gerarPdf;
+$('limpar').onclick=()=>{if(confirm('Deseja apagar todos os campos?')){form.reset();localStorage.removeItem(STORAGE_KEY);limparRegistro();$('nf_qtd').value='2';famRender();showStep(0);atualizarValores();updateProgress()}};
+form.addEventListener('input',()=>{updateProgress();atualizarValores();const data={};new FormData(form).forEach((v,k)=>{if(data[k])data[k]=[].concat(data[k],v);else data[k]=v});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch(e){}});
+window.addEventListener('load',()=>{
+ try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');for(const[k,v]of Object.entries(d)){const els=document.querySelectorAll('[name="'+k+'"]');for(const e of els){if(e.type==='radio'||e.type==='checkbox')e.checked=[].concat(v).includes(e.value);else e.value=v}}}catch(e){console.warn('Não foi possível restaurar os dados salvos.',e)}
+ // garante que linhas do núcleo familiar que têm dados fiquem visíveis
+ let q=famQtd();for(let i=8;i>q;i--){if(FAMF.some(f=>$('nf'+i+'_'+f).value.trim())){q=i;break}}$('nf_qtd').value=q;
+ aplicarTipo();famRender();atualizarValores();updateProgress();
+});
+showStep(0);famRender();
+const TIPO_FORM='bolsa';
+const IDENT_MAT=c=>String(c.matricula_protocolo||'').toUpperCase().replace(/\s/g,'');
+const IDENT=c=>normNome(c.aluno_nome)+'|'+IDENT_MAT(c);
+const TEXTO_PROTOCOLO=p=>p?'Protocolo do pedido: '+p+'. Guarde este número: ele aparece no rodapé dos PDFs. A secretaria acompanhará o pedido por ele.':'';
+
+/* =====================================================================================
+   REGISTRO ONLINE (planilha Google) — protocolo, status e bloqueio de duplicidade
+   Só funciona quando CONFIG.api tem a URL /exec do Apps Script; vazio = modo de teste.
+   ===================================================================================== */
+const normNome=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w&&!['de','da','do','das','dos','e'].includes(w)).join(' ');
+function hashObj(o){const s=JSON.stringify(o);let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return String(h)}
+function coletarCampos(){
+ const o={};
+ new FormData(form).forEach((v,k)=>{const el=form.querySelector('[name="'+k+'"]');if(el&&el.closest('[hidden]'))return;if(k in o)o[k]=[].concat(o[k],v);else o[k]=v});
+ for(const k in o)if(Array.isArray(o[k]))o[k]=o[k].join('; ');
+ return o;
+}
+const REG_KEY='registro_'+TIPO_FORM+'_'+CONFIG.ano;
+function lerRegistro(){try{return JSON.parse(localStorage.getItem(REG_KEY)||'null')}catch(e){return null}}
+function gravarRegistro(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r))}catch(e){}}
+function limparRegistro(){try{localStorage.removeItem(REG_KEY)}catch(e){}}
+async function postarApi(obj){
+ const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),30000);
+ try{
+  const r=await fetch(CONFIG.api,{method:'POST',body:JSON.stringify(obj),signal:ctl.signal});
+  return await r.json();
+ }catch(e){return {ok:false,rede:true,mensagem:'Não foi possível conectar ao sistema da secretaria. Verifique sua internet.'}}
+ finally{clearTimeout(t)}
+}
+async function registrarOnline(tipo,extra){
+ extra=extra||{};
+ if(!CONFIG.api)return {ok:true,teste:true,protocolo:''};
+ const campos=coletarCampos(),ident=IDENT(campos),hash=hashObj([campos,extra]),reg=lerRegistro();
+ if(reg&&reg.ident===ident){
+  if(reg.hash===hash)return {ok:true,protocolo:reg.protocolo,reuso:true};
+  const a=await postarApi({acao:'atualizar',tipo,ano:CONFIG.ano,protocolo:reg.protocolo,campos,extra});
+  if(a.ok){gravarRegistro({protocolo:reg.protocolo,ident,hash});return {ok:true,protocolo:reg.protocolo,atualizado:true}}
+  if(a.erro!=='nao_encontrado')return a;
+ }
+ const r=await postarApi({acao:'registrar',tipo,ano:CONFIG.ano,campos,extra});
+ if(!r.ok)return r;
+ gravarRegistro({protocolo:r.protocolo,ident,hash});
+ return {ok:true,protocolo:r.protocolo};
+}
+function mostrarProtocolo(texto){
+ let b=document.getElementById('protoBox');
+ if(!b){b=document.createElement('div');b.id='protoBox';b.style.cssText='margin-top:14px;padding:12px 16px;border:2px solid #7a1620;border-radius:10px;background:#fff7f7;color:#4a0d13;font-size:15px;line-height:1.5';const ref=document.getElementById('downloadLinks');ref.parentNode.insertBefore(b,ref)}
+ b.textContent=texto;b.hidden=false;
+}
+
+const AVISO_ENVIO=' Atenção: não foi possível enviar uma cópia dos PDFs à secretaria. Entregue os arquivos a ela.';
+function bytesB64(u8){let s='';for(let i=0;i<u8.length;i+=0x8000)s+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));return btoa(s)}
+/* envia à secretaria a cópia exata dos PDFs gerados (guardados no Drive); true = ok ou não aplicável */
+async function enviarPdfs(tipo,arquivos){
+ if(!CONFIG.api||!window._protocolo)return true;
+ const c=coletarCampos();
+ const r=await postarApi({acao:'anexar',tipo,ano:CONFIG.ano,protocolo:window._protocolo,nome:c.aluno_nome,arquivos:arquivos.map(a=>({nome:a.nome,b64:bytesB64(a.bytes)}))});
+ return !!r.ok;
+}
+/* devolve true se pode gerar os PDFs; false interrompe */
+async function etapaRegistro(tipo,extra,st){
+ if(!CONFIG.api)return true;
+ st.textContent='Registrando o envio na secretaria...';
+ const r=await registrarOnline(tipo,extra);
+ if(r.ok){window._protocolo=r.protocolo||'';window._protocoloMat=(IDENT_MAT?IDENT_MAT(coletarCampos()):'');mostrarProtocolo(TEXTO_PROTOCOLO(r.protocolo));return true}
+ if(r.rede){if(confirm(r.mensagem+'\n\nDeseja gerar os PDFs mesmo assim? Eles ficarão sem número de protocolo e não terão sido registrados na secretaria.')){window._protocolo='';return true}st.textContent='Geração cancelada.';return false}
+ alert(r.mensagem||'Não foi possível registrar.');st.textContent=r.mensagem||'Não foi possível registrar.';return false;
+}
+window.addEventListener('load',()=>{
+ if(CONFIG.api)return;
+ const w=document.querySelector('.wizard-content'),d=document.createElement('div');
+ d.id='avisoTeste';d.style.cssText='margin:0 0 14px;padding:8px 12px;border-radius:8px;background:#fff4d6;color:#6b4e00;font-size:13px';
+ d.textContent='Modo de teste: os dados ainda não estão sendo enviados à planilha (CONFIG.api vazio).';
+ w.insertBefore(d,w.firstChild);
+});
+
+/* link enviado pela secretaria: ...Solicitacao_Bolsa...html?p=MAT-2026-0001 preenche o protocolo da matrícula */
+window.addEventListener('load',()=>{
+ if(TIPO_FORM!=='bolsa')return;
+ const p=new URLSearchParams(location.search).get('p'),e=form.querySelector('[name="matricula_protocolo"]');
+ if(p&&e){e.value=p.toUpperCase().replace(/[^A-Z0-9-]/g,'');e.dispatchEvent(new Event('input',{bubbles:true}))}
+});
+
+</script>
+</body></html>

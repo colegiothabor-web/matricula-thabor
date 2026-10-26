@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ficha de Matrícula 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<style>
+:root{--azul:#0d2b5b;--azul2:#1d5da8;--verde:#16825d;--vermelho:#b7191f;--fundo:#f4f6fa;--cinza:#687386}
+*{box-sizing:border-box} body{margin:0;font:15px Arial,sans-serif;background:var(--fundo);color:#172033}
+header{background:white;border-bottom:4px solid var(--azul);padding:22px 5vw} h1{margin:0;color:var(--azul);font-size:27px} header p{margin:8px 0 0;color:#586274}
+main{max-width:1150px;margin:24px auto;padding:0 18px 60px} .notice{background:#eef5ff;border-left:5px solid var(--azul2);padding:12px 16px;margin-bottom:18px;border-radius:8px;color:#344054}
+.wizard-shell{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start} .wizard-sidebar{position:sticky;top:18px;background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 18px #1f315514}
+.progress-ring{--progress:0deg;width:145px;height:145px;border-radius:50%;margin:0 auto 18px;background:conic-gradient(var(--verde) var(--progress),#e7ebf1 0);display:grid;place-items:center;position:relative}
+.progress-ring:before{content:"";position:absolute;width:108px;height:108px;border-radius:50%;background:#fff} .progress-value{position:relative;text-align:center;color:var(--azul);font-weight:800;font-size:26px} .progress-value small{display:block;font-size:11px;color:#6b7482;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.step-counter{text-align:center;font-weight:700;color:#536078;margin-bottom:18px} .step-list{display:flex;flex-direction:column;gap:8px} .step-dot{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:9px;color:#667085;font-size:12px} .step-dot .num{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#e7ebf1;font-weight:800;flex:0 0 25px} .step-dot.active{background:#eef5ff;color:var(--azul);font-weight:800} .step-dot.active .num{background:var(--azul);color:#fff} .step-dot.done .num{background:var(--verde);color:#fff}.step-dot{cursor:pointer;transition:.18s ease}.step-dot:hover{background:#f1f5fb;transform:translateX(2px)}.step-dot:focus{outline:3px solid rgba(29,93,168,.18);outline-offset:2px}
+.wizard-content{min-width:0} section.form-step{display:none;background:#fff;margin:0;border-radius:14px;padding:22px;box-shadow:0 4px 18px #1f315514;animation:fade .22s ease} section.form-step.active{display:block} section h2{margin:0 0 6px;color:var(--azul);font-size:21px} .step-help{margin:0 0 19px;color:#6b7482;font-size:13px} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+label{display:block;font-weight:700;font-size:13px} input[type=text],input[type=email],input[type=date]{width:100%;margin-top:6px;padding:11px 12px;border:2px solid #8e9bb0;border-radius:7px;background:#fff;color:#172033;font:14px Arial;min-height:42px;outline:none} input[type=text]:focus,input[type=email]:focus,input[type=date]:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(13,43,91,.12)} .choices{margin-top:7px;display:flex;flex-wrap:wrap;gap:10px;font-weight:400}
+.wizard-actions{margin-top:18px;background:#fff;padding:14px;border-radius:12px;box-shadow:0 4px 18px #17203318;display:flex;gap:10px;align-items:center} .wizard-actions .spacer{flex:1} button{border:0;border-radius:8px;padding:12px 20px;background:var(--azul);color:white;font-weight:700;cursor:pointer} button:hover{filter:brightness(1.05)} button.secondary{background:var(--cinza)} button.success{background:var(--verde)} button:disabled{opacity:.45;cursor:not-allowed}
+.address-helper{grid-column:1/-1;background:#f8fafc;border:1px solid #dbe3ef;border-radius:10px;padding:12px 14px;margin-bottom:2px}.address-helper strong{display:block;color:var(--azul);margin-bottom:7px}.address-mode{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;font-weight:400}.address-mode label{font-weight:400}.cep-row{display:flex;gap:7px;align-items:end}.cep-row input{flex:1}.cep-btn{padding:10px 12px;min-height:42px;white-space:nowrap;background:var(--azul2)}.cep-status{grid-column:1/-1;font-size:12px;color:#536078;margin-top:-6px}.cep-status.ok{color:#14724f}.cep-status.err{color:#a3212a}.footer-actions{margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap} #status{font-size:13px;color:#536078} .completion-note{margin-top:14px;padding:12px;border-radius:10px;background:#edf8f3;color:#165e47;font-size:13px;display:none} @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:850px){.wizard-shell{grid-template-columns:1fr}.wizard-sidebar{position:static}.step-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.progress-ring{width:120px;height:120px}.progress-ring:before{width:88px;height:88px}} @media(max-width:650px){h1{font-size:21px}.step-list{grid-template-columns:1fr}.wizard-actions{flex-wrap:wrap}.wizard-actions .spacer{display:none}.wizard-actions button{flex:1;min-width:120px}.footer-actions{flex-direction:column;align-items:stretch}}
+select{width:100%;margin-top:6px;padding:11px 12px;border:2px solid #8e9bb0;border-radius:7px;background:#fff;color:#172033;font:14px Arial;min-height:42px;outline:none}select:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(13,43,91,.12)}
+[hidden]{display:none!important}
+.download-links{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.download-links .download-info{flex:1 0 100%;margin:0;font-size:13px;color:#536078}.download-links a{background:var(--verde);color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:8px}.download-links a:hover{filter:brightness(1.05)}.download-links a:focus-visible{outline:3px solid #1d5da8;outline-offset:2px}
+input.calc{background:#eef1f6;color:#3b475c;border-style:dashed;cursor:not-allowed}
+.fin-aviso{grid-column:1/-1;background:#fff4e5;border-left:5px solid #b45309;color:#7a3a05;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700}
+
+.choices.vertical{flex-direction:column;gap:9px;margin-top:9px}
+.info-box{grid-column:1/-1;background:#eef5ff;border-left:5px solid var(--azul2);padding:11px 14px;border-radius:8px;color:#344054;font-size:13px}
+.nota-ed{grid-column:1/-1;color:#C00000;font-style:italic;margin:-6px 0 4px}.guarda-nota{grid-column:1/-1;font-weight:700;color:#4a0d13;margin:0 0 4px}
+.doc-grupo{grid-column:1/-1;margin:6px 0 2px}.doc-grupo h3{margin:10px 0 6px;font-size:15px;color:#7a1620;border-bottom:1px solid #ddd;padding-bottom:3px}
+.doc-item{display:block;margin:0 0 10px;font-weight:600}.doc-item input[type=file]{display:block;margin-top:4px;font-weight:400;max-width:100%}
+.doc-lista{list-style:none;margin:4px 0 0;padding:0;font-size:13px;font-weight:400}.doc-lista li{display:flex;gap:8px;align-items:center;padding:2px 0}
+.doc-lista button{padding:1px 8px;font-size:12px;background:#fff;color:#7a1620;border:1px solid #7a1620;border-radius:6px;cursor:pointer}
+.doc-msg{font-size:12.5px;color:#b3261e;font-weight:400}.prop-aviso{grid-column:1/-1;background:#fff4d6;color:#5c4300;border:1px solid #e6c766;border-radius:8px;padding:8px 12px;font-size:14px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><h1>Ficha e Requerimento de Matrícula | 2026</h1></header>
+<main>
+<div class="notice"><strong>Preenchimento inteligente:</strong> para endereços no Brasil, informe o CEP e use a busca automática. Para alunos ou responsáveis no exterior, selecione preenchimento manual. Os PDFs (Ficha de Matrícula, Contrato Financeiro e, conforme a forma de pagamento escolhida na etapa Financeiro, o Termo Aditivo) são gerados como texto corrido sobre o papel timbrado oficial.</div>
+<div class="wizard-shell">
+<aside class="wizard-sidebar"><div class="progress-ring" id="progressRing"><div class="progress-value"><span id="progressPercent">0%</span><small>concluído</small></div></div><div class="step-counter" id="stepCounter">Etapa 1</div><div class="step-list" id="stepList"></div></aside>
+<div class="wizard-content"><form id="form"></form><div class="wizard-actions"><button class="secondary" id="anterior" type="button">← Anterior</button><div class="spacer"></div><button id="proximo" type="button">Próximo →</button><button class="success" id="gerar" type="button" style="display:none">Gerar PDFs</button></div><div class="download-links" id="downloadLinks" hidden></div><div class="footer-actions"><button class="secondary" id="limpar" type="button">Limpar formulário</button><span id="status"></span></div><div class="completion-note" id="completionNote">Cadastro concluído. Revise os dados e gere os PDFs timbrados: Ficha de Matrícula, Contrato Financeiro e, conforme a forma de pagamento escolhida, o Termo Aditivo.</div></div>
+</div>
+</main>
+<script>
+// =====================================================================================
+//  CONFIGURAÇÃO DO ANO LETIVO — para o próximo ano, altere somente este bloco
+//  (ano, mensalidade e descontos alimentam as opções de pagamento e os Termos Aditivos).
+//  Atenção: a Cláusula 8ª do contrato está escrita por extenso no texto aprovado e,
+//  se mensalidade/descontos mudarem, ela deve ser atualizada junto.
+// =====================================================================================
+const CONFIG={
+ ano:2026,                    // ano letivo (títulos, textos e aditivos)
+ mensalidade:1870,            // mensalidade em R$ (12 parcelas)
+ parcelas:12,
+ diaVencimento:7,            // dia de vencimento das parcelas: matrícula feita até este dia conta o mês atual; depois, começa no mês seguinte
+ descontoAnual:15,            // % de desconto no pagamento anual (1 parcela)
+ descontoSemestral:10,        // % de desconto no pagamento semestral (2 parcelas)
+ vencAnual:'7 de janeiro',    // pagamento anual: quitar até esta data
+ venc1Semestral:'7 de janeiro',
+ venc2Semestral:'7 de agosto',
+ api:'https://script.google.com/macros/s/AKfycby1vYSHJKx3xSuf2CK6xNeD5jnd6UHIAsZ6TrlhaxpCI1rY-wrqlLiR1wHc_lmQiP_KLw/exec'                      // URL /exec do Google Apps Script (vazio = modo de teste, sem planilha)
+};
+const ANO_LETIVO=CONFIG.ano;
+const MENS_C=Math.round(CONFIG.mensalidade*100),ANUID_C=MENS_C*CONFIG.parcelas;
+const ANUAL_C=Math.round(ANUID_C*(100-CONFIG.descontoAnual)/100);
+const SEM_TOTAL_C=Math.round(ANUID_C*(100-CONFIG.descontoSemestral)/100),SEM_PARC_C=Math.round(SEM_TOTAL_C/2);
+function fmtCents(c){return String(Math.floor(c/100)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+','+String(c%100).padStart(2,'0')}
+function extensoInt(n){
+ const un=['zero','um','dois','três','quatro','cinco','seis','sete','oito','nove','dez','onze','doze','treze','quatorze','quinze','dezesseis','dezessete','dezoito','dezenove'];
+ const dz=['','','vinte','trinta','quarenta','cinquenta','sessenta','setenta','oitenta','noventa'];
+ const ce=['','cento','duzentos','trezentos','quatrocentos','quinhentos','seiscentos','setecentos','oitocentos','novecentos'];
+ const ate999=x=>{if(x===100)return 'cem';const c=Math.floor(x/100),r=x%100,p=[];if(c)p.push(ce[c]);if(r){if(r<20)p.push(un[r]);else{const d=Math.floor(r/10),u=r%10;p.push(dz[d]+(u?' e '+un[u]:''))}}return p.join(' e ')};
+ if(n===0)return 'zero';
+ const g=[],mi=Math.floor(n/1e6),mil=Math.floor(n%1e6/1000),r=n%1000;
+ if(mi)g.push({v:mi,t:ate999(mi)+(mi===1?' milhão':' milhões')});
+ if(mil)g.push({v:mil,t:mil===1?'mil':ate999(mil)+' mil'});
+ if(r)g.push({v:r,t:ate999(r)});
+ let out=g[0].t;
+ for(let i=1;i<g.length;i++){const ultimo=i===g.length-1;out+=(ultimo&&(g[i].v<100||g[i].v%100===0)?' e ':', ')+g[i].t}
+ return out;
+}
+function extensoBRL(c){const r=Math.floor(c/100),cc=c%100,p=[];if(r>0)p.push(extensoInt(r)+(r===1?' real':' reais'));if(cc>0)p.push(extensoInt(cc)+(cc===1?' centavo':' centavos'));return p.length?p.join(' e '):'zero real'}
+const pct=n=>n+'% ('+extensoInt(n)+' por cento)';
+const MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+// matrícula feita ao longo do ano: parcelas restantes até dezembro (12 = ano completo)
+function parcelasRestantes(d){
+ d=d||new Date();const a=d.getFullYear();
+ if(a<CONFIG.ano)return {n:12,ini:0};
+ let ini=a>CONFIG.ano?11:d.getMonth()+(d.getDate()<=CONFIG.diaVencimento?0:1);
+ ini=Math.min(Math.max(ini,0),11);return {n:12-ini,ini};
+}
+function femNum(n){return n===1?'uma':n===2?'duas':extensoInt(n)}
+function pagLabelMensal(pr){
+ if(pr.n===12)return 'Mensal – '+CONFIG.parcelas+' parcelas de R$ '+fmtCents(MENS_C)+' (anuidade de R$ '+fmtCents(ANUID_C)+')';
+ return 'Mensal – '+pr.n+(pr.n===1?' parcela':' parcelas')+' de R$ '+fmtCents(MENS_C)+' (anuidade proporcional de R$ '+fmtCents(MENS_C*pr.n)+', de '+MESES[pr.ini]+' a dezembro)';
+}
+// opções de pagamento mostradas no formulário (geradas a partir da configuração)
+const PAG_LABELS=[
+ 'Mensal – '+CONFIG.parcelas+' parcelas de R$ '+fmtCents(MENS_C)+' (anuidade de R$ '+fmtCents(ANUID_C)+')',
+ 'Anual – 1 parcela de R$ '+fmtCents(ANUAL_C)+' até '+CONFIG.vencAnual+' de '+CONFIG.ano+' ('+CONFIG.descontoAnual+'% de desconto)',
+ 'Semestral – 2 parcelas de R$ '+fmtCents(SEM_PARC_C)+' ('+CONFIG.venc1Semestral+' e '+CONFIG.venc2Semestral+' de '+CONFIG.ano+'; '+CONFIG.descontoSemestral+'% de desconto)'
+];
+PAG_LABELS[0]=pagLabelMensal(parcelasRestantes());
+function pagModo(){const v=String(val('pag_opcao')||'');return v.startsWith('Mensal')?'mensal':v.startsWith('Anual')?'anual':v.startsWith('Semestral')?'semestral':''}
+function turmaTxt(){const n=numeroSerie();return n?n+'ª Série EM':String(val('serie')||'').trim()}
+const LETTERHEAD_PNG_BASE64='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apK29rYsu2pJjvQfTX//sXR0dKS9rT2HD/c3Fjs6MpJZM2ekp+fKrF59S1Ze25O2tracPHkqc+fOSmtr7X6vN1x/bfbuPZCTp06PjxpWc/sdq7Jz194cOXI0s2fNTLVSSW0VaidsXHXlklx99VUZq9TOpG1qasr8eXMya2ZXtm/b1ViHpjSNR2pHWltacuzYica0wcGhxrF/LS0tufmm63PtNcvzxhtbGvMA/DZEHPCuRkZGU6mMjY83XVy1mlSq1dqlQ8ZjrD5/pVK7VMfxk6dy7PiJbN++O29v3ZGm5qZcddXSHO47nN279+fgwcOppprOzo6cHTibkeHhdHR05Jabr8/zL76SY8eOZ/Udt2Tbtl051HckJ06czMjIaG659Ya0tramc/zG8adPD+SXb7yVVM+H4cKF89Pe3p5fvflOTp8ZyP4Dh9LR3p4brr8mZ88NpppqRsfGcvbsuZwbHMzIyEjOnDmbw0eO5s033x4/AWM4I6OjufHGlTlx8lQ2v/FWhoaGMzg4mKHBobS3t+e2227Knr37c+zYiZw+PZC3t+7M0aPHx8/GraapKbnyistz4MChHDzkosjAb0/EAReojFUyNDScm29emWXLlmb6tGmpVisZGx3LWKWaaqW223FsrJLW1pZ0L1qQVTdfn85p0zIyMto4Pq6aSlZetyI333RdmtKUadM7s+Ty7rS2tGTp0sW59dYbk1TT3t6eefPmJEnmzJmVu+++Iy3NzVm+/Mrc/rFVaWpqzvLlV+Rjt900HopNWb78isybW3tOXXNzc669pift7W2Nx1pbW3PXXbfnqmVL0trSkrlzZqe1tSW33npDVl7bk/a2tnzqk59IR0db2lpbcu+9H09X17S0tbTkqquWprW1JbfcckOWXn5Zpk3rzD1335F58+akWq3m+uuuyTXX9KRSqeaaFcty040rayd7jI1myeJFmTlzZubOnZN58+YmSebOnZ177vl4pnVOm7DWAB9MU/USF1FadtffZteL38iyu/520uO7XvzGpOnA/16ee2Fj3npra65buSKLFi3I7NmzUqmM5eDBw+lob8/06dNy+MjRdC+anxkzunLmzECOHj+RHTv2ZHh4NH/18Jp0dLRPXSwA7+KDNJeROOACd995e9b+54dzx+2rcsUVl2fe3Nm5fHF3bv/YzbnpppXp6bkyd37itixffmXm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IBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQIBEHAFAgEQcAUCARBwBQ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yit55plncvfdd+eZZ57Jt771rZw+fTq33HLLRbf1xfzwhz/Mf/kv/yUZX+/7778/S5Ysybp16/Lss89Oeu9Tf1er1Wr+8R//MV1dXfnHf/zHbNmypbFOE3/3H3300ezduzf79+9PT09PduzYkaVLl+b555/P3Xff3XjNib9ze/fuzbFjxya9f/jf3QdpLiNx8Bt6/vnns27dutx+++1ZvXp11q5dm4yPYK1atSpJ8vWvfz09PT0ZGBiY8uya5cuXp7u7Oxs3bswDDzyQ7u7u3H777Vm+fHnuueeefO1rX8uaNWuS8ZGLS42wbNmy5YLddY888khjhOrMmTNZsGDBpOnvx44dO7Ju3bqsW7cuDz/88KRp69evz6233pqvfOUr2bx586TRvq997WsXnV5/P1NHbjZv3nzB7tsk2bZtW3p7e9PV1dXYBZdk0jZdv359Yx3fz2hc3caNG9PV1ZWHH364Mbp1+vTprFq1qrEb+qmnnspXvvKV3H777Tl48GDuueeeZHxUbMaMGZPe8+uvvz5p+V/5yleybt26PPLII43n1N9/kvT09DR2t9aXvWrVqjz88MON9/xuvzv33ntv+vr6cvvtt2fGjBnZuXNn+vr60tvbm4GBgfzbv/3bu27rqWbMmDH1oWR8l213d3fOnDmTBx54IF1dXcmUzyTjuz0XLFiQnp6exi7Qqb/73d3dyfhI9s6dOzN79uwsX7489913X9atW5dHH310wivX9PX1ZfHixVMfBqYQcfAbqn/h7tu3b+qkhkcffTSLFy9ufIFN9Prrr2fdunXp6+trLGPFihWTlrdhw4Zs2rSpEQ7vZsOGDY3YGhgYaOxW/frXv55Vq1Zl+/btk76oBwYGGl/sjz/+eCOALhZCE3enPvHEE5OmnTlzJhmPhK6urmzZsiUzZ8581+mjo6N58skns3379sY8datWrbrobsK+vr6sW7cuO3bsaOyCq6uvS30345o1a7J8+fJs3Ljxgvc0dTflY489lieffDK33nprNm7cmCeeeGJSYE2Mh+XLl79rAJ88eTKbN29ubPuJli9fnt7e3tx33315/PHHL/p53n777Rdd9rqLRPNU3d3dWb16dbq6utLf39/YVvVd9Bfb1o888shFt8fFPPLII41InOhSn8nSpUuTi/zub9++vfEPiu3btzcODVi9enV6e3uzYsWKxjrVf5fr8QhcmoiDD+Chhx5KX19fIybqX3b1eMn4yMNUGzdubIy2rFmzpvGle/XVV2f79u3ZsGFDHnjggRw8eDAPPvjg1Kdf4IEHHmiEVldXV2NUMElmzpyZ2bNnZ+nSpY2Roonrt3bt2sZz638uNXIz8VipGTNm5ODBg42/L168eNLfp06/6667GlFzsWOdli9ffsEB+fXjynp7eydty56enjzxxBOT5q2rh8HEP1OX+5WvfKWxzH379uW+++6bNL3uzJkzk8J19uzZk6ZlPEDrr1O3c+fORkwvWLAgAwMD7/vz3LhxY1atWnXJz+Fi6iOCvb29+exnP3vRbf31r3/9gu3R3d09Keoef/zxPPHEE41InOrdPpOpJk6rv+5zzz3XeGziMYCzZ89ubM/6Pxw+6AlD8MfG2anwPm2YcHbqmjVrsmDBgjz22GONEYe+vr7GbqZM2O3X09OTtWvXZuP42Zj1v089i/TRRx9thNjEsxEn+sQnPpGXX355UjTU1c9OfeSRRzIwMNB4nXwIZ6fWd/c++eSTjfVdt25dMj4y+cADDzRe42LTM74bOuMRVR81q5+dWl/GRFO398T1nnimaf313svE59S338TXmKi3t3fStJ6entx7772N7dI1fiZnX1/fpPec8e331FNPNQJ9zZo12bdv3wWfZ/13ZWBgIKtWrcrmzZtz00035c0332zMU98uE38furu70zd+Zm79f7u7uxvTJy6jvq0vZeJ2qb9e/bObqKenJ4sXL560TSae7VvfBvXfvyS5/PLLc+DAgWQ8eJcuXZrVq1dn48aN2bRpU2MbfeYzn8mPf/zjxnxTwxv+GHyQ5hJxUJD6l9+7nS3Ih2/nzp157rnnJo1yAnzYPkhz2Z0KBVm9erWA+z176qmnsmPHjkknVwB8FIg4gEv42te+lt7e3vfcDQ3w+2Z3Kvwe7diR/PznyVe/OnXKZC+9lDz1VLJ2bXKx6+u+1/R3s2NHMuG6wLnxxuTLX544x2/v299Oli5N7rxz6pSyvN/P6nfhYsclTjzG8be1fv36zJw5M6dPn87mzZsvOE5x4nGOFxv5rR9HV1+n+nFwU4+PrE+f+H6mHqc38djD+mVK6sfkTTwWsr5uq1atyq233tpY3tTjJaFUH6S5jMTBh+Spp2p/LqWn572j4B/+oRZAixZNnXLee02/mKeeSr7znaS39/yfgYH3Xuff1Je/XH7A5X1+Vr8ryy9y14ypl/v4oDZu3Ni4hMdDDz006TI4q1evblzrMEkefPDBi17HbfHixent7c3atWuzYcOGxvX26mdB33777ekdv25dkjz33HPpHT8je+JZqhk/O7X+Hutny9bn3bRpUzIetU8++WR6x8+ufe6557JmzZqsWbMmW7ZsmbQ8+GNiJA6SPPJIsmxZbQTp5MnaSNeiRcnf/V1tZOlXv6rNt2xZcvZscvhw8uCDyXPP1ULozjtrz0mSlSuTt9+u/XzjjcmuXUlXV+05ixYl06fX5qnH08TRsH/4h9p89ddZuLD22g8+WFvmrl21+daurT1/+vTaY3feWZvnkUdq63PjjbX/nbiur71Wez9PPVVb14mvkZx/jw8+mOzbV3t+V1fysY/VRu/q61nfHl1dyde/fn5UMEnuuCN55ZWLr+/Wree30dq150cE69v5m9+szT91uy9bVpvvyJHkL//y/Lr86lfnt+dll51fdm/v+e2Y8eB96aXzz6m/dv391Oe9887kjTcu/Ky++tXz8yxadP4zyfi2mhisl9r+E2O5/nldysaNG7Nly5asXbs2jz/++KQznDM+ovXEE0/k6quvzubNmxujXvVRsHvuuSezZ89uLKOuvqy6Rx99NA8++GBjdKw+Slc/W3j9+vWNs0ozYeTsYiODU0fu1q9fn4ceemjS41PnqatfR27iWcr1eR999NGcOXMmAwMDjVisX0Lnw7g3LXwUfJDmMhLHH70dO5Kbb679fOedtb/39ta+wF96qRYP9ZGrT36y9qXc21uLvZtvrkXBjh21L+4770z++q9r05PaF3l92b29yW23nX+difPUPfhgLRTqI0ADA+ej6qtfPR8M9UDp6jr/+t/+9vn1+dWvJq9rUnvtHTtq76m3t/a+6rtiv/zl81FRv4brZZfVAm7r1toyM76t6tujq6sWJq+9dn77fP7z56Nr6vrWt2tvb+11e3tr73VgYHKA1f9ef52zZ2vvJeOjYzfeWIvtRYvOj5a98UZt3mXLatvh7/6uNl+SXHNNbV0zHszf+U7t/dRfZ+HC2nPfeOPin9XEef7u7y6+rTK+G/lS2//GG8+/5/cKuLr6xW/rnn322fT29mbVqlV57rnncuutt2bz5s3p7e1NX1/fBXeRmHhHkbqpFyZ+L0uXLp10Ier6tQlzkfub1i+bsnPnzqxbt27SBYcnXnPvYqYGXCYsL0kefvjh3HPPPXn99dfz0EMP5fXXX8+mTZsueA78MRFx/NHr6al9UddHVw4fTtatq40KbdlSi7mJ6rsxT5+uPe/xxyeH2I4dtedP/O6sj3bVXWyei6nHS8Yj4dCh83GS1CKrHmL1dejpmTyalPHYWLQoefXV8wHR1XX+53qM1aOrHjhbtyazZ9fe45Ej5+Mx4+/p9OnJ732iies75eL+yfio1W231dZj4vSFC5M9e85/DocPT37dia65prYt6y67rLY+3/xm7e/1oMx4qCbnQ+3s2drr/upXtdepv4+pn9W+fcmEm1FcsK3qLrX977yztv3WrZv8+/R+75pRVw+wpUuXNn6u7/6cMWPGJe8ikfGQmhhG78eCBQsmXSS6bu3atZMu6Lxhw4bce++9yYQ7VtRvC7ZixYo89thjWbduXbq7uxvve+Ku2tOnTzd+zvgo3sQAXb58ea6++uqcOXMmGzduzH333Zeurq4LQhL+mIg4GB95Wbu2Fh5dXedHjD71qdqX77upj6hNvNbs1q0XfsFP9X7mmerIkYsfo7VjRy0Murpq0VR3sWPmjhypve63v12LlaeeqgXKoUOTR4e++tXa+zp06Px77OlJjh6dHFT1uJkYUnUT13f27MnP27Gj9vr1bTB79uTt3NVVW//653DnnedH06a2SU9P7bH6OnR11QLt/Z6wUR8hm9BKk9S3T93UbVV3qe3/0kvnRx8nfoZr3+ddM+ox0zXhPrLvFmMXu4tE3fLlyy8ad5fS399/0ePxdu7c2bhF2caNG3Pw4MEL1r2rqyvLly9vjN719PTkoYcearzvi+1WzUVG+DL+ev39/Vm8eHG2bNmSBQsWZO3atdm2bdvUWeGPhmPi+KM38ZiuBx88f0xc/e/79p0fpevqqgXDnVOOQavv2nvppcnHxE20dm1tV97AwIXzrFyZtLbWwmPixfLrIVAf1Zm4G7V+fFjGIzQ5/9w7x3cLHx4/1uuaa2qjcAMD5487qy+zp6cWH/Xj1+rLHxiojWR1dZ1//729Fx67NnH7XXVVsnt37TkLF55fZldXbQRs4nadeIzYjTeeH+lbtqwWOhOPRVw7fgzg4cPn1y0TjqebepzexGPi6iZuv/rPE7fTxOVO/KweHD+esD7PsmXn1yvjo32f/GRtO15q+088K/jBKcfSTTXxbM6JdzCYeCZnb29vY1dr/e4Nq1atmnQXifvuu++CY+ImHpM29a4hU4+5W758eTZs2JDZs2c3jomrn5laf87Uu4vU7yqSi9zN42J35sj4+7r66quzfPnySXeQyPh69Pf3T7pbyHvd7QNK9EGaS8TBH4lvfrMWIRNHqL797VqoXGyEjw/PU0+dH73bsaM2Enux0bzfh4knTLyX+i3E3m3EDPjwfJDmEnH80bvIbSLhd+oiezp/r+q7K99rBKt+P17gd++DNJeIAwD4A/sgzeXEBgCAAok4AIACiTgAgAKJOACAAok4AIACiTgAgAKJOACAAok4AIACiTgAgAKJOACAAok4AIACiTgAgAKJOACAAok4AIACiTgAgAI1VavV6tQH65bd9bfZ9eI3suyuv530+K4Xv9GYDgDAb+fd2mri4/Wf636riAMA4MPzbs31oUUcAAC/e5eKOMfEAQAUSMQBABRIxAEAFOh9HRMHAMAfzsWazEgcAECB3nMkDgCAP6ypo3B5r4gDAOCj6f8PSkGXSpklqvYAAAAASUVORK5CYII=';
+const FIELDS=[["situacao", "Situação do estudante em "+ANO_LETIVO, "radio", "Matrícula", ["Novato", "Veterano (já estuda no colégio)"]], ["serie", "Série - "+ANO_LETIVO, "select", "Matrícula", ["1ª Série EM", "2ª Série EM", "3ª Série EM"]], ["aluno_nome", "Nome do estudante", "text", "Dados do estudante"], ["aluno_social", "Nome social", "text", "Dados do estudante"], ["aluno_sexo", "Sexo", "radio", "Dados do estudante", ["M", "F"]], ["aluno_rg", "RG/RNM", "text", "Dados do estudante"], ["aluno_cpf", "CPF", "text", "Dados do estudante"], ["aluno_nasc", "Data de nascimento", "date", "Dados do estudante"], ["aluno_natural", "Naturalidade (cidade)", "text", "Dados do estudante"], ["aluno_estado_natural", "Estado de nascimento", "text", "Dados do estudante"], ["aluno_nacionalidade", "Nacionalidade", "text", "Dados do estudante"], ["aluno_cep", "CEP", "text", "Dados do estudante"], ["aluno_endereco", "Endereço", "text", "Dados do estudante"], ["aluno_bairro", "Bairro", "text", "Dados do estudante"], ["aluno_cidade", "Cidade", "text", "Dados do estudante"], ["aluno_estado", "Estado", "text", "Dados do estudante"], ["reside", "Com quem reside", "radio", "Dados do estudante", ["Pai e Mãe", "Apenas Pai", "Apenas Mãe", "Outros"]], ["reside_outros", "Outros - especificar", "text", "Dados do estudante"], ["fam_falecidos", "O pai e/ou a mãe são falecidos?", "radio", "Dados da família - Pai", ["Não", "Pai falecido", "Mãe falecida", "Pai e mãe falecidos"]], ["pai_nome", "Nome do pai", "text", "Dados da família - Pai"], ["pai_prof", "Profissão", "text", "Dados da família - Pai"], ["pai_rg", "RG/RNM", "text", "Dados da família - Pai"], ["pai_cpf", "CPF", "text", "Dados da família - Pai"], ["pai_nasc", "Data de nascimento", "date", "Dados da família - Pai"], ["pai_email", "E-mail", "email", "Dados da família - Pai"], ["pai_tel", "Telefone", "text", "Dados da família - Pai"], ["pai_cep", "CEP", "text", "Dados da família - Pai"], ["pai_end", "Endereço", "text", "Dados da família - Pai"], ["pai_bairro", "Bairro", "text", "Dados da família - Pai"], ["pai_cidade_estado", "Cidade/Estado", "text", "Dados da família - Pai"], ["pai_pais", "País", "text", "Dados da família - Pai"], ["mae_nome", "Nome da mãe", "text", "Dados da família - Mãe"], ["mae_prof", "Profissão", "text", "Dados da família - Mãe"], ["mae_rg", "RG/RNM", "text", "Dados da família - Mãe"], ["mae_cpf", "CPF", "text", "Dados da família - Mãe"], ["mae_nasc", "Data de nascimento", "date", "Dados da família - Mãe"], ["mae_email", "E-mail", "email", "Dados da família - Mãe"], ["mae_tel", "Telefone", "text", "Dados da família - Mãe"], ["mae_cep", "CEP", "text", "Dados da família - Mãe"], ["mae_end", "Endereço", "text", "Dados da família - Mãe"], ["mae_bairro", "Bairro", "text", "Dados da família - Mãe"], ["mae_cidade_estado", "Cidade/Estado", "text", "Dados da família - Mãe"], ["mae_pais", "País", "text", "Dados da família - Mãe"], ["guarda_nome", "Nome do responsável pela guarda", "text", "Responsável pela guarda"], ["guarda_prof", "Profissão", "text", "Responsável pela guarda"], ["guarda_rg", "RG/RNM", "text", "Responsável pela guarda"], ["guarda_cpf", "CPF", "text", "Responsável pela guarda"], ["guarda_nasc", "Data de nascimento", "date", "Responsável pela guarda"], ["guarda_email", "E-mail", "email", "Responsável pela guarda"], ["guarda_tel", "Telefone", "text", "Responsável pela guarda"], ["guarda_cep", "CEP", "text", "Responsável pela guarda"], ["guarda_end", "Endereço", "text", "Responsável pela guarda"], ["guarda_bairro", "Bairro", "text", "Responsável pela guarda"], ["guarda_cidade_estado", "Cidade/Estado", "text", "Responsável pela guarda"], ["guarda_pais", "País", "text", "Responsável pela guarda"], ["tg_tipo", "Tipo de guarda do estudante", "radio", "Responsável pela guarda", ["Guarda compartilhada", "Guarda unilateral", "Guarda com terceiros"]], ["tg_uni_resp", "Guarda unilateral: quem é o responsável pela guarda?", "select", "Responsável pela guarda", ["Pai", "Mãe", "Outro"]], ["tg_uni_outro", "Outro responsável: informe quem é (nome e parentesco)", "text", "Responsável pela guarda"], ["tg_terc_resp", "Guarda com terceiros: informe quem é o responsável (nome e parentesco)", "text", "Responsável pela guarda"], ["requerente", "Nome do requerente", "text", "Requerimento"], ["assinatura1", "Assinatura digitada - página 1", "text", "Requerimento"], ["peso", "Peso", "text", "Saúde"], ["altura", "Altura", "text", "Saúde"], ["tipo_sang", "Tipo sanguíneo", "text", "Saúde"], ["rh", "Fator Rh", "text", "Saúde"], ["alergico", "Possui alergia?", "radio", "Saúde", ["Não", "Sim"]], ["alergia_qual", "Alergias - quais", "text", "Saúde"], ["condicoes", "Condições de saúde", "check", "Saúde", ["Asma", "Epilepsia", "Hipertensão", "Diabete"]], ["outras_cond", "Outras condições", "text", "Saúde"], ["doenca_congenita", "Doença congênita - qual", "text", "Saúde"], ["alergias_outras", "Outras alergias", "text", "Saúde"], ["restricoes", "Restrições alimentares", "check", "Saúde", ["Lactose", "Glúten", "Açúcar"]], ["restricoes_outras", "Outras restrições", "text", "Saúde"], ["deficiencia", "Apresenta deficiência?", "radio", "Saúde", ["Não", "Sim"]], ["deficiencia_qual", "Deficiência - qual", "text", "Saúde"], ["deficiencia_desc", "Descrição", "text", "Saúde"], ["ed_fisica", "Apto a Ed. Física?", "radio", "Saúde", ["Sim", "Não"]], ["ed_nota", "Apresentar atestado médico antes do início das aulas", "nota_ed", "Saúde"], ["plano_saude", "Possui plano de saúde?", "radio", "Saúde", ["Sim", "Não"]], ["emergencia_primeiro", "Avisar primeiro", "radio", "Saúde", ["Pai", "Mãe"]], ["emergencia_contato", "Contato alternativo em emergência", "text", "Saúde"], ["sair_sozinho", "Pode sair sozinho?", "radio", "Informações gerais", ["Sim", "Não"]], ["retirada_autorizada", "Pessoa autorizada a retirar", "text", "Informações gerais"], ["hospedado_aluno", "Nome do estudante hospedado", "text", "Informações gerais"], ["hospedado_resp", "Nome do responsável", "text", "Informações gerais"], ["data_doc", "Data do documento", "date", "Informações gerais"], ["assinatura2", "Assinatura digitada - página 2", "text", "Informações gerais"], ["cons_nome", "Responsável pelo consentimento", "text", "Consentimento LGPD"], ["cons_prof", "Profissão", "text", "Consentimento LGPD"], ["cons_rg", "RG/RNM", "text", "Consentimento LGPD"], ["cons_cpf", "CPF", "text", "Consentimento LGPD"], ["cons_nasc", "Data de nascimento", "date", "Consentimento LGPD"], ["cons_email", "E-mail", "email", "Consentimento LGPD"], ["cons_tel", "Telefone", "text", "Consentimento LGPD"], ["cons_cep", "CEP", "text", "Consentimento LGPD"], ["cons_end", "Domicílio", "text", "Consentimento LGPD"], ["cons_bairro", "Bairro", "text", "Consentimento LGPD"], ["cons_cidade_estado", "Cidade/Estado", "text", "Consentimento LGPD"], ["cons_pais", "País", "text", "Consentimento LGPD"], ["data_lgpd", "Data do consentimento", "date", "Consentimento LGPD"], ["assinatura_lgpd", "Assinatura digitada - página 4", "text", "Consentimento LGPD"], ["docs", "", "docs", "Documentos"], ["pag_opcao", "Forma de pagamento da mensalidade *", "radiov", "Financeiro", []], ["fin_resp", "Responsável financeiro (CONTRATANTE do contrato)", "radio", "Financeiro", ["Pai", "Mãe", "Outra pessoa"]], ["fin_nome", "Nome completo", "text", "Financeiro"], ["fin_estado_civil", "Estado civil", "select", "Financeiro", ["Solteiro(a)", "Casado(a)", "União estável", "Separado(a)", "Divorciado(a)", "Viúvo(a)"]], ["fin_prof", "Profissão", "text", "Financeiro"], ["fin_rg", "RG/RNM", "text", "Financeiro"], ["fin_cpf", "CPF", "text", "Financeiro"], ["fin_cep", "CEP", "text", "Financeiro"], ["fin_end", "Endereço", "text", "Financeiro"], ["fin_bairro", "Bairro", "text", "Financeiro"], ["fin_cidade_estado", "Cidade/Estado", "text", "Financeiro"], ["fin_pais", "País", "text", "Financeiro"], ["fin_aluno", "Nome do estudante (da etapa Dados do estudante)", "calc", "Financeiro"], ["fin_serie", "Série em que será matriculado (da etapa Matrícula)", "calc", "Financeiro"], ["fin_data", "Data da assinatura (data de geração dos PDFs)", "calc", "Financeiro"]];
+FIELDS.find(f=>f[0]==='pag_opcao')[4]=PAG_LABELS;
+
+const form=document.getElementById('form');let current='';let sec,grid;const steps=[];
+for(const f of FIELDS){const [id,label,type,section,opts]=f;if(section!==current){current=section;sec=document.createElement('section');sec.className='form-step';sec.dataset.title=section;sec.innerHTML='<h2>'+section+'</h2><p class="step-help">Preencha os campos desta etapa para avançar no cadastro.</p>';grid=document.createElement('div');grid.className='grid';sec.appendChild(grid);form.appendChild(sec);steps.push(sec)}if(type==='docs'){const d=document.createElement('div');d.id='docsBox';d.style.gridColumn='1/-1';grid.appendChild(d);continue}if(type==='nota_ed'){const d=document.createElement('div');d.id=id;d.className='nota-ed';d.textContent='“'+label+'”';grid.appendChild(d);continue}if(type==='nota'){const d=document.createElement('div');d.className='info-box';d.id=id;d.textContent=label;grid.appendChild(d);continue}const wrap=document.createElement('label');wrap.textContent=label;if(type==='radio'||type==='radiov'||type==='check'){const box=document.createElement('div');box.className='choices'+(type==='radiov'?' vertical':'');for(const o of opts){const l=document.createElement('label');l.style.fontWeight='400';const i=document.createElement('input');i.type=type==='check'?'checkbox':'radio';i.name=id;i.value=o;l.append(i,document.createTextNode(' '+o));box.appendChild(l)}wrap.appendChild(box);if(type==='radiov')wrap.style.gridColumn='1/-1'}else if(type==='select'){const sel=document.createElement('select');sel.id=id;sel.name=id;const o0=document.createElement('option');o0.value='';o0.textContent='Selecione';sel.appendChild(o0);for(const o of opts){const op=document.createElement('option');op.value=o;op.textContent=o;sel.appendChild(op)}wrap.appendChild(sel)}else if(type==='calc'){const i=document.createElement('input');i.type='text';i.id=id;i.className='calc';i.readOnly=true;wrap.appendChild(i)}else{const i=document.createElement('input');i.type=type;i.id=id;i.name=id;wrap.appendChild(i)}grid.appendChild(wrap)}
+const stepList=document.getElementById('stepList');steps.forEach((step,i)=>{const item=document.createElement('div');item.className='step-dot';item.innerHTML='<span class="num">'+(i+1)+'</span><span>'+step.dataset.title+'</span>';stepList.appendChild(item)});let currentStep=0;
+function updateProgress(){const controls=[...form.querySelectorAll('input:not([type=hidden]):not([type=file]):not(.calc),select')].filter(e=>!e.closest('[hidden]'));const groups=new Map();for(const el of controls){if(el.type==='radio'||el.type==='checkbox'){if(!groups.has(el.name))groups.set(el.name,[]);groups.get(el.name).push(el)}else groups.set(el.name,[el])}let completed=0,total=0;for(const els of groups.values()){total++;const first=els[0];if(first.type==='radio'){if(els.some(e=>e.checked))completed++}else if(first.type==='checkbox'){if(els.some(e=>e.checked))completed++}else if(first.value.trim())completed++}const pct=total?Math.round(completed/total*100):0;document.getElementById('progressPercent').textContent=pct+'%';document.getElementById('progressRing').style.setProperty('--progress',(pct*3.6)+'deg');document.querySelectorAll('.step-dot').forEach((dot,i)=>{dot.classList.toggle('done',i<currentStep);dot.classList.toggle('active',i===currentStep)});return pct}
+function showStep(index){currentStep=Math.max(0,Math.min(index,steps.length-1));steps.forEach((step,i)=>step.classList.toggle('active',i===currentStep));document.getElementById('stepCounter').textContent='Etapa '+(currentStep+1)+' de '+steps.length;document.getElementById('anterior').disabled=currentStep===0;const last=currentStep===steps.length-1;document.getElementById('proximo').style.display=last?'none':'inline-block';document.getElementById('gerar').style.display=last?'inline-block':'none';document.getElementById('completionNote').style.display=last?'block':'none';updateProgress();window.scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('anterior').onclick=()=>showStep(currentStep-1);document.getElementById('proximo').onclick=()=>showStep(currentStep+1);
+// Permite navegar diretamente pelas etapas usando a lista lateral.
+document.querySelectorAll('.step-dot').forEach((dot,i)=>{dot.tabIndex=0;dot.setAttribute('role','button');dot.setAttribute('aria-label','Ir para '+dot.textContent.trim());dot.addEventListener('click',()=>showStep(i));dot.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showStep(i)}})});
+
+const ADDRESS_CONFIGS={
+ aluno:{step:'Dados do estudante',cep:'aluno_cep',end:'aluno_endereco',bairro:'aluno_bairro',cidade:'aluno_cidade',estado:'aluno_estado'},
+ pai:{step:'Dados da família - Pai',cep:'pai_cep',end:'pai_end',bairro:'pai_bairro',cidadeEstado:'pai_cidade_estado',pais:'pai_pais'},
+ mae:{step:'Dados da família - Mãe',cep:'mae_cep',end:'mae_end',bairro:'mae_bairro',cidadeEstado:'mae_cidade_estado',pais:'mae_pais'},
+ guarda:{step:'Responsável pela guarda',cep:'guarda_cep',end:'guarda_end',bairro:'guarda_bairro',cidadeEstado:'guarda_cidade_estado',pais:'guarda_pais'},
+ cons:{step:'Consentimento LGPD',cep:'cons_cep',end:'cons_end',bairro:'cons_bairro',cidadeEstado:'cons_cidade_estado',pais:'cons_pais'},
+ fin:{step:'Financeiro',cep:'fin_cep',end:'fin_end',bairro:'fin_bairro',cidadeEstado:'fin_cidade_estado',pais:'fin_pais'}
+};
+
+function getSectionByTitle(title){return steps.find(s=>s.dataset.title===title)}
+function setField(id,value){const el=document.getElementById(id);if(el){el.value=value||'';el.dispatchEvent(new Event('input',{bubbles:true}));}}
+function onlyDigits(v){return String(v||'').replace(/\D/g,'')}
+async function buscarCep(key){
+ const cfg=ADDRESS_CONFIGS[key], mode=document.querySelector('input[name="addr_mode_'+key+'"]:checked')?.value||'br';
+ const status=document.getElementById('cep_status_'+key), cepEl=document.getElementById(cfg.cep);
+ if(mode!=='br'){status.textContent='Preenchimento manual ativo. Digite o endereço livremente.';status.className='cep-status';return}
+ const cep=onlyDigits(cepEl?.value);
+ if(cep.length!==8){status.textContent='Informe um CEP brasileiro com 8 dígitos ou selecione preenchimento manual/exterior.';status.className='cep-status err';return}
+ status.textContent='Buscando CEP...';status.className='cep-status';
+ try{
+   const r=await fetch('https://viacep.com.br/ws/'+cep+'/json/');
+   if(!r.ok) throw new Error('Falha na consulta');
+   const d=await r.json();
+   if(d.erro) throw new Error('CEP não encontrado');
+   setField(cfg.end,[d.logradouro,d.complemento].filter(Boolean).join(', '));
+   setField(cfg.bairro,d.bairro||'');
+   if(cfg.cidade) setField(cfg.cidade,d.localidade||'');
+   if(cfg.estado) setField(cfg.estado,d.uf||'');
+   if(cfg.cidadeEstado) setField(cfg.cidadeEstado,[d.localidade,d.uf].filter(Boolean).join('/'));
+   if(cfg.pais) setField(cfg.pais,'Brasil');
+   status.textContent='Endereço localizado. Você pode editar qualquer campo manualmente, se necessário.';status.className='cep-status ok';
+ }catch(e){status.textContent='Não foi possível localizar o CEP. Continue preenchendo manualmente ou selecione endereço exterior.';status.className='cep-status err'}
+}
+function setupAddressHelper(key,cfg){
+ const section=getSectionByTitle(cfg.step);if(!section)return;const grid=section.querySelector('.grid');if(!grid)return;
+ const helper=document.createElement('div');helper.className='address-helper';helper.innerHTML='<strong>Preenchimento de endereço</strong><div class="address-mode"><label><input type="radio" name="addr_mode_'+key+'" value="br" checked> Endereço no Brasil — buscar pelo CEP</label><label><input type="radio" name="addr_mode_'+key+'" value="manual"> Preenchimento manual / endereço no exterior</label></div>';
+ const cep=document.getElementById(cfg.cep);if(!cep)return;const label=cep.closest('label');grid.insertBefore(helper,label);const row=document.createElement('div');row.className='cep-row';cep.parentNode.insertBefore(row,cep);row.appendChild(cep);const btn=document.createElement('button');btn.type='button';btn.className='cep-btn';btn.textContent='Buscar CEP';btn.addEventListener('click',()=>buscarCep(key));row.appendChild(btn);
+ const status=document.createElement('div');status.id='cep_status_'+key;status.className='cep-status';status.textContent='Se o endereço for no exterior, selecione preenchimento manual.';label.insertAdjacentElement('afterend',status);
+ cep.addEventListener('blur',()=>{const mode=document.querySelector('input[name="addr_mode_'+key+'"]:checked')?.value;if(mode==='br'&&onlyDigits(cep.value).length===8)buscarCep(key)});
+ document.querySelectorAll('input[name="addr_mode_'+key+'"]').forEach(r=>r.addEventListener('change',()=>{if(r.checked&&r.value==='manual'){status.textContent='Preenchimento manual ativo. Todos os campos permanecem editáveis.';status.className='cep-status'}else if(r.checked){status.textContent='Digite o CEP e clique em Buscar CEP. Os dados encontrados continuam editáveis.';status.className='cep-status'}}));
+}
+Object.entries(ADDRESS_CONFIGS).forEach(([k,c])=>setupAddressHelper(k,c));
+showStep(0);
+function val(id){const els=document.querySelectorAll('[name="'+id+'"]');if(!els.length)return'';if(els[0].type==='radio')return [...els].find(e=>e.checked)?.value||'';if(els[0].type==='checkbox')return [...els].filter(e=>e.checked).map(e=>e.value);return els[0].value||''}
+function fmtDate(v){if(!v)return '—';const p=v.split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:v}
+function valueFor(id){let v=val(id);if(Array.isArray(v))return v.length?v.join(', '):'—';if(!v)return '—';const f=FIELDS.find(x=>x[0]===id);return f&&f[2]==='date'?fmtDate(v):v}
+
+function wrapText(text,font,size,maxWidth){const words=String(text||'').split(/\s+/);const lines=[];let line='';for(const word of words){const test=line?line+' '+word:word;if(font.widthOfTextAtSize(test,size)<=maxWidth)line=test;else{if(line)lines.push(line);line=word}}if(line)lines.push(line);return lines.length?lines:['—']}
+
+function numeroSerie(){const m=String(val('serie')||'').match(/\d+/);return m?m[0]:''}
+function dataPorExtenso(d){d=d||new Date();const m=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];return d.getDate()+' de '+m[d.getMonth()]+' de '+d.getFullYear()}
+function enderecoFin(){const g=id=>String(val(id)||'').trim();const cep=g('fin_cep'),pais=g('fin_pais');return [g('fin_end'),g('fin_bairro'),g('fin_cidade_estado'),cep?'CEP '+cep:'',/^(brasil|brazil)$/i.test(pais)?'':pais].filter(Boolean).join(', ')}
+function dataExtensoBR(v){const p=String(v||'').split('/');if(p.length!==3)return '';const m=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];return (+p[0])+' de '+m[+p[1]-1]+' de '+p[2]}
+function sufixoAluno(n){const l=String(n||'').replace(/[\\/:*?"<>|\u0000-\u001f]/g,' ').replace(/\s+/g,' ').trim().replace(/[. ]+$/,'').slice(0,80);return l?' '+l:''}
+// A página 1 da ficha deve terminar nas assinaturas: se campos opcionais a fizerem transbordar, refaz com espaçamento menor.
+async function criarPdf(tipo,opt={}){
+  let b=await criarPdfBase(tipo,opt);
+  if(tipo==='ficha'&&!opt.tight&&window._pdfPaginas>4)b=await criarPdfBase(tipo,Object.assign({},opt,{tight:true}));
+  return b;
+}
+async function criarPdfBase(tipo,opt={}){
+  const {PDFDocument,StandardFonts,rgb}=PDFLib;
+  const out=await PDFDocument.create();
+  const font=await out.embedFont(StandardFonts.TimesRoman);
+  const bold=await out.embedFont(StandardFonts.TimesRomanBold);
+  const italic=await out.embedFont(StandardFonts.TimesRomanItalic);
+  const tBold=await out.embedFont(StandardFonts.TimesRomanBold);
+  const tReg=await out.embedFont(StandardFonts.TimesRoman);
+  const bgBytes=Uint8Array.from(atob(LETTERHEAD_PNG_BASE64),c=>c.charCodeAt(0));
+  const bg=await out.embedPng(bgBytes);
+  const W=595.28,H=841.89;
+  const LEFT=42,RIGHT=42,TOP=738,BOTTOM=58,WIDTH=W-LEFT-RIGHT;
+  const black=rgb(0.06,0.06,0.07), gray=rgb(.28,.28,.31), navy=rgb(0.04,.14,.34);
+  let page,y,pageNo=0;
+  let LEAD=17.2,SECG=30;   // entrelinha dos campos e espaço após título de bloco (a página 1 usa valores compactos)
+  const red=rgb(192/255,0,0);   // #C00000
+  const blank='-';
+  const get=id=>{const v=valueFor(id);return v==='—'?'':v};
+  const display=id=>get(id)||blank;
+  function addPage(){
+    page=out.addPage([W,H]);pageNo++;
+    page.drawImage(bg,{x:0,y:0,width:W,height:H});
+    y=TOP;
+  }
+  function ensure(h){if(y-h<BOTTOM){addPage();}}
+  function textWidth(t,f=font,s=12){let w=0;for(const ch of String(t))w+=f.widthOfTextAtSize(ch,s);return w}
+  function wrap(text,maxW,f=font,size=12){
+    const paras=String(text).split(/\n/), out=[];
+    for(const p of paras){
+      const words=p.trim().split(/\s+/).filter(Boolean);
+      if(!words.length){out.push('');continue}
+      let line='';
+      for(const w of words){
+        const test=line?line+' '+w:w;
+        if(textWidth(test,f,size)<=maxW||!line) line=test;
+        else {out.push(line);line=w}
+      }
+      if(line) out.push(line)
+    }
+    return out;
+  }
+  function drawJust(ln,x,yy,size,f,color,maxW){
+    const words=ln.split(' ');const sum=words.reduce((a,w)=>a+textWidth(w,f,size),0);const sp=textWidth(' ',f,size);
+    let gap=(maxW-sum)/(words.length-1);if(gap<sp*0.7||gap>sp*3.5)gap=sp;
+    let cx=x;words.forEach((w,j)=>{if(j)cx+=gap;page.drawText(w,{x:cx,y:yy,size,font:f,color});cx+=textWidth(w,f,f===undefined?size:size)});
+  }
+  function drawText(text,{x=LEFT,size=12,f=font,color=black,leading=LEAD,maxW=WIDTH,after=1.5,justify=true}={}){
+    const lines=wrap(text,maxW,f,size);
+    lines.forEach((ln,i)=>{
+      if(y-leading<BOTTOM) addPage();
+      if(justify&&i<lines.length-1&&ln.includes(' ')) drawJust(ln,x,y,size,f,color,maxW);
+      else page.drawText(ln,{x,y,size,font:f,color});
+      y-=leading;
+    });
+    y-=after;
+  }
+  function scWidth(t,size){let w=0;for(const ch of t){const lo=ch!==ch.toUpperCase();w+=tBold.widthOfTextAtSize(lo?ch.toUpperCase():ch,lo?size*0.8:size)}return w}
+  function scDraw(t,x,yy,size,color){for(const ch of t){const lo=ch!==ch.toUpperCase();const c=lo?ch.toUpperCase():ch,sz=lo?size*0.8:size;page.drawText(c,{x,y:yy,size:sz,font:tBold,color});x+=tBold.widthOfTextAtSize(c,sz)}}
+  function scWrap(t,size,maxW){const words=t.split(' '),out=[];let ln='';for(const w of words){const test=ln?ln+' '+w:w;if(scWidth(test,size)<=maxW||!ln)ln=test;else{out.push(ln);ln=w}}if(ln)out.push(ln);return out}
+  function title(text,sub=''){
+    const size=15,leading=19;
+    for(const t of [text,sub].filter(Boolean)){
+      for(const ln of scWrap(t,size,WIDTH)){
+        if(y-leading<BOTTOM) addPage();
+        scDraw(ln,(W-scWidth(ln,size))/2,y,size,red);
+        y-=leading;
+      }
+    }
+    y-=10;
+  }
+  function section(text,sub){
+    const size=13;
+    y-=8;
+    if(y-(sub?46:24)<BOTTOM) addPage();
+    page.drawText(text,{x:(W-textWidth(text,tBold,size))/2,y,size,font:tBold,color:black});
+    if(sub){
+      y-=17;
+      const total=sub.reduce((a,sg)=>a+textWidth(sg.t,tBold,size),0);let x=(W-total)/2;
+      for(const sg of sub){
+        page.drawText(sg.t,{x,y,size,font:tBold,color:black});
+        const w=textWidth(sg.t,tBold,size);
+        if(sg.u)page.drawLine({start:{x,y:y-1.8},end:{x:x+w,y:y-1.8},thickness:.9,color:black});
+        x+=w;
+      }
+    }
+    y-=SECG;
+  }
+  function line(parts,size=12,leading=LEAD){
+    let x=LEFT;
+    for(const p of parts){
+      const t=String(p.text??'');
+      const f=p.bold?bold:(p.italic?italic:font);
+      const c=p.color||black;
+      const words=t.split(/\s+/);
+      for(let i=0;i<words.length;i++){
+        const piece=(i? ' ':'')+words[i];
+        const w=textWidth(piece,f,size);
+        if(x+w>W-RIGHT){y-=leading;if(y-leading<BOTTOM)addPage();x=LEFT;}
+        page.drawText(piece,{x,y,size,font:f,color:c});
+        x+=w;
+      }
+    }
+    y-=leading;
+    if(y<BOTTOM) addPage();
+  }
+  function fieldLine(items,size=12){
+    let x=LEFT;
+    const leading=LEAD;
+    for(const it of items){
+      const label=it.label||'';
+      const value=(it.value===undefined||it.value===null||String(it.value).trim()==='')?blank:String(it.value);
+      const lt=label+(label?': ':'');
+      const parts=[{text:lt,f:bold},{text:value,f:font}];
+      for(const part of parts){
+        const words=String(part.text).split(/\s+/);
+        for(let i=0;i<words.length;i++){
+          const piece=(i?' ':'')+words[i];
+          const w=textWidth(piece,part.f,size);
+          if(x+w>W-RIGHT){y-=leading;if(y-leading<BOTTOM)addPage();x=LEFT;}
+          page.drawText(piece,{x,y,size,font:part.f,color:black});
+          x+=w;
+        }
+      }
+      x+=10;
+    }
+    y-=leading;
+    if(y<BOTTOM) addPage();
+  }
+  function checks(label,opts,selected,size=12){
+    const sel=(Array.isArray(selected)?selected:[selected]).filter(Boolean);
+    const answer=sel.length?sel.join(', '):blank;
+    drawText(label+': '+answer,{size,f:font,leading:LEAD,after:0});
+  }
+  function paragraph(text,size=12,leading=17.2,after=8){drawText(text,{size,leading,after});}
+  function bullet(text){drawText('• '+text,{size:12,leading:17.2,after:0});}
+  function sign(label,id,{gap=24}={}){
+    const typed=id?get(id):'';
+    if(y-(gap+34)<BOTTOM) addPage();
+    const lw=260,ly=y-gap;
+    if(typed)page.drawText(typed,{x:(W-textWidth(typed,tReg,12))/2,y:ly+4,size:12,font:tReg,color:black});
+    page.drawLine({start:{x:(W-lw)/2,y:ly},end:{x:(W+lw)/2,y:ly},thickness:.8,color:black});
+    page.drawText(label,{x:(W-textWidth(label,tBold,12))/2,y:ly-14,size:12,font:tBold,color:black});
+    y=ly-14-18;
+  }
+  function signPair(l1,l2,{gap=22,note='',id1=''}={}){
+    const colW=240,lw=225,cL=LEFT+colW/2,cR=W-RIGHT-colW/2;
+    const a1=wrap(l1,colW,tBold,12),a2=wrap(l2,colW,tBold,12),nl=Math.max(a1.length,a2.length);
+    if(y-(gap+14+nl*14+(note?16:0))<BOTTOM) addPage();
+    if(note){const nw=textWidth(note,bold,9.5);page.drawText(note,{x:cR-nw/2,y,size:9.5,font:bold,color:black});y-=16}
+    const ly=y-gap,typed=id1?get(id1):'';
+    if(typed)page.drawText(typed,{x:cL-textWidth(typed,tReg,12)/2,y:ly+4,size:12,font:tReg,color:black});
+    page.drawLine({start:{x:cL-lw/2,y:ly},end:{x:cL+lw/2,y:ly},thickness:.8,color:black});
+    page.drawLine({start:{x:cR-lw/2,y:ly},end:{x:cR+lw/2,y:ly},thickness:.8,color:black});
+    a1.forEach((ln,k)=>page.drawText(ln,{x:cL-textWidth(ln,tBold,12)/2,y:ly-14-k*14,size:12,font:tBold,color:black}));
+    a2.forEach((ln,k)=>page.drawText(ln,{x:cR-textWidth(ln,tBold,12)/2,y:ly-14-k*14,size:12,font:tBold,color:black}));
+    y=ly-14-nl*14-6;
+  }
+
+  // Parágrafo com trechos em negrito (**texto**) e itálico (^^texto^^), JUSTIFICADO (última linha à esquerda).
+  function rich(src,{size=12,leading=17.2,after=8,justify=true}={}){
+    const runs=[];let isB=false,isI=false,buf='';
+    const flush=()=>{if(buf){runs.push({t:buf,f:isB?bold:(isI?italic:font)});buf=''}};
+    for(let i=0;i<src.length;i++){
+      if(src.startsWith('**',i)){flush();isB=!isB;i++;continue}
+      if(src.startsWith('^^',i)){flush();isI=!isI;i++;continue}
+      buf+=src[i];
+    }
+    flush();
+    const tokens=[];let cur=[];
+    for(const r of runs){
+      let piece='';
+      for(const ch of r.t){
+        if(/\s/.test(ch)){if(piece){cur.push({text:piece,f:r.f});piece=''}if(cur.length){tokens.push(cur);cur=[]}}
+        else piece+=ch;
+      }
+      if(piece)cur.push({text:piece,f:r.f});
+    }
+    if(cur.length)tokens.push(cur);
+    const space=textWidth(' ',font,size);
+    const lines=[];let row=[],w=0;
+    for(const tk of tokens){
+      const tw=tk.reduce((a,pc)=>a+textWidth(pc.text,pc.f,size),0);
+      if(row.length&&w+space+tw>WIDTH){lines.push(row);row=[];w=0}
+      w+=(row.length?space:0)+tw;row.push({tk,tw});
+    }
+    if(row.length)lines.push(row);
+    lines.forEach((ln,i)=>{
+      if(y-leading<BOTTOM)addPage();
+      const sum=ln.reduce((a,t)=>a+t.tw,0),gaps=ln.length-1,last=i===lines.length-1;
+      let gap=space;
+      if(justify&&!last&&gaps>0){const g=(WIDTH-sum)/gaps;if(g>=space*0.7&&g<=space*3.5)gap=g}
+      let x=LEFT;
+      ln.forEach((t,j)=>{if(j)x+=gap;for(const pc of t.tk){page.drawText(pc.text,{x,y,size,font:pc.f,color:black});x+=textWidth(pc.text,pc.f,size)}});
+      y-=leading;
+    });
+    y-=after;
+  }
+  // Linha de data centralizada, como no modelo ("Caieiras, 5 de outubro de AAAA."); sem data = espaços em branco para preencher à mão
+  function dataLinha(ext){
+    if(y-17.2<BOTTOM)addPage();
+    const partes=ext?[['Caieiras, ',tReg],[ext,tBold],['.',tReg]]:[['Caieiras, ',tReg],['______',tReg],[' de ',tReg],['____________________',tReg],[' de 20',tReg],['_____',tReg],['.',tReg]];
+    const total=partes.reduce((a,[t,f])=>a+textWidth(t,f,12),0);let x=(W-total)/2;
+    for(const [t,f] of partes){page.drawText(t,{x,y,size:12,font:f,color:black});x+=textWidth(t,f,12)}
+    y-=17.2;
+  }
+  // duas assinaturas lado a lado (CONTRATANTE / CONTRATADA), a mesma distância da data usada no contrato
+  function assinDupla(){
+    y-=28;
+    const sw=225,sy=y,l1='CONTRATANTE (RESPONSÁVEL)',l2='CONTRATADA (MANTENEDORA)';
+    page.drawLine({start:{x:LEFT,y:sy},end:{x:LEFT+sw,y:sy},thickness:.8,color:black});
+    page.drawLine({start:{x:W-RIGHT-sw,y:sy},end:{x:W-RIGHT,y:sy},thickness:.8,color:black});
+    page.drawText(l1,{x:LEFT+(sw-textWidth(l1,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    page.drawText(l2,{x:W-RIGHT-sw+(sw-textWidth(l2,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    y=sy-30;
+  }
+  const hoje=new Date();
+  const PG2_UP=26,PG2_LEAD=14.4,PG2_SECG=20,PG2_SZ=12,PG2_AFTER=1;
+  if(tipo==='ficha'){
+  addPage();
+  LEAD=opt.tight?14.2:15.2;SECG=opt.tight?20:24;
+  title('Ficha e Requerimento de Matrícula | '+ANO_LETIVO+'');
+  fieldLine([{label:'RA (para uso do colégio)',value:(opt.ra||get('ra')||blank),maxW:210},{label:'Série - '+ANO_LETIVO+'',value:get('serie')||blank,maxW:105}]);
+  y-=2; section('DADOS DO ESTUDANTE');
+  fieldLine([{label:'Nome do Estudante',value:display('aluno_nome'),maxW:380}]);
+  fieldLine([{label:'Nome Social',value:display('aluno_social'),maxW:265},{label:'Sexo',value:get('aluno_sexo')||'-',maxW:95}]);
+  fieldLine([{label:'RG/RNM',value:display('aluno_rg'),maxW:115},{label:'CPF',value:display('aluno_cpf'),maxW:115},{label:'Data de Nasc.',value:display('aluno_nasc'),maxW:95}]);
+  fieldLine([{label:'Natural de (Cidade)',value:display('aluno_natural'),maxW:140},{label:'Estado',value:display('aluno_estado_natural'),maxW:72},{label:'Nacionalidade',value:display('aluno_nacionalidade'),maxW:105}]);
+  fieldLine([{label:'Endereço',value:display('aluno_endereco'),maxW:400}]);
+  fieldLine([{label:'Bairro',value:display('aluno_bairro'),maxW:112},{label:'Cidade',value:display('aluno_cidade'),maxW:112},{label:'Estado',value:display('aluno_estado'),maxW:55},{label:'CEP',value:display('aluno_cep'),maxW:80}]);
+  checks('Com quem reside o estudante?',['Pai e Mãe','Apenas Pai','Apenas Mãe','Outros'],get('reside'));
+  if(get('reside')==='Outros'||get('reside_outros')) fieldLine([{label:'Outros, especificar',value:display('reside_outros'),maxW:320}]);
+  y-=2; section('DADOS DA FAMÍLIA');
+  checks('O pai e/ou a mãe são falecidos?',[],get('fam_falecidos'));
+  fieldLine([{label:'Nome do Pai',value:display('pai_nome'),maxW:280},{label:'Profissão',value:display('pai_prof'),maxW:115}]);
+  fieldLine([{label:'RG/RNM',value:display('pai_rg'),maxW:115},{label:'CPF',value:display('pai_cpf'),maxW:115},{label:'Data de Nasc.',value:display('pai_nasc'),maxW:95}]);
+  fieldLine([{label:'E-mail',value:display('pai_email'),maxW:260},{label:'Telefone',value:display('pai_tel'),maxW:120}]);
+  fieldLine([{label:'Endereço',value:display('pai_end'),maxW:315},{label:'CEP',value:display('pai_cep'),maxW:85}]);
+  fieldLine([{label:'Bairro',value:display('pai_bairro'),maxW:125},{label:'Cidade/Estado',value:display('pai_cidade_estado'),maxW:145},{label:'País',value:display('pai_pais'),maxW:85}]);
+  y-=opt.tight?8:LEAD;   // espaço duplo entre os dados do pai e da mãe
+  fieldLine([{label:'Nome da Mãe',value:display('mae_nome'),maxW:275},{label:'Profissão',value:display('mae_prof'),maxW:115}]);
+  fieldLine([{label:'RG/RNM',value:display('mae_rg'),maxW:115},{label:'CPF',value:display('mae_cpf'),maxW:115},{label:'Data de Nasc.',value:display('mae_nasc'),maxW:95}]);
+  fieldLine([{label:'E-mail',value:display('mae_email'),maxW:260},{label:'Telefone',value:display('mae_tel'),maxW:120}]);
+  fieldLine([{label:'Endereço',value:display('mae_end'),maxW:315},{label:'CEP',value:display('mae_cep'),maxW:85}]);
+  fieldLine([{label:'Bairro',value:display('mae_bairro'),maxW:125},{label:'Cidade/Estado',value:display('mae_cidade_estado'),maxW:145},{label:'País',value:display('mae_pais'),maxW:85}]);
+  y-=2; section('DADOS DO RESPONSÁVEL PELA GUARDA DO ESTUDANTE',[{t:'('},{t:'caso não seja o Pai ou a Mãe',u:true},{t:', com termo de Guarda Definitiva)'}]);
+  fieldLine([{label:'Nome',value:display('guarda_nome'),maxW:290},{label:'Profissão',value:display('guarda_prof'),maxW:105}]);
+  fieldLine([{label:'RG/RNM',value:display('guarda_rg'),maxW:115},{label:'CPF',value:display('guarda_cpf'),maxW:115},{label:'Data de Nasc.',value:display('guarda_nasc'),maxW:95}]);
+  fieldLine([{label:'E-mail',value:display('guarda_email'),maxW:260},{label:'Telefone',value:display('guarda_tel'),maxW:120}]);
+  fieldLine([{label:'Endereço',value:display('guarda_end'),maxW:315},{label:'CEP',value:display('guarda_cep'),maxW:85}]);
+  fieldLine([{label:'Bairro',value:display('guarda_bairro'),maxW:125},{label:'Cidade/Estado',value:display('guarda_cidade_estado'),maxW:145},{label:'País',value:display('guarda_pais'),maxW:85}]);
+  checks('Tipo de guarda do estudante',[],get('tg_tipo'));
+  if(get('tg_tipo')==='Guarda unilateral'){const rg=get('tg_uni_resp');fieldLine([{label:'Responsável pela guarda unilateral',value:rg==='Outro'?(get('tg_uni_outro')||'Outro'):(rg||blank),maxW:300}])}
+  if(get('tg_tipo')==='Guarda com terceiros')fieldLine([{label:'Responsável pela guarda (terceiros)',value:display('tg_terc_resp'),maxW:300}]);
+  y-=4;
+  paragraph('Eu, '+(get('requerente')||blank)+', venho por meio deste, requerer matrícula para o estudante acima indicado, para o ano letivo de '+ANO_LETIVO+'.',12,14.4,2);
+  signPair('Assinatura do requerente\n(pai/mãe ou responsável legal)','Diretor(a) Colégio Thabor',{gap:20,note:'Para uso do colégio:   ('+(opt.parecer&&opt.parecer.resultado==='Deferido'?' X ':' ')+') Deferido   ('+(opt.parecer&&opt.parecer.resultado==='Indeferido'?' X ':' ')+') Indeferido',id1:'assinatura1'});
+
+  addPage();y+=PG2_UP;
+  LEAD=PG2_LEAD;SECG=PG2_SECG;
+  title('Ficha de Saúde e Informações do Estudante');
+  section('DADOS E SAÚDE DO ESTUDANTE');
+  fieldLine([{label:'Nome do Estudante',value:display('aluno_nome'),maxW:285},{label:'Data de Nasc.',value:display('aluno_nasc'),maxW:95}]);
+  fieldLine([{label:'01. Peso',value:display('peso'),maxW:70},{label:'Altura',value:display('altura'),maxW:70},{label:'Tipo sanguíneo',value:display('tipo_sang'),maxW:110},{label:'Fator Rh',value:display('rh'),maxW:60}]);
+  checks('02. O estudante é alérgico a algum medicamento, alimento e/ou material?',['Não','Sim'],get('alergico'));
+  if(get('alergia_qual')) fieldLine([{label:'Qual(is)',value:display('alergia_qual'),maxW:395}]);
+  checks('03. Possui',['Asma','Epilepsia','Hipertensão','Diabete'],get('condicoes'));
+  fieldLine([{label:'Outras',value:display('outras_cond'),maxW:175},{label:'Doença congênita. Qual?',value:display('doenca_congenita'),maxW:170}]);
+  fieldLine([{label:'Alergias. Quais?',value:display('alergias_outras'),maxW:360}]);
+  checks('04. Possui restrições alimentares',['Lactose','Glúten','Açúcar'],get('restricoes'));
+  fieldLine([{label:'Outras. Especificar',value:display('restricoes_outras'),maxW:335}]);
+  line([{text:'05. PARA ATENDIMENTO À RESOLUÇÃO Nº 04/2009 E DECRETO 6571/2008, RESPONDA:',bold:true}],12,PG2_LEAD);
+  checks('O estudante apresenta alguma deficiência (de natureza física, intelectual, mental ou sensorial)?',['Não','Sim'],get('deficiencia'));
+  fieldLine([{label:'Qual?',value:display('deficiencia_qual'),maxW:145},{label:'Descreva',value:display('deficiencia_desc'),maxW:245}]);
+  paragraph('Obs.: Caso tenha respondido SIM em alguns dos itens anteriores, favor apresentar Parecer Clínico do Especialista.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  checks('06. O estudante está apto a frequentar as aulas de Ed. Física?',['Sim','Não'],get('ed_fisica'));
+  if(y-PG2_LEAD<BOTTOM)addPage();page.drawText('“Apresentar atestado médico antes do início das aulas”',{x:LEFT,y,size:12,font:italic,color:red});y-=PG2_LEAD;
+  paragraph('Importante: O atestado médico de aptidão física para frequentar, ou não, as aulas de Ed. Física, deverá ser entregue na secretaria do colégio até o início do ano letivo de '+ANO_LETIVO+'.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  checks('07. O estudante possui algum Plano de Saúde?',['Sim','Não'],get('plano_saude'));
+  line([{text:'(anexar cópia da carteirinha do convênio)',italic:true}],12,PG2_LEAD);
+  checks('08. Em caso de emergência, quem deverá ser avisado primeiro?',['Pai','Mãe'],get('emergencia_primeiro'));
+  fieldLine([{label:'Caso não se consiga contato imediato com os pais, entrar em contato com',value:display('emergencia_contato'),maxW:300}]);
+  y-=2; section('INFORMAÇÕES GERAIS');
+  checks('09. O estudante está autorizado, após o término das aulas, a deixar a escola sozinho?',['Sim','Não'],get('sair_sozinho'));
+  fieldLine([{label:'Quem está autorizado a retirá-lo da escola',value:display('retirada_autorizada'),maxW:315}]);
+  paragraph('Obs.: os pais ou responsáveis devem informar à Secretaria do Colégio, pessoalmente ou por escrito, quando o estudante necessitar sair antes do término das aulas, bem como assinar o pedido de dispensa de aulas.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  paragraph('Autorizo o estudante a participar de eventuais atividades de acompanhamento psicológico realizadas por profissionais contratados pelo Colégio.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  paragraph('Em caso de emergência, autorizo a Instituição a tomar todas as medidas de urgência que se fizerem necessárias, de acordo com as informações contidas na ficha de saúde e em toda a documentação do estudante.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  paragraph('Informo ao Colégio Thabor que o estudante '+(get('hospedado_aluno')||get('aluno_nome')||blank)+', do qual eu, '+(get('hospedado_resp')||blank)+', sou responsável legal, está hospedado na sede da Associação de Pais localizada na Rua Estr. Munc. Del. Dr. Arcy de Castro Oliveira Vicente, 1800, B. São Vicente. Mairiporã – SP.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  paragraph('Declaro que as informações aqui prestadas são verdadeiras e assumo a inteira responsabilidade por elas.',PG2_SZ,PG2_LEAD,PG2_AFTER);
+  const data2=get('data_doc')||'-';
+  dataLinha(dataExtensoBR(get('data_doc')));
+  sign('Assinatura do pai/mãe ou responsável legal','assinatura2',{gap:28});
+
+  LEAD=17.2;SECG=30;
+  addPage();
+  title('Termo de Consentimento para o Tratamento de Dados Pessoais','de Crianças e/ou Adolescentes');
+  section('OBJETIVO');
+  paragraph('Este documento tem por objetivo consignar a manifestação livre, informada e inequívoca pela qual o(s) pai(s) ou responsável legal de criança ou adolescente - Titular de Dados - dão o expresso CONSENTIMENTO para o tratamento de seus dados pessoais com finalidade específica, em conformidade com o art. 14 da Lei nº 13.709/2018 – Lei Geral de Proteção de Dados Pessoais.',12,17.2,2);
+  fieldLine([{label:'Eu',value:display('cons_nome'),maxW:290},{label:'Profissão',value:display('cons_prof'),maxW:105}]);
+  fieldLine([{label:'RG/RNM',value:display('cons_rg'),maxW:115},{label:'CPF',value:display('cons_cpf'),maxW:115},{label:'Data de Nasc.',value:display('cons_nasc'),maxW:95}]);
+  fieldLine([{label:'E-mail',value:display('cons_email'),maxW:260},{label:'Telefone',value:display('cons_tel'),maxW:120}]);
+  fieldLine([{label:'Com domicilio em',value:display('cons_end'),maxW:275},{label:'CEP',value:display('cons_cep'),maxW:85}]);
+  fieldLine([{label:'Bairro',value:display('cons_bairro'),maxW:125},{label:'Cidade/Estado',value:display('cons_cidade_estado'),maxW:145},{label:'País',value:display('cons_pais'),maxW:85}]);
+  paragraph('dou meu CONSENTIMENTO ao COLÉGIO THABOR, CNPJ: 44.491.412/0002-28, que passa a ser denominado neste termo como CONTROLADOR DE DADOS, para o tratamento dos dados pessoais, inclusive com compartilhamento a terceiros, de meu filho ou menor sob minha guarda/responsabilidade, abaixo identificado, que passa a ser denominado neste termo como TITULAR DE DADOS.',12,17.2,2);
+  fieldLine([{label:'Nome do Estudante',value:display('aluno_nome'),maxW:285},{label:'Sexo',value:get('aluno_sexo')||'-',maxW:85}]);
+  fieldLine([{label:'RG/RNM',value:display('aluno_rg'),maxW:115},{label:'CPF',value:display('aluno_cpf'),maxW:115},{label:'Data de Nasc.',value:display('aluno_nasc'),maxW:95}]);
+  fieldLine([{label:'Endereço',value:display('aluno_endereco'),maxW:400}]);
+  fieldLine([{label:'Bairro',value:display('aluno_bairro'),maxW:112},{label:'Cidade',value:display('aluno_cidade'),maxW:112},{label:'Estado',value:display('aluno_estado'),maxW:55},{label:'CEP',value:display('aluno_cep'),maxW:80}]);
+  y-=4; section('FINALIDADES DO TRATAMENTO DE DADOS');
+  [
+   'Cumprimento do contrato de prestação de serviços.',
+   'Cadastro nos sistemas e ferramentas necessárias para execução das obrigações contratuais..',
+   'Realização de matrícula, rematrícula, cursos de férias, seminários, congressos.',
+   'Inscrição em eventos promovidos ou que o colégio participará.',
+   'Para elaboração adequada de alimentos.',
+   'Para verificar necessidades especiais e cuidados com a saúde.',
+   'Para correta identificação.',
+   'Para registrar diplomas e certificados perante secretarias de educação e órgãos governamentais.',
+   'Para registro de atividades, também em ambiente físico ou virtual ainda que os servidores estejam hospedados, em outros países (nuvem da Amazon / Google/ Microsoft podem ficar nos EUA).',
+   'Para divulgação em mídia, redes sociais e outras propagandas sempre que houver termo de cessão de direitos de imagem.',
+   'Para segurança.',
+   'Para elaboração de documento escolar (carteirinha).'
+  ].forEach(bullet);
+
+  addPage();
+  title('Compartilhamento de Dados');
+  paragraph('O Controlador fica autorizado compartilhar dados pessoais do Titular com órgãos da administração pública Federal, Estadual ou Municipal, além de empresas terceiras sempre que necessários para cumprir as finalidades dispostas propostas acima.',12,17.2,2);
+  section('SEGURANÇA DOS DADOS');
+  paragraph('O Controlador se compromete a adotar medidas técnicas e administrativas de segurança dos dados, desde já declarando que o acesso aos dados será disponível somente a quem for indispensável.',12,17.2,2);
+  section('DOS ESCLARECIMENTOS');
+  paragraph('Estou ciente que a qualquer momento poderei revogar o presente termo, bem como exercer os direitosprevistos no art. 18 da LGPD, quais sejam:',12,17.2,2);
+  [
+   'Confirmar a existência de tratamento dos dados;',
+   'Solicitar acesso aos dados;',
+   'Solicitar a correção de dados incompletos, inexatos ou desatualizados;',
+   'Pedir a anonimização, bloqueio ou eliminação de dados desnecessários; excessivos ou tratados em desconformidade com o disposto nesta Lei;',
+   'Requerer a portabilidade dos dados a outro fornecedor de serviço ou produto, mediante requisição;',
+   'Requerer a eliminação dos dados pessoais;',
+   'Requerer informação de compartilhamento;',
+   'Requerer informação das consequências do não fornecimento do consentimento para o tratamento dos dados;',
+   'Requerer a revogação do consentimento;'
+  ].forEach(bullet);
+  y-=3;
+  paragraph('Para o exercício desses direitos, o titular de dados deverá entrar em Contato com o Responsável de Dados do Colégio através do e-mail: responsaveldedados@associacaoeuroamerica.org',12,17.2,2);
+  paragraph('O responsável de dados é o Diretor Administrativo do Colégio.',12,17.2,2);
+  const dl=get('data_lgpd')||'-';
+  dataLinha(dataExtensoBR(get('data_lgpd')));
+  sign('Assinatura do pai/mãe ou responsável legal','assinatura_lgpd',{gap:28});
+
+  }else if(tipo==='contrato'){
+    // ===== CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS =====
+    const hoje=new Date();
+    const dado=v=>'**'+(v||blank)+'**';
+    const p=t=>rich(t);
+    const li=t=>rich(t,{after:2});
+    addPage();
+    title('Contrato de Prestação de Serviços Educacionais | '+ANO_LETIVO+'');
+    const n=numeroSerie();
+    p('Pelo presente instrumento particular de Contrato de Prestação de Serviços Educacionais, de um lado a **ASSOCIAÇÃO INSTITUTO EDUCACIONAL E CULTURAL EURO AMÉRICA**, CNPJ nº 44.491.412/0001-47, entidade mantenedora do **COLÉGIO THABOR** autorizado pela Portaria da Diretoria de Ensino de Caieiras, publicada no D.O. do Estado no dia 23/03/2005, alterada pela Portaria da Diretoria de Ensino de Caieiras, publicada no D.O. do Estado no dia 21/02/2022, doravante denominada **CONTRATADA**, neste ato, por seu representante legal e, de outro lado, '+dado(get('fin_nome'))+', estado civil '+dado(get('fin_estado_civil'))+', profissão '+dado(get('fin_prof'))+', RG/RNM '+dado(get('fin_rg'))+', CPF '+dado(get('fin_cpf'))+', endereço '+dado(enderecoFin())+', neste instrumento doravante denominado **CONTRATANTE**, sendo responsável legal pelo estudante '+dado(get('aluno_nome'))+', que cursará a **'+(n||'__')+'ª série - EM**, têm justo e acordado o que segue:');
+    p('**CLÁUSULA 1ª.** – A **CONTRATADA** se obriga a ministrar ensino, através de aulas e demais atividades escolares, em conformidade com o disposto na legislação em vigor e de acordo com o seu Projeto Pedagógico no período de janeiro a dezembro de '+ANO_LETIVO+', em sua unidade de Caieiras.');
+    li('**§ 1º.** – A **CONTRATADA** tem sua proposta educacional orientada para o Ensino Fundamental e Ensino Médio, com os seguintes objetivos:');
+    li('a) formar o educando nos moldes preconizados pela Lei de Diretrizes e Bases da Educação (Lei 9.394/96);');
+    li('b) propiciar atendimento adequado a cada estudante, segundo suas possibilidades, dando-lhe condições de aperfeiçoamento de sua personalidade;');
+    li('c) desenvolver no educando hábitos e atitudes para o exercício da cidadania democrática.');
+    y-=6;
+    p('**§ 2°** - Para os anos letivos de 2024 a 2026, a **CONTRATADA** adotará o Sistema de Ensino Poliedro.');
+    p('**CLÁUSULA 2ª.** – O presente contrato é celebrado sob a égide da Constituição Federal, da Lei nº 10.406 de 10/01/2002, da Lei nº 9.870 de 23/11/99 e da Lei n° 8.078 de 11/09/90 e demais dispositivos legais pertinentes.');
+    p('**CLÁUSULA 3ª.** – As aulas serão ministradas nas salas de aula ou locais em que a Escola indicar, tendo em vista a natureza do conteúdo e da técnica pedagógica que se fizer necessária.');
+    p('**CLÁUSULA 4ª.** – A configuração formal do ato de matrícula do estudante se dá pelo preenchimento do formulário próprio fornecido pela **CONTRATADA** denominado **“Ficha e Requerimento de Matrícula”**.');
+    p('**§ 1º.** – O Requerimento e Ficha de Matrícula somente será encaminhado para exame e deferimento pela Diretoria após certificação pelo setor Financeiro de que o **CONTRATANTE** tenha quitado todos os seus débitos e/ou demais obrigações previstas para pagamento no ato da matrícula.');
+    p('**§ 2º.** – O presente contrato somente terá validade com o deferimento expresso e formal da matrícula pela Diretoria.');
+    p('**CLÁUSULA 5ª** – É de inteira responsabilidade da **CONTRATADA** o planejamento e a prestação dos serviços de ensino, no que se refere à marcação de datas para provas de aproveitamento, fixação de carga horária, designação de professores, orientação didático-pedagógica e educacional, além de outras providências que as atividades docentes exigirem, obedecendo ao seu exclusivo critério, sem ingerência do **CONTRATANTE**.');
+    p('**CLÁUSULA 6ª.** – O estudante representado pelo **CONTRATANTE** se obriga a acatar o **Regimento Escolar**, as **Normas Disciplinares** e as demais obrigações constantes na legislação aplicável à área de ensino e, ainda, as emanadas de outras fontes legais, desde que regulem supletivamente a matéria, inclusive o Plano Escolar.');
+    p('**§ único** – O **CONTRATANTE** desde já, fica ciente que **será de sua exclusiva responsabilidade todas e quaisquer despesas referentes à compra integral do uniforme, material escolar e material didático do sistema de ensino adotado**, não tendo a **CONTRATADA** nenhuma obrigação no tocante ao custeio dos mesmos. Vale salientar que as estipulações acima dar-se-ão para todos os estudantes.');
+    p('**CLÁUSULA 7ª.** – Como contraprestação pela prestação dos serviços educacionais referentes ao período letivo de '+ANO_LETIVO+', conforme previsto na Cláusula 1ª, o **CONTRATANTE** pagará à **CONTRATADA** a anuidade mencionada na Cláusula 8ª e seus parágrafos.');
+    const _pc=(()=>{const n=parseInt(val('contrato_parcelas'),10);return n>=1&&n<12?{n,ini:12-n}:{n:12,ini:0}})(),NP=_pc.n,MI=_pc.ini;
+    if(NP<12)p('**CLÁUSULA 8ª.** – Em razão de a matrícula ter sido realizada ao longo do ano letivo, o valor da anuidade é proporcional, correspondente aos meses de '+MESES[MI]+' a dezembro de '+ANO_LETIVO+', e é de: **R$ '+fmtCents(MENS_C*NP)+' ('+extensoBRL(MENS_C*NP).replace(/mil, /g,'mil ')+')** para os estudantes do Ensino Médio (1ª à 3ª série), que deverá ser pago a tempo e modo, em '+NP+' ('+femNum(NP)+') '+(NP===1?'parcela':'parcelas')+', no valor de: **R$ '+fmtCents(MENS_C)+' ('+extensoBRL(MENS_C).replace(/mil, /g,'mil ')+')** cada, '+(NP>1?'sendo a 1ª em '+MESES[MI]+' e as demais, sucessivamente, até a última que vencerá em dezembro de '+ANO_LETIVO+'.':'com vencimento em dezembro de '+ANO_LETIVO+'.'));
+    else p('**CLÁUSULA 8ª.** – O valor da anuidade é de: **R$ 22.440,00** para os estudantes do Ensino Médio (1ª à 3ª série), que deverá ser pago a tempo e modo, em 12 parcelas, no valor de: **R$ 1.870,00 (mil oitocentos e setenta reais)** cada, sendo a 1ª em janeiro e as demais, sucessivamente, até a última que vencerá em dezembro de '+ANO_LETIVO+'.');
+    if(NP===12)p('**§ 1º.** – O **CONTRATANTE** poderá efetuar o pagamento da anuidade em apenas 1 parcela, no valor de **R$ 19.074,00 (dezenove mil e setenta e quatro reais)**, até o dia 7 de janeiro, com desconto aplicado de **15% (quinze por cento)** sobre o valor total, ou em 2 parcelas, no valor de **R$ 10.098,00 (dez mil e noventa e oito reais)** cada, totalizando **R$ 20.196,00 (vinte mil, cento e noventa e seis reais)**, sendo a 1ª até o dia 7 de janeiro de '+ANO_LETIVO+' e a 2ª até 7 de agosto de '+ANO_LETIVO+', com desconto aplicado de **10% (dez por cento)** sobre o valor total.');
+    if(NP===12)p('**§ 2º** – Se o **CONTRATANTE** optar por uma das modalidades de quitação descritas no parágrafo 1º desta cláusula, será elaborado um **termo aditivo** ao presente contrato, a fim de formalizar o procedimento.');
+    p('**CLÁUSULA 9ª.** – O vencimento das parcelas **dar-se-á todo dia 7 do mês**, de '+MESES[MI]+' a dezembro de '+ANO_LETIVO+'.');
+    p('**§ 1º.** – Será concedido um desconto de **10%** (dez por cento) **sobre o valor integral da mensalidade**, desde que o pagamento seja efetuado **até o dia 4 do mês**. Esse desconto não se aplica aos beneficiários de bolsas de estudos, os quais **deverão realizar o pagamento até o dia 7 do mês para manter o benefício.**');
+    p('**§ 2º.** – Em caso de atraso no pagamento, será aplicada multa de 2% (dois por cento) sobre o valor da parcela vencida, acrescida de juros de 1% (um por cento) ao mês de atraso. O **CONTRATANTE** perderá o desconto eventualmente concedido, caso o pagamento não seja efetuado até o último dia do mês de vencimento, devendo, nesse caso, quitar o valor integral da parcela, conforme a tabela normal, acrescido dos encargos mencionados.');
+    p('**§ 4º.** – O não comparecimento do estudante aos atos escolares ora contratados, não exime o pagamento, tendo em vista a disponibilidade de todos os serviços ao **CONTRATANTE** no período. No caso de desistência não oficial (abandono), fica o **CONTRATANTE** ciente de que está obrigado ao pagamento de equivalente a 30% (trinta por cento) do valor proporcional restante do contrato.');
+    p('**§ 5º.** – A suspensão ou interrupção do pagamento só ocorrerá por expressa e escrita comunicação com antecedência de 30 (trinta) dias da rescisão contratual pelo **CONTRATANTE**, devidamente protocolada na Secretaria da Escola.');
+    p('**§ 6º.** – Fica estabelecido que a **CONTRATADA** não realizará a devolução dos valores pagos pelo **CONTRATANTE**, salvo no caso em que a anuidade tenha sido quitada em uma ou duas parcelas, caso em que a devolução será limitada a 30% (trinta por cento) do valor proporcional aos meses remanescentes.');
+    p('**§ 7º.** – Não estão incluídos neste contrato os serviços especiais de recuperação, reforço, transporte escolar, saídas pedagógicas, as atividades extracurriculares, a segunda via de documentos, o uniforme, a alimentação e o material didático do sistema de ensino de uso individual do estudante.');
+    p('**§ 8º.** – A forma de pagamento das mensalidades/anuidade será por meio da ^^Plataforma Asaas^^ ou ^^Sistema Paypal^^ para os não residentes no Brasil.');
+    p('**CLÁUSULA 10ª.** – Caso, no curso da vigência do presente contrato, venha a ocorrer a substituição do responsável financeiro do estudante, por morte, separação ou outra causa qualquer, a alteração deverá ser formalizada junto à Diretoria.');
+    p('**§ único** – Em caso de separação ou divórcio do **CONTRATANTE**, a **CONTRATADA** deverá ser formalmente comunicada sobre o fato, bem como a quem coube a guarda, e as demais informações complementares sobre a retirada do estudante da Escola.');
+    li('**CLÁUSULA 11ª** – O **CONTRATANTE** por este contrato, tem ciência e autoriza a **CONTRATADA**, com base na Lei Geral de Proteção de Dados, que, em caso de inadimplência das parcelas ou qualquer obrigação de pagamento decorrente deste contrato, passados 90 (noventa) dias de tolerância do pagamento, requerer a rescisão contratual pelos meios legais e processuais admitidos, podendo ainda optar:');
+    li('I – Pela cobrança amigável ou judicial do débito;');
+    li('II – Pela rescisão contratual, independente da exigibilidade do débito vencido e do devido no mês da efetivação, declarado judicialmente;');
+    li('III – Pela inscrição do nome do **CONTRATANTE** em bancos de dados como Serasa, SCPC dentre outros relacionadas essas informações pessoais/cadastrais, única e exclusivamente pelo não cumprimento deste contrato, e valer-se de firma especializada, respondendo também, neste caso, o **CONTRATANTE** inadimplente por honorários a esta, frente as obrigações não cumpridas pelo **CONTRATANTE** valendo a autorização e ciência antes dita, no caso de ação judicial.');
+    y-=6;
+    li('**CLÁUSULA 12ª** – O presente contrato tem duração até o fim do período letivo de '+ANO_LETIVO+' e poderá ser rescindido nas seguintes hipóteses:');
+    li('a – Pelo Pai e/ou Responsável: I – Por desistência formal; II – Por transferência formal.');
+    li('b – Pela Escola: I – Por desligamento nos termos do Regimento Escolar; II – Por rescisão nas formas expressas das Cláusulas 9ª, 10ª e 11ª.');
+    y-=6;
+    p('**§ único** - Em todos os casos fica o **CONTRATANTE** obrigado a pagar o valor da parcela do mês em que ocorrer o evento, além de outros débitos eventualmente existentes, corrigidos na forma da Cláusula 9ª.');
+    p('**CLÁUSULA 13ª.** – A **CONTRATADA**, livre de quaisquer ônus para com o **CONTRATANTE** e o estudante, poderá utilizar-se da sua imagem para fins exclusivos de divulgação da **CONTRATADA** e suas atividades podendo, para tanto, reproduzi-la ou divulgá-la junto à internet, jornais, panfletos, aplicativos e todos os demais meios de comunicação, públicos e privados, diante disso o **CONTRATANTE** autoriza, desde já, a utilização da imagem do estudante.');
+    p('**§ único** – Em nenhuma hipótese poderá a imagem ser utilizada de maneira contrária à moral ou aos bons costumes ou à ordem pública.');
+    p('**CLÁUSULA 14ª.** – O **CONTRATANTE** autoriza o repasse dos seus dados cadastrais ao INEP – Instituto Nacional de Estudos e Pesquisas Educacionais, quando este solicitar suas informações, para fins estatísticos.');
+    p('**CLÁUSULA 15ª.** – A **CONTRATADA** não se responsabiliza pela guarda e consequente indenização decorrente do extravio ou dos danos causados a quaisquer objetos, não empregados no processo de aprendizado, levados ao estabelecimento da **CONTRATADA**, inclusive celulares, aparelhos eletroeletrônicos, papel moeda ou documentos, pertencentes ou sob a posse do **CONTRATANTE**, do DISCENTE ou de seus prepostos ou acompanhantes, exceto se decorrentes de atos dos seus subordinados.');
+    p('**CLÁUSULA 16ª.** – A **CONTRATADA** será indenizada pelo **CONTRATANTE** por qualquer dano ou prejuízo que este ou o DISCENTE, preposto ou acompanhante de qualquer um deles, venha a causar nos edifícios, instalações, mobiliários ou equipamentos da **CONTRATADA**.');
+    p('**CLÁUSULA 17ª.** – A **CONTRATADA** oferece em favor do DISCENTE Seguro Escolar com cobertura para acidentes pessoais, conforme apólice e condições gerais, da empresa **PORTO SEGURO CIA DE SEGUROS GERAIS**. As partes contratantes pactuam que, em caso de sinistro envolvendo o beneficiário do presente contrato, a indenização a ser paga pela Seguradora satisfará toda e qualquer reclamação ou pleito de indenização, de qualquer natureza, tendo por objeto o mesmo sinistro e seus efeitos, nada mais sendo devido pela **CONTRATADA**, a qualquer título.');
+    p('**CLÁUSULA 18ª.** – **DA PROTEÇÃO DE DADOS E DA CONFIDENCIALIDADE**');
+    p('**18.1** A **CONTRATADA** se compromete a observar a lei 13.709/2018- LGPD e adotar medidas de segurança, técnicas e administrativas aptas a proteger os dados pessoais, deixando o acesso aos dados somente a quem for indispensável.');
+    p('**18.2** A **CONTRATADA** na qualidade de Controladora fica autorizada a compartilhar dados pessoais do Titular com órgãos da administração pública Federal, Estadual ou Municipal, além de empresas terceiras sempre que necessários para cumprir as finalidades deste contrato.');
+    p('**18.3** O contratante poderá requer à **CONTRATADA** os direitos previstos no art. 18 da Lei 13.709, quais sejam: Confirmação do tratamento dos dados; Solicitação de acesso aos dados; Solicitação de correção de dados incompletos, inexatos ou desatualizados; Pedido de anonimização, bloqueio ou eliminação de dados desnecessários; excessivos ou tratados em desconformidade com o disposto nesta Lei; Requerimento da portabilidade dos dados a outro fornecedor de serviço ou produto, mediante requisição; Requerimento da eliminação dos dados pessoais; Requerimento de informação de compartilhamento; Requerimento de informação das consequências do não fornecimento do consentimento para o tratamento dos dados; Requerimento da revogação do consentimento.');
+    p('**18.4** Para o exercício desses direitos, o **CONTRATANTE** deverá entrar em Contato com o Responsável de Dados do Colégio da **CONTRATADA** através do e-mail responsaveldedados@associacaoeuroamerica.org. O responsável de dados é o Diretor Administrativo do Colégio.');
+    p('**CLÁUSULA 19ª.** – Para dirimir questões oriundas deste contrato fica eleito o Foro da Comarca em cuja jurisdição a **CONTRATADA** tiver domicílio, arcando a parte vencida em demanda judicial com as custas processuais a que der causa e com os honorários advocatícios arbitrados do patrono da parte vencedora.');
+    // Fecho, data e assinaturas ficam juntos na mesma página
+    ensure(175);
+    p('E, por estarem as partes de acordo com todos os termos e condições do presente contrato, assinam este instrumento em duas vias de igual teor e forma, para que se produzam todos os efeitos legais.');
+    y-=6;
+    dataLinha(dataPorExtenso(hoje));
+    y-=28;   // mesma distância data → assinatura do modelo
+    const sw=225, sy=y, l1='CONTRATANTE (RESPONSÁVEL)', l2='CONTRATADA (MANTENEDORA)';
+    page.drawLine({start:{x:LEFT,y:sy},end:{x:LEFT+sw,y:sy},thickness:.8,color:black});
+    page.drawLine({start:{x:W-RIGHT-sw,y:sy},end:{x:W-RIGHT,y:sy},thickness:.8,color:black});
+    page.drawText(l1,{x:LEFT+(sw-textWidth(l1,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    page.drawText(l2,{x:W-RIGHT-sw+(sw-textWidth(l2,tBold,12))/2,y:sy-14,size:12,font:tBold,color:black});
+    y=sy-30;
+  }
+  else if(tipo==='aditivo_anual'||tipo==='aditivo_semestral'){
+    // ===== TERMO ADITIVO — pagamento anual (1 parcela) ou semestral (2 parcelas): consta só a opção escolhida =====
+    const anual=tipo==='aditivo_anual',cp=!!opt.compacto;
+    LEAD=cp?15.4:17.2;SECG=28;
+    const R=x=>rich(x,{leading:LEAD,after:cp?5:8});
+    addPage();
+    title('Termo Aditivo ao Contrato de Prestação de Serviços Educacionais','Concessão de Desconto | '+ANO_LETIVO);
+    fieldLine([{label:'Ref. Ao contrato do(a) Estudante',value:display('aluno_nome')},{label:'Turma',value:turmaTxt()||blank}]);
+    y-=8;
+    R('**Pelo presente Termo Aditivo**, as partes, de um lado, o **INSTITUTO EDUCACIONAL** (denominado CONTRATADA), e, de outro, o **CONTRATANTE**, qualificado no contrato principal, resolvem, de comum acordo, ajustar as condições de pagamento da anuidade para o ano de '+ANO_LETIVO+', nos termos a seguir:');
+    R('**CLÁUSULA 1ª.** – Este termo aditivo tem por objeto a concessão de desconto, conforme estipulado no § 1º da Cláusula 8ª do Contrato de Prestação de Serviços Educacionais, mediante a escolha do **CONTRATANTE** por uma das modalidades de quitação antecipada.');
+    R('**CLÁUSULA 2ª.** – O **CONTRATANTE** optou por:');
+    if(anual)R('Pagamento em 1 (uma) parcela, no valor de R$ '+fmtCents(ANUAL_C)+' ('+extensoBRL(ANUAL_C)+'), com desconto de '+pct(CONFIG.descontoAnual)+', a ser quitada até o dia '+CONFIG.vencAnual+' de '+ANO_LETIVO+'.');
+    else R('Pagamento em 2 (duas) parcelas, no valor de R$ '+fmtCents(SEM_PARC_C)+' ('+extensoBRL(SEM_PARC_C)+') cada, totalizando R$ '+fmtCents(SEM_TOTAL_C)+' ('+extensoBRL(SEM_TOTAL_C)+'), com desconto de '+pct(CONFIG.descontoSemestral)+' sobre o valor total, sendo a 1ª parcela com vencimento em '+CONFIG.venc1Semestral+' de '+ANO_LETIVO+' e a 2ª parcela com vencimento em '+CONFIG.venc2Semestral+' de '+ANO_LETIVO+'.');
+    R('**CLÁUSULA 3ª.** – Ficam mantidas todas as demais cláusulas e condições do contrato original, que não tenham sido expressamente modificadas por este termo aditivo.');
+    ensure(cp?122:132);
+    R('E, por estarem assim justas e acordadas, as partes assinam o presente Termo Aditivo em duas vias de igual teor e forma.');
+    y-=6;
+    dataLinha(dataPorExtenso(hoje));
+    assinDupla();
+  }
+  const pages=out.getPages(); const total=pages.length; window._pdfPaginas=total; pages.forEach((pg,i)=>{const t=(i+1)+' de '+total; pg.drawText(t,{x:W-RIGHT-34,y:48,size:8,font,color:gray});if(window._protocolo)pg.drawText('Protocolo: '+window._protocolo,{x:LEFT,y:48,size:8,font,color:gray});});
+  return await out.save();
+}
+let _pdfUrls=[];
+function baixarPdf(url,nome){const a=document.createElement('a');a.href=url;a.download=nome;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1500)}
+function mostrarLinksPdf(itens){
+ const box=document.getElementById('downloadLinks');box.innerHTML='';
+ const info=document.createElement('p');info.className='download-info';info.textContent='Se o navegador não baixar todos os arquivos automaticamente, use os botões abaixo:';box.appendChild(info);
+ for(const it of itens){const l=document.createElement('a');l.href=it.url;l.download=it.nome;l.textContent='Baixar '+it.rotulo;box.appendChild(l)}
+ box.hidden=false;
+}
+async function gerarPdf(){
+ const st=document.getElementById('status'),btn=document.getElementById('gerar');
+ const v=id=>{const x=valueFor(id);return x==='—'?'':x};
+ aplicarPagamento();
+ const modo=pagModo();
+ // forma de pagamento da mensalidade é obrigatória: sem ela nenhum PDF é gerado
+ if(!modo){alert('Escolha a forma de pagamento da mensalidade (Mensal, Anual ou Semestral) na etapa Financeiro. Sem essa escolha os PDFs não são gerados.');showStep(steps.length-1);st.textContent='Escolha a forma de pagamento da mensalidade para gerar os PDFs.';return}
+ const faltam=[['nome completo do responsável financeiro','fin_nome'],['estado civil','fin_estado_civil'],['profissão','fin_prof'],['RG/RNM','fin_rg'],['CPF','fin_cpf'],['endereço','fin_end'],['nome do estudante','aluno_nome']].filter(([,id])=>!v(id)).map(a=>a[0]);
+ if(!numeroSerie())faltam.push('série (com número)');
+ if(faltam.length&&!confirm('Faltam dados que entram nos documentos:\n\n• '+faltam.join('\n• ')+'\n\nDeseja gerar os PDFs mesmo assim?')){st.textContent='Geração cancelada. Complete os dados na etapa Financeiro.';return}
+ btn.disabled=true;st.textContent='Gerando os PDFs no modelo timbrado...';
+ try{
+  if(!window.PDFLib) throw new Error('Biblioteca PDF indisponível');
+  if(!await etapaRegistro('matricula',{},st))return;
+  st.textContent='Gerando os PDFs no modelo timbrado...';
+  const sufixo=sufixoAluno(v('aluno_nome'));
+  // documentos conforme a forma de pagamento escolhida
+  const docs=[['ficha','Ficha de Matricula'+sufixo+'.pdf','Ficha de Matrícula'],['contrato','Contrato Financeiro'+sufixo+'.pdf','Contrato Financeiro']];
+  if(modo==='anual')docs.push(['aditivo_anual','Termo Aditivo Pagamento Anual'+sufixo+'.pdf','Termo Aditivo (pagamento anual)']);
+  if(modo==='semestral')docs.push(['aditivo_semestral','Termo Aditivo Pagamento Semestral'+sufixo+'.pdf','Termo Aditivo (pagamento semestral)']);
+  // gera todos ANTES de baixar qualquer um (todo o download fica logo após o clique)
+  const arquivos=[];
+  for(const [tipo,nome,rotulo] of docs){
+   try{
+    let bytes=await criarPdf(tipo);
+    if(tipo.startsWith('aditivo_')&&window._pdfPaginas>1)bytes=await criarPdf(tipo,{compacto:true});
+    arquivos.push({nome,rotulo,bytes,url:URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}))});
+   }catch(e){console.error(e);throw new Error(rotulo+': '+(e&&e.message?e.message:e))}
+  }
+  _pdfUrls.forEach(u=>URL.revokeObjectURL(u));_pdfUrls=arquivos.map(a=>a.url);
+  // botões de reserva (caso o navegador bloqueie algum download) + downloads em sequência
+  mostrarLinksPdf(arquivos);
+  arquivos.forEach((a,i)=>{if(i===0)baixarPdf(a.url,a.nome);else setTimeout(()=>baixarPdf(a.url,a.nome),i*450)});
+  const enviado=await enviarPdfs('matricula',arquivos);
+  const dr=await enviarDocumentos(st);
+  if(dr.falhas)alert('Os PDFs foram gerados, mas '+dr.falhas+' documento(s) anexado(s) NÃO foram enviados à secretaria.\n\nMotivo: '+dr.erro+'\n\nClique em "Gerar" novamente para tentar reenviar.');
+  st.textContent=arquivos.length+' PDFs gerados: '+arquivos.map(a=>a.rotulo).join(', ')+'. Se o navegador pedir, permita o download de múltiplos arquivos.'+(enviado?'':AVISO_ENVIO)+(dr.aviso||'')+(dr.total?(dr.falhas?' Atenção: '+dr.falhas+' documento(s) anexado(s) não foram enviados ('+dr.erro+'). Clique em "Gerar" novamente para tentar de novo.':' '+dr.ok+' documento(s) anexado(s) enviado(s) à secretaria.'):'');
+ }catch(e){console.error(e);st.textContent='Não foi possível gerar os PDFs ('+(e&&e.message?e.message:'erro')+'). Verifique sua conexão e tente novamente.'}
+ finally{btn.disabled=false}
+}
+document.getElementById('gerar').onclick=gerarPdf;
+document.getElementById('limpar').onclick=()=>{if(confirm('Deseja apagar todos os campos?')){form.reset();localStorage.removeItem('matricula2026');limparRegistro();showStep(0);updateProgress()}};
+form.addEventListener('input',()=>{updateProgress();const data={};new FormData(form).forEach((v,k)=>{if(data[k])data[k]=[].concat(data[k],v);else data[k]=v});localStorage.setItem('matricula2026',JSON.stringify(data))});
+window.addEventListener('load',()=>{try{const d=JSON.parse(localStorage.getItem('matricula2026')||'{}');for(const[k,v]of Object.entries(d)){const els=document.querySelectorAll('[name="'+k+'"]');for(const e of els){if(e.type==='radio'||e.type==='checkbox')e.checked=[].concat(v).includes(e.value);else e.value=v}}updateProgress()}catch(e){console.warn('Não foi possível restaurar os dados salvos.',e)}});
+
+// ===== Dados do estudante: tipo de guarda (campos condicionais) e pergunta de falecimento =====
+(function(){
+ const el=id=>document.getElementById(id);
+ const wrap=id=>el(id).closest('label');
+ const uniResp=wrap('tg_uni_resp'),uniOutro=wrap('tg_uni_outro'),terc=wrap('tg_terc_resp');
+ const limpar=id=>{if(el(id).value)setField(id,'')};
+ function atualizar(){
+  const tipo=val('tg_tipo'),uni=tipo==='Guarda unilateral',ter=tipo==='Guarda com terceiros',outro=uni&&val('tg_uni_resp')==='Outro';
+  uniResp.hidden=!uni;uniOutro.hidden=!outro;terc.hidden=!ter;
+  if(!uni)limpar('tg_uni_resp');          // campo oculto não guarda valor antigo
+  if(!outro)limpar('tg_uni_outro');
+  if(!ter)limpar('tg_terc_resp');
+  updateProgress();
+ }
+ form.addEventListener('input',e=>{const n=e.target&&e.target.name;if(n==='tg_tipo'||n==='tg_uni_resp')atualizar()});
+ form.addEventListener('reset',()=>setTimeout(atualizar,0));
+ atualizar();
+ window.addEventListener('load',atualizar);     // depois de restaurar o rascunho salvo
+ // pergunta de falecimento: no topo da etapa, antes do bloco de endereço
+ const fal=document.querySelector('input[name="fam_falecidos"]');
+ if(fal){const lab=fal.closest('.choices').parentElement;lab.style.gridColumn='1/-1';const g=lab.parentElement;g.insertBefore(lab,g.firstChild)}
+})();
+
+// ===== Etapa 10 — Financeiro (responsável financeiro / CONTRATANTE do contrato) =====
+(function(){
+ const sec=getSectionByTitle('Financeiro');if(!sec)return;
+ const grid=sec.querySelector('.grid');
+ const KEYS=['nome','prof','rg','cpf','cep','end','bairro','cidade_estado','pais'];   // campos copiados do pai/mãe
+ const ALL=KEYS.concat(['estado_civil']);                                              // + estado civil (preenchido sempre à mão)
+ const el=id=>document.getElementById(id);
+ let syncing=false;                                                                    // true enquanto o sistema preenche (não conta como edição do usuário)
+ sec.querySelector('.step-help').textContent='Escolha a forma de pagamento da mensalidade e informe quem será o responsável financeiro (CONTRATANTE do contrato). Se for o pai ou a mãe, os dados já informados nas etapas anteriores são trazidos automaticamente e podem ser corrigidos aqui.';
+ // campo oculto: guarda quais campos o usuário editou à mão (para não sobrescrever correções)
+ const hidden=document.createElement('input');hidden.type='hidden';hidden.name='fin_touched';hidden.id='fin_touched';sec.appendChild(hidden);
+ // layout: escolha do responsável ocupa a linha toda; bloco do CEP logo acima do CEP
+ document.querySelector('input[name="fin_resp"]').closest('.choices').parentElement.style.gridColumn='1/-1';
+ const helper=sec.querySelector('.address-helper'),cepLabel=el('fin_cep').closest('label');
+ if(helper&&cepLabel)grid.insertBefore(helper,cepLabel);
+ const aviso=document.createElement('div');aviso.id='finAviso';aviso.className='fin-aviso';aviso.setAttribute('role','status');aviso.setAttribute('aria-live','polite');aviso.style.display='none';grid.appendChild(aviso);
+
+ const touched=()=>new Set((hidden.value||'').split(',').filter(Boolean));
+ const saveTouched=s=>{hidden.value=[...s].join(',');hidden.dispatchEvent(new Event('input',{bubbles:true}))};
+ const setFin=(id,v)=>{syncing=true;try{setField(id,v)}finally{syncing=false}};
+
+ function refreshInfo(){
+  const nome=String(val('aluno_nome')||'').trim(),n=numeroSerie();
+  el('fin_aluno').value=nome;
+  el('fin_serie').value=n?n+'ª série - EM':'';
+  el('fin_data').value=dataPorExtenso();
+  const falta=[];if(!nome)falta.push('o nome do estudante (etapa 2)');if(!n)falta.push('a série com número, ex.: 1ª, 2ª ou 3ª (etapa 1)');
+  aviso.textContent=falta.length?'Atenção: para o contrato, informe '+falta.join(' e ')+'.':'';
+  aviso.style.display=falta.length?'block':'none';
+ }
+ function syncFin(){
+  refreshInfo();
+  const r=val('fin_resp');if(r!=='Pai'&&r!=='Mãe')return;
+  const pre=r==='Pai'?'pai_':'mae_',t=touched();
+  KEYS.forEach(k=>{if(t.has(k))return;const src=el(pre+k),dst=el('fin_'+k);if(src&&dst&&dst.value!==src.value)setFin('fin_'+k,src.value)});
+ }
+ function resetFin(){saveTouched(new Set());ALL.forEach(k=>setFin('fin_'+k,''))}
+
+ // troca do responsável financeiro
+ let prev=val('fin_resp');
+ const radios=[...document.querySelectorAll('input[name="fin_resp"]')];
+ radios.forEach(rd=>rd.addEventListener('change',()=>{
+  const t=touched(),temDados=ALL.some(k=>t.has(k)&&el('fin_'+k).value.trim());
+  if(prev&&temDados&&!confirm('Trocar o responsável financeiro vai substituir os dados já preenchidos nesta etapa. Continuar?')){
+   radios.forEach(x=>{x.checked=(x.value===prev)});const atual=radios.find(x=>x.checked);if(atual)atual.dispatchEvent(new Event('input',{bubbles:true}));return;
+  }
+  prev=rd.value;resetFin();syncFin();
+ }));
+
+ // edição manual marca o campo como "do usuário"; mudanças em pai/mãe/estudante/série atualizam a etapa
+ form.addEventListener('input',e=>{
+  const t=e.target;if(!t||syncing)return;
+  if(t.id&&t.id.startsWith('fin_')&&ALL.includes(t.id.slice(4))){const s=touched(),k=t.id.slice(4);if(!s.has(k)){s.add(k);saveTouched(s)}}
+  if(/^(pai_|mae_|aluno_nome$|serie$)/.test(t.name||''))syncFin();
+ });
+
+ // ao entrar na etapa Financeiro (última), atualiza dados e a data de hoje
+ const _showStep=showStep;
+ showStep=function(i){_showStep(i);if(currentStep===steps.length-1)syncFin()};
+ window.addEventListener('load',()=>{prev=val('fin_resp');syncFin()});
+})();
+
+
+// ===== Ajustes da ficha: telefone, guarda, nomes repetidos =====
+(function(){
+ const el=id=>document.getElementById(id);
+ // telefone nacional "(xx) 99999-9999"; começando com + vale texto livre (exterior)
+ function maskTel(v){
+  v=String(v||'');if(v.trim().startsWith('+'))return '+'+v.replace(/[^\d ()-]/g,'').replace(/^\s+/,'').slice(0,24);
+  const d=v.replace(/\D/g,'').slice(0,11);
+  if(!d.length)return '';
+  if(d.length<=2)return '('+d;
+  if(d.length<=6)return '('+d.slice(0,2)+') '+d.slice(2);
+  if(d.length<=10)return '('+d.slice(0,2)+') '+d.slice(2,6)+'-'+d.slice(6);
+  return '('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7);
+ }
+ ['pai_tel','mae_tel','guarda_tel','cons_tel'].forEach(id=>{
+  const e=el(id);if(!e)return;e.type='tel';e.inputMode='tel';e.placeholder='(11) 99999-9999  ou  +código do país';e.maxLength=26;e.autocomplete='tel';
+  e.addEventListener('input',()=>{const m=maskTel(e.value);if(m!==e.value)e.value=m});
+  if(e.value)e.value=maskTel(e.value);
+ });
+ window.addEventListener('load',()=>['pai_tel','mae_tel','guarda_tel','cons_tel'].forEach(id=>{const e=el(id);if(e&&e.value)e.value=maskTel(e.value)}));
+ // texto explicativo do responsável pela guarda
+ const gs=getSectionByTitle('Responsável pela guarda');
+ if(gs){const n=document.createElement('p');n.className='step-help';n.style.cssText='font-weight:700;color:#4a0d13';n.textContent='(caso não seja o Pai ou a Mãe, com termo de Guarda Definitiva)';gs.querySelector('.step-help').insertAdjacentElement('afterend',n)}
+ // nome do requerente repetido em "nome do responsável" e na assinatura do termo LGPD; estudante hospedado = estudante
+ const pares=[['requerente','hospedado_resp'],['requerente','assinatura_lgpd'],['aluno_nome','hospedado_aluno']];
+ const ult={};
+ function sync(src,dst){
+  const s=el(src),d=el(dst);if(!s||!d)return;const k=src+'>'+dst;
+  if(!d.value||d.value===(ult[k]||'')){if(d.value!==s.value){d.value=s.value;d.dispatchEvent(new Event('input',{bubbles:true}))}}
+  ult[k]=s.value;
+ }
+ form.addEventListener('input',e=>{const n=e.target&&e.target.id;pares.forEach(([a,b])=>{if(a===n)sync(a,b)})});
+ window.addEventListener('load',()=>pares.forEach(([a,b])=>{const k=a+'>'+b,d=el(b),s=el(a);if(!d||!s)return;ult[k]=(d.value===s.value)?s.value:'';if(!d.value)sync(a,b)}));
+})();
+
+// ===== Matrícula durante o ano: contrato proporcional + etapa de documentos (novatos) =====
+function aplicarPagamento(){
+ const pr=parcelasRestantes();
+ let h=document.getElementById('contrato_parcelas');
+ if(!h){h=document.createElement('input');h.type='hidden';h.id=h.name='contrato_parcelas';form.appendChild(h)}
+ h.value=String(pr.n);
+ const radios=[...document.querySelectorAll('input[name="pag_opcao"]')];
+ if(!radios.length)return pr;
+ const novo=pagLabelMensal(pr);radios[0].value=novo;if(radios[0].parentNode.lastChild)radios[0].parentNode.lastChild.textContent=' '+novo;
+ radios.forEach((r,i)=>{if(i>0){r.parentNode.hidden=pr.n<12;if(pr.n<12&&r.checked)r.checked=false}});
+ if(pr.n<12&&!radios[0].checked){radios[0].checked=true;radios[0].dispatchEvent(new Event('input',{bubbles:true}))}
+ const sec=getSectionByTitle('Financeiro');let av=document.getElementById('propAviso');
+ if(pr.n<12){
+  if(!av&&sec){av=document.createElement('div');av.id='propAviso';av.className='prop-aviso';const g=sec.querySelector('.grid');g.insertBefore(av,g.firstChild)}
+  if(av)av.textContent='Matrícula realizada ao longo do ano letivo: o contrato será proporcional, com '+pr.n+(pr.n===1?' parcela':' parcelas')+' de R$ '+fmtCents(MENS_C)+' ('+MESES[pr.ini]+' a dezembro; anuidade de R$ '+fmtCents(MENS_C*pr.n)+'). Nesta situação, o pagamento é mensal.';
+ }else if(av)av.remove();
+ return pr;
+}
+(function(){
+ aplicarPagamento();
+ const _sf=showStep;showStep=function(i){_sf(i);if(currentStep===steps.length-1)aplicarPagamento()};
+
+ // ---- etapa Documentos (só para estudantes novatos)
+ const docsIdx=steps.findIndex(x=>x.dataset.title==='Documentos');if(docsIdx<0)return;
+ const GRUPOS=[
+  {t:'Documentos do estudante',pre:'Estudante',s:[['RG ou RNM','RG/RNM'],['CPF','CPF'],['Certidão de nascimento','Certidão de nascimento'],['Passaporte','Passaporte (estudantes estrangeiros)'],['Cartão de vacina','Cartão de vacina'],['Comprovante de residência','Comprovante de residência']]},
+  {t:'Documentos escolares',pre:'Escolar',s:[['Declaração de transferência','Declaração de transferência'],['Histórico escolar','Histórico escolar'],['Boletim','Boletim (pode anexar mais de um arquivo)']]},
+  {t:'Documentos do pai',pre:'Pai',s:[['RG','RG'],['CPF','CPF'],['Passaporte','Passaporte']]},
+  {t:'Documentos da mãe',pre:'Mãe',s:[['RG','RG'],['CPF','CPF'],['Passaporte','Passaporte']]},
+  {t:'Documentos de outro responsável (guarda ou financeiro, se não for o pai ou a mãe)',pre:'Responsável',s:[['RG','RG'],['CPF','CPF'],['Passaporte','Passaporte']]}
+ ];
+ const MAX_ARQ=5,MAX_PDF=4.5*1024*1024,MAX_IMG=4.5*1024*1024;
+ window.DOCS_SEL={};
+ const box=document.getElementById('docsBox');
+ steps[docsIdx].querySelector('.step-help').textContent='Opcional, mas agiliza a análise: anexe cópias legíveis em PDF ou foto. Você pode anexar mais de um arquivo por item (ex.: frente e verso). Os arquivos são enviados à secretaria quando você gerar os PDFs, na última etapa.';
+ async function comprimir(file){
+  const bmp=await createImageBitmap(file),sc=Math.min(1,1800/Math.max(bmp.width,bmp.height));
+  const c=document.createElement('canvas');c.width=Math.max(1,Math.round(bmp.width*sc));c.height=Math.max(1,Math.round(bmp.height*sc));
+  const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(bmp,0,0,c.width,c.height);
+  return await new Promise((ok,er)=>c.toBlob(b=>b?ok(b):er(new Error('falha')),'image/jpeg',0.82));
+ }
+ GRUPOS.forEach((gr,gi)=>{
+  const wrap=document.createElement('div');wrap.className='doc-grupo';const h=document.createElement('h3');h.textContent=gr.t;wrap.appendChild(h);
+  gr.s.forEach(([curto,rot],si)=>{
+   const key=gi+'_'+si,lab=document.createElement('label');lab.className='doc-item';lab.append(document.createTextNode(rot));
+   const inp=document.createElement('input');inp.type='file';inp.multiple=true;inp.accept='application/pdf,image/*';lab.appendChild(inp);
+   const msg=document.createElement('div');msg.className='doc-msg';const ul=document.createElement('ul');ul.className='doc-lista';lab.append(msg,ul);wrap.appendChild(lab);
+   const lista=DOCS_SEL[key]=[];
+   const render=()=>{ul.textContent='';lista.forEach((it,i)=>{const li=document.createElement('li');const sp=document.createElement('span');sp.textContent=it.nome+' ('+Math.max(1,Math.round(it.blob.size/1024))+' KB)'+(it.enviado?' ✓ enviado':'');const bt=document.createElement('button');bt.type='button';bt.textContent='remover';bt.onclick=()=>{lista.splice(i,1);render()};li.append(sp,bt);ul.appendChild(li)})};
+   inp.addEventListener('change',async()=>{
+    msg.textContent='';const erros=[];
+    for(const f of [...inp.files]){
+     if(lista.length>=MAX_ARQ){erros.push('Máximo de '+MAX_ARQ+' arquivos neste item.');break}
+     try{
+      let blob,ext;
+      if(f.type==='application/pdf'||/\.pdf$/i.test(f.name)){if(f.size>MAX_PDF){erros.push(f.name+': PDF acima de 4,5 MB (reduza ou comprima o arquivo).');continue}blob=f;ext='.pdf'}
+      else if(/^image\//.test(f.type)){blob=await comprimir(f);ext='.jpg';if(blob.size>MAX_IMG){erros.push(f.name+': imagem muito grande.');continue}}
+      else{erros.push(f.name+': use PDF ou foto (JPG/PNG).');continue}
+      lista.push({nome:f.name,blob,ext,pre:gr.pre,curto,enviado:false});
+     }catch(e){erros.push(f.name+': não foi possível ler este arquivo (envie em PDF ou JPG).')}
+    }
+    inp.value='';msg.textContent=erros.join(' ');render();
+   });
+  });
+  box.appendChild(wrap);
+ });
+ // dispensa a etapa para veteranos
+ const dots=[...document.querySelectorAll('.step-dot')];
+ const ativo=()=>val('situacao')==='Novato';
+ function atualizarDocs(){dots[docsIdx].hidden=!ativo();let k=0;dots.forEach(d=>{if(!d.hidden){k++;const n=d.querySelector('.num');if(n)n.textContent=k}})}
+ const _s2=showStep;
+ showStep=function(i){
+  if(i===docsIdx&&!ativo())i=(i>currentStep)?i+1:i-1;
+  _s2(i);ajustaContador();
+ };
+ function ajustaContador(){const on=ativo(),tot=on?steps.length:steps.length-1,x=currentStep+1-(!on&&currentStep>docsIdx?1:0);document.getElementById('stepCounter').textContent='Etapa '+x+' de '+tot}
+ form.addEventListener('input',e=>{if(e.target&&e.target.name==='situacao'){atualizarDocs();ajustaContador()}});
+ form.addEventListener('reset',()=>setTimeout(()=>{Object.values(DOCS_SEL).forEach(l=>l.length=0);document.querySelectorAll('.doc-lista').forEach(u=>u.textContent='');atualizarDocs();ajustaContador()},0));
+ window.addEventListener('load',()=>{aplicarPagamento();atualizarDocs();ajustaContador()});
+ atualizarDocs();ajustaContador();
+})();
+function blobB64(blob){return new Promise((ok,er)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]||'');r.onerror=()=>er(r.error);r.readAsDataURL(blob)})}
+/* envia à secretaria (pasta do aluno no Drive) os documentos anexados pelos novatos; um arquivo por chamada */
+async function enviarDocumentos(st){
+ const res={total:0,ok:0,falhas:0,erro:'',aviso:''};
+ if(!CONFIG.api||val('situacao')!=='Novato'||!window.DOCS_SEL)return res;
+ if(!window._protocolo){res.aviso=' Atenção: os documentos anexados não foram enviados porque a matrícula ficou sem protocolo.';return res}
+ const itens=[];Object.values(DOCS_SEL).forEach(lista=>lista.forEach((it,i)=>{if(!it.enviado)itens.push({it,i,n:lista.length})}));
+ res.total=itens.length;if(!itens.length){const t=[];Object.values(DOCS_SEL).forEach(l=>l.forEach(it=>t.push(it)));res.aviso=t.length?' Os documentos anexados já haviam sido enviados.':' Nenhum documento foi anexado na etapa Documentos.';return res}
+ const c=coletarCampos();
+ for(let k=0;k<itens.length;k++){
+  const {it,i}=itens[k];
+  st.textContent='Enviando documentos anexados ('+(k+1)+' de '+itens.length+')...';
+  let r;try{r=await postarApi({acao:'documentos',tipo:'matricula',ano:CONFIG.ano,protocolo:window._protocolo,nome:c.aluno_nome,arquivo:'DOC - '+it.pre+' - '+it.curto+' ('+(i+1)+')'+it.ext,b64:await blobB64(it.blob),ultimo:k===itens.length-1,resumo:itens.length+' arquivo(s)'})}catch(e){r={ok:false,mensagem:'falha ao ler o arquivo'}}
+  if(r&&r.ok){it.enviado=true;res.ok++}else{res.falhas++;res.erro=(r&&r.mensagem)||'erro'}
+ }
+ document.querySelectorAll('.doc-lista').forEach(ul=>{});
+ return res;
+}
+
+// ===== ano letivo no título da página =====
+(function(){
+ document.title='Ficha de Matrícula '+ANO_LETIVO;
+ const h1=document.querySelector('header h1');if(h1)h1.textContent='Ficha e Requerimento de Matrícula | '+ANO_LETIVO;
+})();
+const TIPO_FORM='matricula';
+const IDENT=c=>normNome(c.aluno_nome)+'|'+(c.aluno_nasc||'');
+const IDENT_MAT=null;
+const TEXTO_PROTOCOLO=p=>p?'Protocolo da matrícula: '+p+'. Guarde este número: ele aparece no rodapé dos PDFs e poderá ser solicitado.':'';
+
+/* =====================================================================================
+   REGISTRO ONLINE (planilha Google) — protocolo, status e bloqueio de duplicidade
+   Só funciona quando CONFIG.api tem a URL /exec do Apps Script; vazio = modo de teste.
+   ===================================================================================== */
+const normNome=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w&&!['de','da','do','das','dos','e'].includes(w)).join(' ');
+function hashObj(o){const s=JSON.stringify(o);let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return String(h)}
+function coletarCampos(){
+ const o={};
+ new FormData(form).forEach((v,k)=>{const el=form.querySelector('[name="'+k+'"]');if(el&&el.closest('[hidden]'))return;if(k in o)o[k]=[].concat(o[k],v);else o[k]=v});
+ for(const k in o)if(Array.isArray(o[k]))o[k]=o[k].join('; ');
+ return o;
+}
+const REG_KEY='registro_'+TIPO_FORM+'_'+CONFIG.ano;
+function lerRegistro(){try{return JSON.parse(localStorage.getItem(REG_KEY)||'null')}catch(e){return null}}
+function gravarRegistro(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r))}catch(e){}}
+function limparRegistro(){try{localStorage.removeItem(REG_KEY)}catch(e){}}
+async function postarApi(obj){
+ const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),30000);
+ try{
+  const r=await fetch(CONFIG.api,{method:'POST',body:JSON.stringify(obj),signal:ctl.signal});
+  return await r.json();
+ }catch(e){return {ok:false,rede:true,mensagem:'Não foi possível conectar ao sistema da secretaria. Verifique sua internet.'}}
+ finally{clearTimeout(t)}
+}
+async function registrarOnline(tipo,extra){
+ extra=extra||{};
+ if(!CONFIG.api)return {ok:true,teste:true,protocolo:''};
+ const campos=coletarCampos(),ident=IDENT(campos),hash=hashObj([campos,extra]),reg=lerRegistro();
+ if(reg&&reg.ident===ident){
+  if(reg.hash===hash)return {ok:true,protocolo:reg.protocolo,reuso:true};
+  const a=await postarApi({acao:'atualizar',tipo,ano:CONFIG.ano,protocolo:reg.protocolo,campos,extra});
+  if(a.ok){gravarRegistro({protocolo:reg.protocolo,ident,hash});return {ok:true,protocolo:reg.protocolo,atualizado:true}}
+  if(a.erro!=='nao_encontrado')return a;
+ }
+ const r=await postarApi({acao:'registrar',tipo,ano:CONFIG.ano,campos,extra});
+ if(!r.ok)return r;
+ gravarRegistro({protocolo:r.protocolo,ident,hash});
+ return {ok:true,protocolo:r.protocolo};
+}
+function mostrarProtocolo(texto){
+ let b=document.getElementById('protoBox');
+ if(!b){b=document.createElement('div');b.id='protoBox';b.style.cssText='margin-top:14px;padding:12px 16px;border:2px solid #7a1620;border-radius:10px;background:#fff7f7;color:#4a0d13;font-size:15px;line-height:1.5';const ref=document.getElementById('downloadLinks');ref.parentNode.insertBefore(b,ref)}
+ b.textContent=texto;b.hidden=false;
+}
+
+const AVISO_ENVIO=' Atenção: não foi possível enviar uma cópia dos PDFs à secretaria. Entregue os arquivos a ela.';
+function bytesB64(u8){let s='';for(let i=0;i<u8.length;i+=0x8000)s+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));return btoa(s)}
+/* envia à secretaria a cópia exata dos PDFs gerados (guardados no Drive); true = ok ou não aplicável */
+async function enviarPdfs(tipo,arquivos){
+ if(!CONFIG.api||!window._protocolo)return true;
+ const c=coletarCampos();
+ const r=await postarApi({acao:'anexar',tipo,ano:CONFIG.ano,protocolo:window._protocolo,nome:c.aluno_nome,arquivos:arquivos.map(a=>({nome:a.nome,b64:bytesB64(a.bytes)}))});
+ return !!r.ok;
+}
+/* devolve true se pode gerar os PDFs; false interrompe */
+async function etapaRegistro(tipo,extra,st){
+ if(!CONFIG.api)return true;
+ st.textContent='Registrando o envio na secretaria...';
+ const r=await registrarOnline(tipo,extra);
+ if(r.ok){window._protocolo=r.protocolo||'';window._protocoloMat=(IDENT_MAT?IDENT_MAT(coletarCampos()):'');mostrarProtocolo(TEXTO_PROTOCOLO(r.protocolo));return true}
+ if(r.rede){if(confirm(r.mensagem+'\n\nDeseja gerar os PDFs mesmo assim? Eles ficarão sem número de protocolo e não terão sido registrados na secretaria.')){window._protocolo='';return true}st.textContent='Geração cancelada.';return false}
+ alert(r.mensagem||'Não foi possível registrar.');st.textContent=r.mensagem||'Não foi possível registrar.';return false;
+}
+window.addEventListener('load',()=>{
+ if(CONFIG.api)return;
+ const w=document.querySelector('.wizard-content'),d=document.createElement('div');
+ d.id='avisoTeste';d.style.cssText='margin:0 0 14px;padding:8px 12px;border-radius:8px;background:#fff4d6;color:#6b4e00;font-size:13px';
+ d.textContent='Modo de teste: os dados ainda não estão sendo enviados à planilha (CONFIG.api vazio).';
+ w.insertBefore(d,w.firstChild);
+});
+
+/* link enviado pela secretaria: ...Solicitacao_Bolsa...html?p=MAT-2026-0001 preenche o protocolo da matrícula */
+window.addEventListener('load',()=>{
+ if(TIPO_FORM!=='bolsa')return;
+ const p=new URLSearchParams(location.search).get('p'),e=form.querySelector('[name="matricula_protocolo"]');
+ if(p&&e){e.value=p.toUpperCase().replace(/[^A-Z0-9-]/g,'');e.dispatchEvent(new Event('input',{bubbles:true}))}
+});
+
+</script>
+</body></html>
