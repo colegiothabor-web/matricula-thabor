@@ -633,7 +633,7 @@ let _pdfUrls=[];
 function baixarPdf(url,nome){const a=document.createElement('a');a.href=url;a.download=nome;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1500)}
 function mostrarLinksPdf(itens){
  const box=document.getElementById('downloadLinks');box.innerHTML='';
- const info=document.createElement('p');info.className='download-info';info.textContent='Se o navegador não baixar todos os arquivos automaticamente, use os botões abaixo:';box.appendChild(info);
+ const info=document.createElement('p');info.className='download-info';info.textContent='Para guardar uma cópia, toque em cada botão abaixo (o envio à secretaria é feito antes, automaticamente):';box.appendChild(info);
  for(const it of itens){const l=document.createElement('a');l.href=it.url;l.download=it.nome;l.textContent='Baixar '+it.rotulo;box.appendChild(l)}
  box.hidden=false;
 }
@@ -669,11 +669,15 @@ async function gerarPdf(){
   _pdfUrls.forEach(u=>URL.revokeObjectURL(u));_pdfUrls=arquivos.map(a=>a.url);
   // botões de reserva (caso o navegador bloqueie algum download) + downloads em sequência
   mostrarLinksPdf(arquivos);
-  arquivos.forEach((a,i)=>{if(i===0)baixarPdf(a.url,a.nome);else setTimeout(()=>baixarPdf(a.url,a.nome),i*450)});
+  // 1º envia tudo à secretaria (no celular o download pode tirar a página do ar e cancelar o envio)
+  st.textContent='Enviando os PDFs à secretaria. Não feche esta página...';
   const enviado=await enviarPdfs('matricula',arquivos);
   const dr=await enviarDocumentos(st);
+  // 2º baixa os arquivos: automático só no computador; no celular, pelos botões
+  const celular=/Android|iPhone|iPad|iPod|Mobile|FBAN|FBAV|Instagram|WhatsApp/i.test(navigator.userAgent);
+  if(!celular)arquivos.forEach((a,i)=>{if(i===0)baixarPdf(a.url,a.nome);else setTimeout(()=>baixarPdf(a.url,a.nome),i*450)});
   if(dr.falhas)alert('Os PDFs foram gerados, mas '+dr.falhas+' documento(s) anexado(s) NÃO foram enviados à secretaria.\n\nMotivo: '+dr.erro+'\n\nClique em "Gerar" novamente para tentar reenviar.');
-  st.textContent=arquivos.length+' PDFs gerados: '+arquivos.map(a=>a.rotulo).join(', ')+'. Se o navegador pedir, permita o download de múltiplos arquivos.'+(enviado?'':AVISO_ENVIO)+(dr.aviso||'')+(dr.total?(dr.falhas?' Atenção: '+dr.falhas+' documento(s) anexado(s) não foram enviados ('+dr.erro+'). Clique em "Gerar" novamente para tentar de novo.':' '+dr.ok+' documento(s) anexado(s) enviado(s) à secretaria.'):'');
+  st.textContent=arquivos.length+' PDFs gerados: '+arquivos.map(a=>a.rotulo).join(', ')+'. Toque nos botões "Baixar" para salvar uma cópia (se o navegador pedir, permita o download de múltiplos arquivos).'+(enviado?'':AVISO_ENVIO)+(dr.aviso||'')+(dr.total?(dr.falhas?' Atenção: '+dr.falhas+' documento(s) anexado(s) não foram enviados ('+dr.erro+'). Clique em "Gerar" novamente para tentar de novo.':' '+dr.ok+' documento(s) anexado(s) enviado(s) à secretaria.'):'');
  }catch(e){console.error(e);st.textContent='Não foi possível gerar os PDFs ('+(e&&e.message?e.message:'erro')+'). Verifique sua conexão e tente novamente.'}
  finally{btn.disabled=false}
 }
@@ -929,12 +933,18 @@ function lerRegistro(){try{return JSON.parse(localStorage.getItem(REG_KEY)||'nul
 function gravarRegistro(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r))}catch(e){}}
 function limparRegistro(){try{localStorage.removeItem(REG_KEY)}catch(e){}}
 async function postarApi(obj){
- const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),30000);
- try{
-  const r=await fetch(CONFIG.api,{method:'POST',body:JSON.stringify(obj),signal:ctl.signal});
-  return await r.json();
- }catch(e){return {ok:false,rede:true,mensagem:'Não foi possível conectar ao sistema da secretaria. Verifique sua internet.'}}
- finally{clearTimeout(t)}
+ const pesado=obj&&(obj.acao==='anexar'||obj.acao==='documentos');
+ const limite=pesado?120000:30000,tentativas=pesado?2:1;
+ let ultimo={ok:false,rede:true,mensagem:'Não foi possível conectar ao sistema da secretaria. Verifique sua internet.'};
+ for(let n=0;n<tentativas;n++){
+  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),limite);
+  try{
+   const r=await fetch(CONFIG.api,{method:'POST',body:JSON.stringify(obj),signal:ctl.signal});
+   return await r.json();
+  }catch(e){ultimo={ok:false,rede:true,mensagem:'Não foi possível conectar ao sistema da secretaria. Verifique sua internet.'}}
+  finally{clearTimeout(t)}
+ }
+ return ultimo;
 }
 async function registrarOnline(tipo,extra){
  extra=extra||{};
